@@ -1,0 +1,2 @@
+require('./seed');
+require('../models');

@@ -1,0 +1,22 @@
+{
+  "development": {
+    "username": "root",
+    "password": "6198HawkS6198!",
+    "host": "localhost",
+    "port": 27017,
+    "database": "sportsbook",
+    "dialect": "mongodb"
+  },
+  "test": {
+    "username": "root",
+    "password": "password",
+    "host": "localhost",
+    "port": 5432,
+    "database": "sportsbook",
+    "dialect": "mongodb"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "mongodb"
+  }
+}
