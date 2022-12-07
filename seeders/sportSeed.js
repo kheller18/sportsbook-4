@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const db = require('../models/sport');
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

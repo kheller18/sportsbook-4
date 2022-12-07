@@ -155,7 +155,7 @@ const cron = require('node-cron');
 // console.log(`${ process.env.REACT_APP_API_KEY }`)
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -233,7 +233,7 @@ mongoose.connect(
     const getNBAPlayerTurnovers = async () => {
       return axios.get(`https://pinnacle-props.datafeeds.net/api/json/odds/pinnacle-props/v3/60/basketball/nba/player-turnovers?api-key=5afca6d81396efe5c27658dfc7800a84`)
     }
-    
+
     const getNBAPlayerThrees = async () => {
       return axios.get(`https://pinnacle-props.datafeeds.net/api/json/odds/pinnacle-props/v3/60/basketball/nba/made-threes?api-key=5afca6d81396efe5c27658dfc7800a84`)
     }
