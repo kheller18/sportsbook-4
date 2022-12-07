@@ -57,7 +57,7 @@ const BetSlipContainer = (props) => {
     if (e.target.attributes['id'].value === 'slip-tab-cart') {
       if (slipState === 'active') {
          setSlipState('cart')
-      } 
+      }
     } else {
       if (slipState === 'cart') {
         const userData = JSON.parse(localStorage.getItem('user'));
@@ -91,7 +91,7 @@ const BetSlipContainer = (props) => {
             break;
         }
         break;
-      
+
       case 3:
         switch(initialTeaserVal) {
           case '4':
@@ -171,7 +171,7 @@ const BetSlipContainer = (props) => {
             break;
         }
         break;
-      
+
       case 8:
         switch(initialTeaserVal) {
           case '4':
@@ -187,7 +187,7 @@ const BetSlipContainer = (props) => {
             break;
         }
         break;
-      
+
       case 9:
         switch(initialTeaserVal) {
           case '4':
@@ -242,9 +242,9 @@ const BetSlipContainer = (props) => {
             let decCalc = ((decOdds + 100) / 100).toFixed(2)
             totalOdds *= decCalc
           }
+          return totalOdds - 1;
         })
-        return totalOdds - 1;
-        // break;
+        break;
 
       case 'Parlay':
         oddsArr.map((odds, i) => {
@@ -257,8 +257,9 @@ const BetSlipContainer = (props) => {
             let decCalc = ((decOdds + 100) / 100).toFixed(2)
             totalOdds *= decCalc
           }
+          return totalOdds - 1;
         })
-        return totalOdds - 1;
+        break;
 
       case 'Teaser':
         const numBets = oddsArr.length;
@@ -295,7 +296,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (9/5)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (8/5)
                 break;
@@ -318,7 +319,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (3/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (5/2)
                 break;
@@ -341,7 +342,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (9/2)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (4/1)
                 break;
@@ -364,7 +365,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (6/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (11/2)
                 break;
@@ -387,7 +388,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (10/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (9/1)
                 break;
@@ -410,7 +411,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (15/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (12/1)
                 break;
@@ -433,7 +434,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (20/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (15/1)
                 break;
@@ -456,7 +457,7 @@ const BetSlipContainer = (props) => {
                 totalOdds *= (25/1)
                 break;
 
-              case '4.5': 
+              case '4.5':
               case '6.5':
                 totalOdds *= (20/1)
                 break;
@@ -477,7 +478,6 @@ const BetSlipContainer = (props) => {
             break;
         }
         return totalOdds;
-        break;
 
       default:
         console.log('no bet type encountered')
@@ -631,7 +631,7 @@ const BetSlipContainer = (props) => {
         console.log('invalid handle delete')
         break;
     }
-    const newList = slips.filter((slip, id) => id != e.target.id);
+    const newList = slips.filter((slip, id) => id !== e.target.id);
     calculateSlipTotals(newList)
     setSlips(newList);
   }
@@ -644,24 +644,24 @@ const BetSlipContainer = (props) => {
     switch (data.type) {
       case 'Parlay':
         if (Object.keys(data.slips.keys).length === 1) {
-          if (slipLength == sID) {
+          if (slipLength === sID) {
             props.passRemovalData({target: data.betUID[tID], type: 'Parlay', operation: 'delete', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
           }
           let newList = slips.filter((slip, id) => id != sID)
           calculateSlipTotals(newList);
           setSlips(newList);
         } else {
-          if (slipLength == sID) {
+          if (slipLength === sID) {
             props.passRemovalData({target: data.betUID[tID], type: 'Parlay', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
           }
           delete data['slips']['keys'][`${data.betUID[tID]}`]
-          data.betUID = data.betUID.filter((slip, id) => id != tID)
+          data.betUID = data.betUID.filter((slip, id) => id !== tID)
           console.log(data.betUID);
-          data.payout.oddsArr = data.payout.oddsArr.filter((slip, id) => id != tID)
+          data.payout.oddsArr = data.payout.oddsArr.filter((slip, id) => id !== tID)
           data.payout['totalOdds'] = calculateOdds(data.payout.oddsArr, "Parlay")
           data.payout['odds']['american'] = parseInt((calculateOdds(data.payout.oddsArr, 'Parlay') * 100))
           data.payout['odds']['dec'] = calculateOdds(data.payout.oddsArr, 'Parlay')
-          data.payout['odds']['oddsArr'] = data.payout.odds.oddsArr.filter((slip, id) => id != tID)
+          data.payout['odds']['oddsArr'] = data.payout.odds.oddsArr.filter((slip, id) => id !== tID)
           data.payout['decOdds'] = calculateOdds(data.payout.oddsArr, 'Parlay')
           data.quantity['total'] -= 1
           console.log(data)
@@ -687,17 +687,17 @@ const BetSlipContainer = (props) => {
           if (slipLength === sID) {
             props.passRemovalData({target: data.betUID[tID], type: 'Teaser', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
           }
-          data.payout.oddsArr = data.payout.oddsArr.filter((slip, id) => id != tID)
+          data.payout.oddsArr = data.payout.oddsArr.filter((slip, id) => id !== tID)
           let newOdds = calculateOdds(data.payout.oddsArr, 'Teaser', data.teaserVal)
           data.alternateLines = generateTeaserAltLines(data.initialTeaserVal, data.payout.oddsArr.length)
           console.log(newOdds)
           delete data['slips']['keys'][`${data.betUID[tID]}`]
-          data.betUID = data.betUID.filter((slip, id) => id != tID)
+          data.betUID = data.betUID.filter((slip, id) => id !== tID)
           data.quantity['total'] -= 1
           data.payout['totalOdds'] = newOdds
           data.payout['odds']['american'] = parseInt(newOdds * 100)
           data.payout['odds']['dec'] = newOdds
-          data.payout['odds']['oddsArr'] = data.payout.odds.oddsArr.filter((slip, id) => id != tID)
+          data.payout['odds']['oddsArr'] = data.payout.odds.oddsArr.filter((slip, id) => id !== tID)
           data.payout['decOdds'] = newOdds
         }
         if (parseFloat(data.payout.toLose) >= 5) {
@@ -784,7 +784,7 @@ const BetSlipContainer = (props) => {
                 break;
             }
             break;
-          
+
           case 3:
             switch(initialTeaserVal) {
               case '4':
@@ -864,7 +864,7 @@ const BetSlipContainer = (props) => {
                 break;
             }
             break;
-          
+
           case 8:
             switch(initialTeaserVal) {
               case '4':
@@ -880,7 +880,7 @@ const BetSlipContainer = (props) => {
                 break;
             }
             break;
-          
+
           case 9:
             switch(initialTeaserVal) {
               case '4':
@@ -896,7 +896,7 @@ const BetSlipContainer = (props) => {
                 break;
             }
             break;
-          
+
           case 10:
             switch(initialTeaserVal) {
               case '4':
@@ -1081,7 +1081,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (9/5)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (8/5)
                     break;
@@ -1104,7 +1104,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (3/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (5/2)
                     break;
@@ -1127,7 +1127,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (9/2)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (4/1)
                     break;
@@ -1150,7 +1150,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (6/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (11/2)
                     break;
@@ -1173,7 +1173,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (10/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (9/1)
                     break;
@@ -1196,7 +1196,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (15/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (12/1)
                     break;
@@ -1219,7 +1219,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (20/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (15/1)
                     break;
@@ -1242,7 +1242,7 @@ const BetSlipContainer = (props) => {
                     totalOdds *= (25/1)
                     break;
 
-                  case '4.5': 
+                  case '4.5':
                   case '6.5':
                     totalOdds *= (20/1)
                     break;
@@ -1271,11 +1271,11 @@ const BetSlipContainer = (props) => {
       }
 
 
-      if (clickData != "") {
+      if (clickData !== "") {
         // console.log(clickData.type.type)
         switch (clickData.type.type) {
           case 'Straight':
-            if (clickData.operation != 'remove') {
+            if (clickData.operation !== 'remove') {
               setSlips((prevSlips) => ([...prevSlips, {
                 betUID: [clickData.slipData.id],
                 gameUID: [clickData.slipData.gameUID],
@@ -1312,7 +1312,7 @@ const BetSlipContainer = (props) => {
                 }
               }]))
             } else {
-              const newList = slips.filter((slip, id) => slip.betUID != clickData.slipData.id);
+              const newList = slips.filter((slip, id) => slip.betUID !== clickData.slipData.id);
               calculateSlipTotals(newList)
               setSlips(newList);
             }
@@ -1360,13 +1360,13 @@ const BetSlipContainer = (props) => {
                 let allSlips = slips;
                 let slip = {...slips[clickData.special.slipID]}
                 if (slip.quantity.total === 1) {
-                  let newSlips = slips.filter((slip, id) => id != clickData.special.slipID)
+                  let newSlips = slips.filter((slip, id) => id !== clickData.special.slipID)
                   calculateSlipTotals(newSlips)
                   setSlips(newSlips)
                 } else {
-                  slip.betUID = slip.betUID.filter((UID, id) => id != clickData.operation.index)
-                  slip.gameUID = slip.gameUID.filter((UID, id) => id != clickData.operation.index)
-                  slip.payout.oddsArr = slip.payout.oddsArr.filter((odds, id) => id != clickData.operation.index)
+                  slip.betUID = slip.betUID.filter((UID, id) => id !== clickData.operation.index)
+                  slip.gameUID = slip.gameUID.filter((UID, id) => id !== clickData.operation.index)
+                  slip.payout.oddsArr = slip.payout.oddsArr.filter((odds, id) => id !== clickData.operation.index)
                   slip.quantity.total -= 1
                   delete slip.slips.keys[`${clickData.slipData.id}`]
                   let newOdds = calculateOdds(slip.payout.oddsArr, 'Parlay')
@@ -1421,14 +1421,14 @@ const BetSlipContainer = (props) => {
               let allSlipsLength = slips.length - 1;
               let slip = {...slips[allSlips.length - 1]}
               if (slip.quantity.total === 1) {
-                let newSlips = slips.filter((slip, id) => id != allSlipsLength)
+                let newSlips = slips.filter((slip, id) => id !== allSlipsLength)
                 calculateSlipTotals(newSlips)
                 setSlips(newSlips)
               } else {
                 console.log(clickData.operation.index);
-                let tempBetUID = slip.betUID.filter((UID, id) => id != clickData.operation.index)
-                let tempGameUID = slip.gameUID.filter((UID, id) => id != clickData.operation.index)
-                let tempOddsArr = slip.payout.oddsArr.filter((odds, id) => id != clickData.operation.index)
+                let tempBetUID = slip.betUID.filter((UID, id) => id !== clickData.operation.index)
+                let tempGameUID = slip.gameUID.filter((UID, id) => id !== clickData.operation.index)
+                let tempOddsArr = slip.payout.oddsArr.filter((odds, id) => id !== clickData.operation.index)
                 slip.betUID = tempBetUID;
                 slip.gameUID = tempGameUID;
                 slip.payout.oddsArr = tempOddsArr;
@@ -1531,12 +1531,12 @@ const BetSlipContainer = (props) => {
                 let allSlips = slips;
                 let slip = {...slips[clickData.special.slipID]}
                 if (slip.quantity.total === 1) {
-                  let newSlips = slips.filter((slip, id) => id != clickData.special.slipID)
+                  let newSlips = slips.filter((slip, id) => id !== clickData.special.slipID)
                   calculateSlipTotals(newSlips)
                   setSlips(newSlips)
                 } else {
-                  slip.betUID = slip.betUID.filter((UID, id) => id != clickData.operation.index)
-                  slip.gameUID = slip.gameUID.filter((UID, id) => id != clickData.operation.index)
+                  slip.betUID = slip.betUID.filter((UID, id) => id !== clickData.operation.index)
+                  slip.gameUID = slip.gameUID.filter((UID, id) => id !== clickData.operation.index)
                   slip.payout.oddsArr = slip.payout.oddsArr.filter((odds, id) => id != clickData.operation.index)
                   slip.quantity.total -= 1
                   delete slip.slips.keys[`${clickData.slipData.id}`]
@@ -1595,13 +1595,13 @@ const BetSlipContainer = (props) => {
               let allSlipsLength = slips.length - 1;
               let slip = {...slips[allSlips.length - 1]}
               if (slip.quantity.total === 1) {
-                let newSlips = slips.filter((slip, id) => id != allSlipsLength)
+                let newSlips = slips.filter((slip, id) => id !== allSlipsLength)
                 calculateSlipTotals(newSlips)
                 setSlips(newSlips)
               } else {
-                let tempBetUID = slip.betUID.filter((UID, id) => id != clickData.operation.index)
-                let tempGameUID = slip.gameUID.filter((UID, id) => id != clickData.operation.index)
-                let tempOddsArr = slip.payout.oddsArr.filter((odds, id) => id != clickData.operation.index)
+                let tempBetUID = slip.betUID.filter((UID, id) => id !== clickData.operation.index)
+                let tempGameUID = slip.gameUID.filter((UID, id) => id !== clickData.operation.index)
+                let tempOddsArr = slip.payout.oddsArr.filter((odds, id) => id !== clickData.operation.index)
                 slip.betUID = tempBetUID;
                 slip.gameUID = tempGameUID;
                 slip.payout.oddsArr = tempOddsArr;

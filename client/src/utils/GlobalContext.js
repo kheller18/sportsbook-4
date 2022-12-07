@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import PropTypes from 'prop-types';
 import API from './API';
 
 const GlobalContext = createContext();
@@ -29,8 +30,6 @@ export const GlobalContextProvider = (props) => {
       </GlobalContext.Provider>
     );
 };
-
-import PropTypes from 'prop-types';
 
 GlobalContext.propTypes = {
   children: PropTypes.node,

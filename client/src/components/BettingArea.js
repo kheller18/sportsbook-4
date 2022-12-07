@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 // import '../styles/BetSlip.css';
 import API from '../utils/API';
-import ActiveGames from './ActiveGames';
 import BetSlipContainer from './BetSlipContainer';
 // import RenderLines from './RenderLines';
 import Nav from './Nav';
@@ -11,6 +10,7 @@ import LinesContainer from './LinesContainer';
 
 
 const BettingArea = (props) => {
+  console.log(props)
   const [isLoading, setIsLoading] = useState(true)
   const [clickData, setClickData] = useState("")
   const [removalData, setRemovalData] = useState({target: '', type: '', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
@@ -18,7 +18,7 @@ const BettingArea = (props) => {
   const [nav, setNav] = useState([]);
   const [sport, setSport] = useState('basketball_nba');
   const [league, setLeague] = useState('NHL')
-  const [state, setState] = useState({sport: 'Basketball', league: 'NBA', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
+  const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
   const [targetGames, setTargetGames] = useState([])
   // const [siteData, setSiteData] = useState([]);
   // const [navData, setNavData] = useState([])

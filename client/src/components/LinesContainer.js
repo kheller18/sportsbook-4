@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/LinesContainer.css'
-import BetSlip from './BetSlip';
+// import BetSlip from './BetSlip';
 import PropsContainer from './PropsContainer';
 import Button from './Button';
-import API from '../utils/API';
+// import API from '../utils/API';
 import Lines from './Lines';
-import Props from './Props';
+// import Props from './Props';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /* <i className="fas fa-chevron-circle-up"></i> */
 /* <i class="fas fa-spinner"></i> */
@@ -14,22 +14,22 @@ import Props from './Props';
 
 const LinesContainer = (props) => {
   const header = ['TIME', 'TEAM', 'MONEYLINE', 'SPREAD', 'TOTAL'];
-  const playerPropsHeader = ['PLAYER', 'UNDER', 'LINE', 'OVER'];
-  const [games, setGames] = useState([])
-  const [currHeader, setCurrHeader] = useState(['TIME', 'TEAM', 'MONEY', 'SPREAD', 'TOTAL'])
+  // const playerPropsHeader = ['PLAYER', 'UNDER', 'LINE', 'OVER'];
+  // const [games, setGames] = useState([])
+  // const [currHeader, setCurrHeader] = useState(['TIME', 'TEAM', 'MONEY', 'SPREAD', 'TOTAL'])
   const [isLoading, setIsLoading] = useState(false);
   const [slipType, setSlipType] = useState({type: "Straight", new: true, special: {value: false, slipID: ''}})
-  const [activeBtn, setActiveBtn] = useState({ color: '#EFEFEF' })
+  // const [activeBtn, setActiveBtn] = useState({ color: '#EFEFEF' })
   const [parlayArr, setParlayArr] = useState([])
   const [leagueType, setLeagueType] = useState('GAME LINES')
   const [straightArr, setStraightArr] = useState([])
   const [teaserArr, setTeaserArr] = useState([])
-  const [slipTypeArr, setSlipTypeArr] = useState({straight: [], teaser: [], parlay: []})
-  const currTarget = props.league;
+  // const [slipTypeArr, setSlipTypeArr] = useState({straight: [], teaser: [], parlay: []})
+  // const currTarget = props.league;
   const content = props.state;
   const sport = content.sport;
   // console.log(sport)
-  console.log(content.games)
+  console.log(content)
   // console.log(currTarget)
   // const sportsLines = props.data;
   const removalData = props.removalData
@@ -50,7 +50,6 @@ const LinesContainer = (props) => {
     'MMA': 'fas fa-user-ninja',
     'Basketball': 'fas fa-basketball-ball'
   }
-
 
   // let multiBetArr = [];
 
@@ -87,7 +86,7 @@ const LinesContainer = (props) => {
         switch (e.target.value) {
           case 'player-under':
             if (straightArr.includes(player[1].Under.id)) {
-              newStraightArr = straightArr.filter(bet => bet != player[1].Under.id)
+              newStraightArr = straightArr.filter(bet => bet !== player[1].Under.id)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
             } else {
@@ -99,7 +98,7 @@ const LinesContainer = (props) => {
 
           case 'player-over':
             if (straightArr.includes(player[1].Over.id)) {
-              newStraightArr = straightArr.filter(bet => bet != player[1].Over.id)
+              newStraightArr = straightArr.filter(bet => bet !== player[1].Over.id)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
             } else {
@@ -139,7 +138,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(player[1].Under.id)) {
                 index = parlayArr.indexOf(player[1].Under.id)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -156,7 +155,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(player[1].Over.id)) {
                 index = parlayArr.indexOf(player[1].Over.id)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -167,8 +166,11 @@ const LinesContainer = (props) => {
                 props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
               }
               break;
-              
+
+            default:
+            break;
           }
+
         } else {
           switch (e.target.value) {
             case 'player-under':
@@ -176,7 +178,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(player[1].Under.id)) {
                 index = parlayArr.indexOf(player[1].Under.id)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -193,7 +195,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(player[1].Over.id)) {
                 index = parlayArr.indexOf(player[1].Over.id)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -204,6 +206,9 @@ const LinesContainer = (props) => {
                 props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
+
+            default:
+              break;
           }
         }
 
@@ -212,7 +217,6 @@ const LinesContainer = (props) => {
       default:
         console.log('incorrect sliptype handle prop click')
     }
-
   }
 
 
@@ -225,7 +229,7 @@ const LinesContainer = (props) => {
         switch (e.target.value) {
           case 'away-moneyline':
             if (straightArr.includes(game.game.odds.keys.gameMoneylineAwayID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameMoneylineAwayID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameMoneylineAwayID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameMoneylineAwayID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: null, odds: game.game.odds.full.gameMoneylineAwayPrice, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null}, isLoading: true });
             } else {
@@ -235,7 +239,7 @@ const LinesContainer = (props) => {
             break;
           case 'away-spread':
             if (straightArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameSpreadAwayID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameSpreadAwayID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameSpreadAwayID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: (game.game.odds.full.gameSpreadAwayHandicap), odds: game.game.odds.full.gameSpreadAwayPrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -245,7 +249,7 @@ const LinesContainer = (props) => {
             break;
           case 'over':
             if (straightArr.includes(game.game.odds.keys.gameTotalOverID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameTotalOverID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameTotalOverID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameTotalOverID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: (game.game.odds.full.gameTotalPoints), odds: game.game.odds.full.gameTotalOverPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -255,7 +259,7 @@ const LinesContainer = (props) => {
             break;
           case 'home-moneyline':
             if (straightArr.includes(game.game.odds.keys.gameMoneylineHomeID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameMoneylineHomeID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameMoneylineHomeID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameMoneylineHomeID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: null, odds: game.game.odds.full.gameMoneylineHomePrice, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -265,7 +269,7 @@ const LinesContainer = (props) => {
             break;
           case 'home-spread':
             if (straightArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameSpreadHomeID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameSpreadHomeID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameSpreadHomeID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: (game.game.odds.full.gameSpreadHomeHandicap), odds: game.game.odds.full.gameSpreadHomePrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -275,7 +279,7 @@ const LinesContainer = (props) => {
             break;
           case 'under':
             if (straightArr.includes(game.game.odds.keys.gameTotalUnderID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameTotalUnderID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameTotalUnderID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameTotalUnderID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: (game.game.odds.full.gameTotalPoints), odds: game.game.odds.full.gameTotalUnderPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -329,7 +333,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameMoneylineAwayID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameMoneylineAwayID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -346,7 +350,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -363,7 +367,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -380,7 +384,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameMoneylineHomeID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameMoneylineHomeID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -397,7 +401,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -414,7 +418,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -436,7 +440,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameMoneylineAwayID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameMoneylineAwayID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -452,7 +456,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -468,7 +472,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -484,7 +488,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameMoneylineHomeID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameMoneylineHomeID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -500,7 +504,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -516,7 +520,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (parlayArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = parlayArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newParlayArr = parlayArr.filter((bet, id) => id != index)
+                newParlayArr = parlayArr.filter((bet, id) => id !== index)
                 if (newParlayArr.length < 1) {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
@@ -590,7 +594,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -607,7 +611,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -623,7 +627,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -639,7 +643,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -661,7 +665,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -677,7 +681,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -693,7 +697,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -709,7 +713,7 @@ const LinesContainer = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -726,7 +730,6 @@ const LinesContainer = (props) => {
           };
         }
         break;
-  
 
       default:
         console.log('invalid sliptype')
@@ -737,7 +740,7 @@ const LinesContainer = (props) => {
   // console.log(games)
   useEffect(() => {
 
-    if (removalData.target != '') {
+    if (removalData.target !== '') {
       switch (removalData.type) {
         case 'Straight':
           newStraightArr = straightArr.filter((bet) => bet != removalData.target)
@@ -814,20 +817,20 @@ const LinesContainer = (props) => {
             <Button type="button" className={leagueType === 'PLAYER PROPS' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('PLAYER PROPS')} id='player-props'>PLAYER PROPS</Button>
           </div>
         </div>
-        {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football')))  ? 
+        {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football'))) ?
           <div className='render-bet-type-buttons'>
             <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
             <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='parlay' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
             <Button type="button" className={slipType.type === 'Teaser' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='teaser' onClick={() => handleSlipTypeChange('Teaser')}>TEASER</Button>
           </div>
-        : 
+        :
           <div className='render-bet-type-buttons'>
             <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
             <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='parlay-two' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
           </div>
         }
         <table className='table'>
-          {leagueType === 'GAME LINES' ? 
+          {leagueType === 'GAME LINES' ?
             <thead>
               <tr className='table-headers'>
                 <th className='th' id='header-time'>{header[0]}</th>
@@ -842,7 +845,7 @@ const LinesContainer = (props) => {
           : null
           }
         </table>
-        {leagueType === 'GAME LINES' ? 
+        {leagueType === 'GAME LINES' ?
           <div className='scroll-container'>
             {content.games.map(game => {
               return (
@@ -878,258 +881,3 @@ const LinesContainer = (props) => {
 };
 
 export default LinesContainer;
-
-
-                // <table key={game.gameUID} className='render-main-body'>
-                //   <tbody>
-                //     <tr key={game.gameUID}>
-                //       <td className='render-away-row'>
-                //         <table className='render-sub-body'>
-                //           <tbody>
-                //             <tr>
-                //               <td className='render-team'>{game.game.odds.full.awayTeam}</td>
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameMoneylineAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='away-moneyline'
-                //                     value='away-moneyline'
-                //                   >
-                //                     {game.game.odds.full.gameMoneylineAwayPrice}
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameMoneylineAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='away-moneyline'
-                //                     value='away-moneyline'
-                //                   >
-                //                     {game.game.odds.full.gameMoneylineAwayPrice}
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'></td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='away-spread'
-                //                     value='away-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='away-spread'
-                //                     value='away-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={teaserArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='away-spread'
-                //                     value='away-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='over'
-                //                     value='over'
-                //                   >
-                //                     O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='over'
-                //                     value='over'
-                //                   >
-                //                     O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={teaserArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='over'
-                //                     value='over'
-                //                   >
-                //                     O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //             </tr>
-                //           </tbody>
-                //         </table>
-                //       </td>
-                //     </tr>
-                //     <tr>
-                //       <td className='render-gametime-row'>
-                //         <table className='render-gametime'>
-                //           <tbody>
-                //             <tr>
-                //               <td>{game.game.odds.full.startDate}</td>
-                //             </tr>
-                //           </tbody>
-                //         </table>
-                //       </td>
-                //     </tr>
-                //     <tr>
-                //       <td>
-                //         <table className='render-sub-body'>
-                //           <tbody>
-                //             <tr>
-                //               <td className='render-team'>{game.game.odds.full.homeTeam}</td>
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameMoneylineHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='home-moneyline'
-                //                     value='home-moneyline'
-                //                   >
-                //                     {game.game.odds.full.gameMoneylineHomePrice}
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameMoneylineHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='home-moneyline'
-                //                     value='home-moneyline'
-                //                   >
-                //                     {game.game.odds.full.gameMoneylineHomePrice}
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'></td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='home-spread'
-                //                     value='home-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='home-spread'
-                //                     value='home-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={teaserArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='home-spread'
-                //                     value='home-spread'
-                //                   >
-                //                     {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Straight' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={straightArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='under'
-                //                     value='under'
-                //                   >
-                //                     U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Parlay' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={parlayArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='under'
-                //                     value='under'
-                //                   >
-                //                     U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //               {slipType.type === 'Teaser' ? 
-                //                 <td className='render-button'>
-                //                   <Button
-                //                     onClick={(e) => handleClick(e, game)}
-                //                     className={teaserArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
-                //                     id='under'
-                //                     value='under'
-                //                   >
-                //                     U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
-                //                   </Button>
-                //                 </td>
-                //               : null
-                //               }
-                //             </tr>
-                //           </tbody>
-                //         </table>
-                //       </td>
-                //     </tr>
-                //   </tbody>
-                // </table>
