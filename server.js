@@ -33,10 +33,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-require('./services/gameSeed');
+// require('./services/gameSeed');
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook", {
+  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -61,53 +61,53 @@ mongoose.connect(
       }
     })
 
-    const fetchData = async (socket) => {
-      let sportsPackage = '';
-      let leagues = {}
-      let gamesPackage = {leagues}
+    // const fetchData = async (socket) => {
+    //   let sportsPackage = '';
+    //   let leagues = {}
+    //   let gamesPackage = {leagues}
 
-      const fetchActiveSports = async () => {
-        sportsPackage = '';
-        const promise = await Sports.find({active: true}).then(async sports => {
-          let sportsObj = await sports.map((sport) => ({
-            name: sport.sportTitle,
-            leagues: sport.leagues
-          }))
-          sportsPackage = sportsObj;
-        })
-      }
+    //   const fetchActiveSports = async () => {
+    //     sportsPackage = '';
+    //     const promise = await Sports.find({active: true}).then(async sports => {
+    //       let sportsObj = await sports.map((sport) => ({
+    //         name: sport.sportTitle,
+    //         leagues: sport.leagues
+    //       }))
+    //       sportsPackage = sportsObj;
+    //     })
+    //   }
 
-      const fetchActiveGames = async () => {
-        leagues = {}
-        gamesPackage = {leagues}
-        const promises = sportsPackage.map(async (sport, index) => {
-          const promises2 = await Object.keys(sport.leagues).map(async league => {
-            const promise = await Games.find({"league": league}).then((games, i) => {
-              if (games.length > 0) {
-                sportsPackage[index].leagues[`${ league }`].games.active = true
-                gamesPackage.leagues[`${ league }`] = games;
-              } else {
-                sportsPackage[index].leagues[`${ league }`].games.active = false
-              }
-            })
-          })
-          await Promise.all(promises2)
-        }) 
-        await Promise.all(promises)
-      }
+    //   const fetchActiveGames = async () => {
+    //     leagues = {}
+    //     gamesPackage = {leagues}
+    //     const promises = sportsPackage.map(async (sport, index) => {
+    //       const promises2 = await Object.keys(sport.leagues).map(async league => {
+    //         const promise = await Games.find({"league": league}).then((games, i) => {
+    //           if (games.length > 0) {
+    //             sportsPackage[index].leagues[`${ league }`].games.active = true
+    //             gamesPackage.leagues[`${ league }`] = games;
+    //           } else {
+    //             sportsPackage[index].leagues[`${ league }`].games.active = false
+    //           }
+    //         })
+    //       })
+    //       await Promise.all(promises2)
+    //     }) 
+    //     await Promise.all(promises)
+    //   }
       
-      await fetchActiveSports();
-      await fetchActiveGames();
-      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
-      console.log('initial seed')
+    //   await fetchActiveSports();
+    //   await fetchActiveGames();
+    //   socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
+    //   console.log('initial seed')
 
-      const scheduleTask = cron.schedule('* * * * *', async () => {
-        await fetchActiveSports();
-        await fetchActiveGames();
-        socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
-        console.log(new Date())
-      })
-    };
+    //   const scheduleTask = cron.schedule('* * * * *', async () => {
+    //     await fetchActiveSports();
+    //     await fetchActiveGames();
+    //     socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
+    //     console.log(new Date())
+    //   })
+    // };
 
     let loggedOnUsers = [];
     let data = '';
