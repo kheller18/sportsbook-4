@@ -44,7 +44,7 @@ const sportSeed = [
     "leagues": {
       "NBA": {
         "games": {
-          "active": false,
+          "active": true,
           "statusChange": false,
           "dateStatusChange": null,
           "dateReset": null,
@@ -60,7 +60,7 @@ const sportSeed = [
       },
       "NCAA": {
         "games": {
-          "active": false,
+          "active": true,
           "statusChange": false,
           "dateStatusChange": null,
           "dateReset": null,
@@ -75,7 +75,7 @@ const sportSeed = [
         }
       }
     },
-    "active": false,
+    "active": true,
     "prevStatus": false,
     "statusChange": false,
     "dateStatusChange": null,
@@ -87,7 +87,7 @@ const sportSeed = [
     "leagues": {
       "NFL": {
         "games": {
-          "active": false,
+          "active": true,
           "statusChange": false,
           "dateStatusChange": null,
           "dateReset": null,
@@ -103,7 +103,7 @@ const sportSeed = [
       },
       "NCAA": {
         "games": {
-          "active": false,
+          "active": true,
           "statusChange": false,
           "dateStatusChange": null,
           "dateReset": null,
@@ -118,7 +118,7 @@ const sportSeed = [
         }
       }
     },
-    "active": false,
+    "active": true,
     "prevStatus": false,
     "statusChange": false,
     "dateStatusChange": null,

@@ -60,7 +60,7 @@ mongoose.connect(
     }
 
     const getNFL = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getPGA = async () => {
@@ -121,13 +121,13 @@ mongoose.connect(
         //   // ATP: data[12].data.games,
         //   // WTA: data[13].data.games
         // }
-        console.log(data[0].data)
+        // console.log(data[0].data)
         const gamesObj = {
           // MLB: data[0].data.games,
           // NBA: data[1].data.games,
           // // NCAABasketball: data[2].data.games,
           // NCAAFootball: data[3].data.games,
-          NFL: data[0].data.games,
+          NFL: data[0].data,
           // // PGA: data[5].data.games,
           // NHL: data[2].data.games,
           // // MMA: data[7].data.games,
@@ -143,7 +143,6 @@ mongoose.connect(
           const findSport = await Sport.findOne(
             {
               sportTitle: leagueRelations[`${ sport[0] }`],
-              // [`leagues.${ leagueRelations[`${ sport[0] }`].games.active }`]: false
             }, async (err, doc) => {
               if (Object.values(sport[1]).length < 1) {
                 if (doc.leagues[`${ sport[0] }`].games.active === true) {
@@ -184,66 +183,48 @@ mongoose.connect(
                 }
 
                 const promise = await Object.values(sport[1]).map(async (game, index) => {
+                  console.log(game.bookmakers[0].markets[2])
                   const updateGame = await Game.find(
                     {
-                      gameUID: game.gameUID
+                      gameUID: game.id
                     }, async (err, doc) => {
                       if (doc.length > 0) {
                         await Game.findOneAndUpdate(
-                          { gameUID: game.gameUID },
+                          { gameUID: game.id },
                           {
                             $set: {
-                              "sport": game.sport,
-                              "league": game.league,
-                              "startDate": game.startDate,
-                              "awayTeam": game.awayTeam,
-                              "homeTeam": game.homeTeam,
+                              "sport": leagueRelations[`${ game.sport_title }`],
+                              "league": game.sport_title,
+                              "startDate": game.commence_time,
+                              "awayTeam": game.away_team,
+                              "homeTeam": game.home_team,
                               "game.odds.full": game,
                               "game.odds.keys": {
-                                "gameMoneylineAwayID": `${ game.gameUID }-1`,
-                                "gameSpreadAwayID": `${ game.gameUID }-2`,
-                                "gameTotalOverID": `${ game.gameUID }-3`,
-                                "gameMoneylineHomeID": `${ game.gameUID }-4`,
-                                "gameSpreadHomeID": `${ game.gameUID }-5`,
-                                "gameTotalUnderID": `${ game.gameUID }-6`,
+                                "gameMoneylineAwayID": `${ game.id }-1`,
+                                "gameSpreadAwayID": `${ game.id }-2`,
+                                "gameTotalOverID": `${ game.id }-3`,
+                                "gameMoneylineHomeID": `${ game.id }-4`,
+                                "gameSpreadHomeID": `${ game.id }-5`,
+                                "gameTotalUnderID": `${ game.id }-6`,
                               },
-                              "game.keys.gameMoneylineAway.id": `${ game.gameUID }-1`,
-                              "game.keys.gameMoneylineAway.currVal": game.gameMoneylineAwayPrice,
+                              "game.keys.gameMoneylineAway.id": `${ game.id }-1`,
+                              "game.keys.gameMoneylineAway.currVal": game.bookmakers[0].markets[0].outcomes[0].price,
                               "game.keys.gameMoneylineAway.prevVal": doc[0].game.keys.gameMoneylineAway.currVal,
-                              "game.keys.gameSpreadAway.id": `${ game.gameUID }-2`,
-                              "game.keys.gameSpreadAway.currVal": game.gameSpreadAwayHandicap,
+                              "game.keys.gameSpreadAway.id": `${ game.id }-2`,
+                              "game.keys.gameSpreadAway.currVal": game.bookmakers[0].markets[1].outcomes[0].point,
                               "game.keys.gameSpreadAway.prevVal": doc[0].game.keys.gameSpreadAway.currVal,
-                              "game.keys.gameTotalOver.id": `${ game.gameUID }-3`,
-                              "game.keys.gameTotalOver.currVal": game.gameTotalPoints,
+                              "game.keys.gameTotalOver.id": `${ game.id}-3`,
+                              "game.keys.gameTotalOver.currVal": game.bookmakers[0].markets[2].outcomes[0].point,
                               "game.keys.gameTotalOver.prevVal": doc[0].game.keys.gameTotalOver.currVal,
-                              "game.keys.gameMoneylineHome.id": `${ game.gameUID }-4`,
-                              "game.keys.gameMoneylineHome.currVal": game.gameMoneylineHomePrice,
+                              "game.keys.gameMoneylineHome.id": `${ game.id }-4`,
+                              "game.keys.gameMoneylineHome.currVal": game.bookmakers[0].markets[0].outcomes[1].price,
                               "game.keys.gameMoneylineHome.prevVal": doc[0].game.keys.gameMoneylineHome.currVal,
-                              "game.keys.gameSpreadHome.id": `${ game.gameUID }-5`,
-                              "game.keys.gameSpreadHome.currVal": game.gameSpreadHomeHandicap,
+                              "game.keys.gameSpreadHome.id": `${ game.id }-5`,
+                              "game.keys.gameSpreadHome.currVal": game.bookmakers[0].markets[1].outcomes[1].point,
                               "game.keys.gameSpreadHome.prevVal": doc[0].game.keys.gameSpreadHome.currVal,
-                              "game.keys.gameTotalUnder.id": `${ game.gameUID }-6`,
-                              "game.keys.gameTotalUnder.currVal": game.gameTotalPoints,
+                              "game.keys.gameTotalUnder.id": `${ game.id }-6`,
+                              "game.keys.gameTotalUnder.currVal": game.game.bookmakers[0].markets[2].outcomes[1].point,
                               "game.keys.gameTotalUnder.prevVal": doc[0].game.keys.gameTotalUnder.currVal,
-
-                              "game.keys.halfMoneylineAway.id": `${ game.gameUID }-1-1`,
-                              "game.keys.halfMoneylineAway.currVal": game.halfMoneylineAwayPrice,
-                              "game.keys.halfMoneylineAway.prevVal": doc[0].game.keys.halfMoneylineAway.currVal,
-                              "game.keys.halfSpreadAway.id": `${ game.gameUID }-1-2`,
-                              "game.keys.halfSpreadAway.currVal": game.halfSpreadAwayHandicap,
-                              "game.keys.halfSpreadAway.prevVal": doc[0].game.keys.halfSpreadAway.currVal,
-                              "game.keys.halfTotalOver.id": `${ game.gameUID }-1-3`,
-                              "game.keys.halfTotalOver.currVal": game.halfTotalPoints,
-                              "game.keys.halfTotalOver.prevVal": doc[0].game.keys.halfTotalOver.currVal,
-                              "game.keys.halfMoneylineHome.id": `${ game.gameUID }-1-4`,
-                              "game.keys.halfMoneylineHome.currVal": game.halfMoneylineHomePrice,
-                              "game.keys.halfMoneylineHome.prevVal": doc[0].game.keys.halfMoneylineHome.currVal,
-                              "game.keys.halfSpreadHome.id": `${ game.gameUID }-1-5`,
-                              "game.keys.halfSpreadHome.currVal": game.halfSpreadHomeHandicap,
-                              "game.keys.halfSpreadHome.prevVal": doc[0].game.keys.halfSpreadHome.currVal,
-                              "game.keys.halfTotalUnder.id": `${ game.gameUID }-1-6`,
-                              "game.keys.halfTotalUnder.currVal": game.halfTotalPoints,
-                              "game.keys.halfTotalUnder.prevVal": doc[0].game.keys.halfTotalUnder.currVal,
                             },
                           },
                           {
@@ -252,29 +233,29 @@ mongoose.connect(
                         )
                       } else {
                         await Game.findOneAndUpdate(
-                          { gameUID: game.gameUID },
+                          { gameUID: game.id },
                           {
                             $set: {
-                              "sport": game.sport,
-                              "league": game.league,
-                              "startDate": game.startDate,
-                              "awayTeam": game.awayTeam,
-                              "homeTeam": game.homeTeam,
+                              "sport": leagueRelations[`${ game.sport_title }`],
+                              "league": game.sport_title,
+                              "startDate": game.commence_time,
+                              "awayTeam": game.away_team,
+                              "homeTeam": game.home_team,
                               "game.odds.full": game,
                               "game.odds.keys": {
-                                "gameMoneylineAwayID": `${ game.gameUID }-1`,
-                                "gameSpreadAwayID": `${ game.gameUID }-2`,
-                                "gameTotalOverID": `${ game.gameUID }-3`,
-                                "gameMoneylineHomeID": `${ game.gameUID }-4`,
-                                "gameSpreadHomeID": `${ game.gameUID }-5`,
-                                "gameTotalUnderID": `${ game.gameUID }-6`,
+                                "gameMoneylineAwayID": `${ game.id }-1`,
+                                "gameSpreadAwayID": `${ game.id }-2`,
+                                "gameTotalOverID": `${ game.id }-3`,
+                                "gameMoneylineHomeID": `${ game.id }-4`,
+                                "gameSpreadHomeID": `${ game.id }-5`,
+                                "gameTotalUnderID": `${ game.id }-6`,
                               },
                               "game.keys": {
                                 "gameMoneylineAway": {
-                                  'id': `${ game.gameUID }-1`,
-                                  'initialVal': game.gameMoneylineAwayPrice,
-                                  'prevVal': game.gameMoneylineAwayPrice,
-                                  'currVal': game.gameMoneylineAwayPrice,
+                                  'id': `${ game.id }-1`,
+                                  'initialVal': game.bookmakers[0].markets[0].outcomes[0].price,
+                                  'prevVal': game.bookmakers[0].markets[0].outcomes[0].price,
+                                  'currVal': game.bookmakers[0].markets[0].outcomes[0].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -283,10 +264,10 @@ mongoose.connect(
                                   'dateReset': null
                                 },
                                 "gameSpreadAway": {
-                                  'id': `${ game.gameUID }-2`,
-                                  'initialVal': game.gameSpreadAwayHandicap,
-                                  'prevVal': game.gameSpreadAwayHandicap,
-                                  'currVal': game.gameSpreadAwayHandicap,
+                                  'id': `${ game.id }-2`,
+                                  'initialVal': game.bookmakers[0].markets[1].outcomes[0].point,
+                                  'prevVal': game.bookmakers[0].markets[1].outcomes[0].point,
+                                  'currVal': game.bookmakers[0].markets[1].outcomes[0].point,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -295,10 +276,10 @@ mongoose.connect(
                                   'dateReset': null
                                 },
                                 "gameTotalOver": {
-                                  'id': `${ game.gameUID }-3`,
-                                  'initialVal': game.gameTotalPoints,
-                                  'prevVal': game.gameTotalPoints,
-                                  'currVal': game.gameTotalPoints,
+                                  'id': `${ game.id }-3`,
+                                  'initialVal': game.bookmakers[0].markets[2].outcomes[0].point,
+                                  'prevVal': game.bookmakers[0].markets[2].outcomes[0].point,
+                                  'currVal': game.bookmakers[0].markets[2].outcomes[0].point,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -307,10 +288,10 @@ mongoose.connect(
                                   'dateReset': null
                                 },
                                 "gameMoneylineHome": {
-                                  'id': `${ game.gameUID }-4`,
-                                  'initialVal': game.gameMoneylineHomePrice,
-                                  'prevVal': game.gameMoneylineHomePrice,
-                                  'currVal': game.gameMoneylineHomePrice,
+                                  'id': `${ game.id }-4`,
+                                  'initialVal': game.bookmakers[0].markets[0].outcomes[1].price,
+                                  'prevVal': game.bookmakers[0].markets[0].outcomes[1].price,
+                                  'currVal': game.bookmakers[0].markets[0].outcomes[1].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -319,10 +300,10 @@ mongoose.connect(
                                   'dateReset': null
                                 },
                                 "gameSpreadHome": {
-                                  'id': `${ game.gameUID }-5`,
-                                  'initialVal': game.gameSpreadHomeHandicap,
-                                  'prevVal': game.gameSpreadHomeHandicap,
-                                  'currVal': game.gameSpreadHomeHandicap,
+                                  'id': `${ game.id }-5`,
+                                  'initialVal': game.bookmakers[0].markets[1].outcomes[1].point,
+                                  'prevVal': game.bookmakers[0].markets[1].outcomes[1].point,
+                                  'currVal': game.bookmakers[0].markets[1].outcomes[1].point,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -331,82 +312,10 @@ mongoose.connect(
                                   'dateReset': null
                                 },
                                 "gameTotalUnder": {
-                                  'id': `${ game.gameUID }-6`,
-                                  'initialVal': game.gameTotalPoints,
-                                  'prevVal': game.gameTotalPoints,
-                                  'currVal': game.gameTotalPoints,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfMoneylineAway": {
-                                  'id': `${ game.gameUID }-1-1`,
-                                  'initialVal': game.halfMoneylineAwayPrice,
-                                  'prevVal': game.halfMoneylineAwayPrice,
-                                  'currVal': game.halfMoneylineAwayPrice,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfSpreadAway": {
-                                  'id': `${ game.gameUID }-1-2`,
-                                  'initialVal': game.halfSpreadAwayHandicap,
-                                  'prevVal': game.halfSpreadAwayHandicap,
-                                  'currVal': game.halfSpreadAwayHandicap,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfTotalOver": {
-                                  'id': `${ game.gameUID }-1-3`,
-                                  'initialVal': game.halfTotalPoints,
-                                  'prevVal': game.halfTotalPoints,
-                                  'currVal': game.halfTotalPoints,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfMoneylineHome": {
-                                  'id': `${ game.gameUID }-1-4`,
-                                  'initialVal': game.halfMoneylineHomePrice,
-                                  'prevVal': game.halfMoneylineHomePrice,
-                                  'currVal': game.halfMoneylineHomePrice,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfSpreadHome": {
-                                  'id': `${ game.gameUID }-1-5`,
-                                  'initialVal': game.halfSpreadHomeHandicap,
-                                  'prevVal': game.halfSpreadHomeHandicap,
-                                  'currVal': game.halfSpreadHomeHandicap,
-                                  'totalDelta': '0',
-                                  'currDelta': '0',
-                                  'deltaOperator': 'none',
-                                  'lineShift': false,
-                                  'dateLineShift': '',
-                                  'dateReset': null
-                                },
-                                "halfTotalUnder": {
-                                  'id': `${ game.gameUID }-1-6`,
-                                  'initialVal': game.halfTotalPoints,
-                                  'prevVal': game.halfTotalPoints,
-                                  'currVal': game.halfTotalPoints,
+                                  'id': `${ game.id }-6`,
+                                  'initialVal': game.bookmakers[0].markets[2].outcomes[1].point,
+                                  'prevVal': game.bookmakers[0].markets[2].outcomes[1].point,
+                                  'currVal': game.bookmakers[0].markets[2].outcomes[1].point,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -426,7 +335,7 @@ mongoose.connect(
                       }
                     }
                   )
-                  // await Promise.all(promise)
+                  await Promise.all(promise)
                 })
 
               }
