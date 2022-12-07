@@ -1,0 +1,31 @@
+.prop-type-button {
+  width: 107px;
+}
+
+.prop-type-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.activeBtn {
+  background-color: darkblue;
+  color: white;
+}
+
+.lineBtn {
+  width: 112px;
+  border-radius: 5px;
+  border: .5px;
+  /* height: 35px; */
+}
+
+.prop-body {
+  background-color: white;
+  margin-bottom: 5px;
+  width: 750px;
+  padding: 5px;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+

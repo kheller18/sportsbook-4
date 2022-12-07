@@ -1,0 +1,19 @@
+.dropdown-button {
+  height: 20px;
+}
+
+.target-button {
+  height: 20px;
+}
+
+.dropdown-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.target-button-contents {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

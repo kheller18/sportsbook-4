@@ -1,0 +1,106 @@
+
+.slip-body {
+  background-color: white;
+  /* padding: 10px 10px 0px 10px; */
+  margin-bottom: 5px;
+  /* font-size: 13px; */
+}
+
+.slip-body-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  /* background-color: lightgray; */
+}
+
+.slip-body-main {
+  /* padding: 10px; */
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.win-value {
+  color: green;
+}
+
+.lose-value {
+  color: red;
+}
+
+.slip-exit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* text-align: right; */
+  width: 25px;
+  height: 25px;
+  /* justify-content: right; */
+  /* background-color: white; */
+  color: grey;
+}
+
+.slip-exit:hover {
+  cursor: pointer;
+  color: red;
+}
+
+.slip-buttons {
+  margin: 10px;
+}
+
+.slip-button {
+  margin: 10px;
+  font-weight: bold;
+}
+
+#submit-slip {
+  background-color: #85bb65;
+  color: white;
+  border-radius: 5px;
+}
+
+.slip-to-lose {
+  height: 20px;
+  width: 50px;
+}
+
+.slip-away-team {
+  text-align: left;
+}
+
+.slip-home-team {
+  text-align: left;
+}
+
+.slip-money {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: lightgray;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.slip-bet-info {
+  margin-top: 5px;
+  text-align: left;
+  /* padding-left: 5px; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* flex-wrap: wrap; */
+  font-size: 13.5px;
+}
+
+.multi-bet-exit {
+  height: 20px;
+  width: 25px;
+}
+
+#add-bet-retroactive:hover {
+  color: #85bb65;
+  cursor: pointer;
+}

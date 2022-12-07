@@ -1,0 +1,31 @@
+.nav-button {
+  width: 235px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.nav-button-active {
+  color: white;
+  font-weight: bold;
+  background-color: #85bb65;
+}
+
+.nav-button-icon {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-self: left; */
+  /* align-self: center; */
+  /* text-align: left; */
+}
+
+.nav-button-right {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-self: center; */
+  /* text-align: left; */
+}

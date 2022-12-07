@@ -1,0 +1,59 @@
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  margin: 10px;
+  min-width: 250px;
+  /* overflow: scroll; */
+  /* width: 240px;
+  overflow: scroll;
+  overflow-x: hidden; */
+}
+
+.nav-sports-container {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+/* .nav-header {
+  text-align: left;
+} */
+
+.scroll-container {
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  height: 375px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.nav-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: darkblue;
+  font-size: 20px;
+  font-weight: bold;
+  height: 50px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.nav-title {
+  display: flex;
+  margin-left: 10px;
+  color: white;
+}
+
+/* .nav-links {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  color: green;
+} */
