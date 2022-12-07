@@ -66,7 +66,7 @@ const RenderLines = (props) => {
         break
     }
   }
-  
+
 
   const handleClick = (e, game) => {
     e.preventDefault();

@@ -36,17 +36,19 @@ const PropsContainer = (props) => {
   //   })
   //   // console.log(propKey)
   // })
-  const handleDropdownClick = () => {
-    if (showDropdown) {
-      setShowDropdown(false)
-    } else {
-      setShowDropdown(true)
-    }
-  }
+
+  // below here need to figure out what to do with showing dropdown
+  // const handleDropdownClick = () => {
+  //   if (showDropdown) {
+  //     setShowDropdown(false)
+  //   } else {
+  //     setShowDropdown(true)
+  //   }
+  // }
 
   return (
     <div className='player-prop-container'>
-      {games.map((game) => {
+      {/* {games.map((game) => {
         if (typeof game.game.props != 'undefined') {
           if (typeof game.game.props.player != 'undefined') {
             return (
@@ -54,7 +56,9 @@ const PropsContainer = (props) => {
             )
           }
         }
-      })}
+      })} */}
+
+
       {/* <div className='player-prop-header'>
         <Button type='button' className={showDropdown ? 'player-prop-header-button activeBtn' : 'player-prop-header-button'} onClick={handleDropdownClick}>{game.game.odds.full.description}</Button>
       </div>

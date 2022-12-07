@@ -68,10 +68,10 @@ const Props = (props) => {
                     </div>
                   )
                 })
-                
+
               }
             </div>
-            
+
             <div className='player-prop-game-body'>
               {activeTab.length > 1 ?
                 <SubHeader players={game.game.props.player[`${ activeTab }`]} game={game} activeTab={activeTab} handlePropClick={props.handlePropClick} slipType={props.slipType} straightArr={props.straightArr} parlayArr={props.parlayArr} teaserArr={props.teaserArr} />

@@ -20,13 +20,13 @@ const BetSlipContainer = (props) => {
   // console.log(slipLength);
 
   const sportClasses = {
-    'Baseball': 'fas fa-baseball-ball', 
-    'Football': 'fas fa-football-ball', 
-    'Soccer': 'fas fa-futbol', 
-    'Hockey': 'fas fa-hockey-puck', 
-    'Golf': 'fas fa-golf-ball', 
-    'Tennis': 'fas fa-table-tennis', 
-    'MMA': 'fas fa-user-ninja', 
+    'Baseball': 'fas fa-baseball-ball',
+    'Football': 'fas fa-football-ball',
+    'Soccer': 'fas fa-futbol',
+    'Hockey': 'fas fa-hockey-puck',
+    'Golf': 'fas fa-golf-ball',
+    'Tennis': 'fas fa-table-tennis',
+    'MMA': 'fas fa-user-ninja',
     'Basketball': 'fas fa-basketball-ball'
   }
 
@@ -203,7 +203,7 @@ const BetSlipContainer = (props) => {
             break;
         }
         break;
-      
+
       case 10:
         switch(initialTeaserVal) {
           case '4':
@@ -245,7 +245,7 @@ const BetSlipContainer = (props) => {
         })
         return totalOdds - 1;
         // break;
-      
+
       case 'Parlay':
         oddsArr.map((odds, i) => {
           if (odds[0] === '-') {

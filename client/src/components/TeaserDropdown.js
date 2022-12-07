@@ -2,7 +2,7 @@ import react, { useState } from 'react';
 import Button from './Button';
 import '../styles/TeaserDropdown.css';
 
-const TeaserDropdown = () => {
+const TeaserDropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [currentLine, setCurrentLine] = useState({line: props.activeLine.line, odds: props.activeLine.odds})
   const altLines = props.altLines;
@@ -44,8 +44,6 @@ const TeaserDropdown = () => {
           </div>
         ) : null
       }
-
-
     </div>
   )
 }

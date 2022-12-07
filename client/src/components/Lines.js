@@ -21,7 +21,7 @@ const Lines = (props) => {
               <tbody>
                 <tr>
                   <td className='render-team'>{game.game.odds.full.awayTeam}</td>
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -34,7 +34,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -47,11 +47,11 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'></td>
                   : null
                   }
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -64,7 +64,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -77,7 +77,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -90,7 +90,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -103,7 +103,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -116,7 +116,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -151,7 +151,7 @@ const Lines = (props) => {
               <tbody>
                 <tr>
                   <td className='render-team'>{game.game.odds.full.homeTeam}</td>
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -164,7 +164,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -177,11 +177,11 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'></td>
                   : null
                   }
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -194,7 +194,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -207,7 +207,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -220,7 +220,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Straight' ? 
+                  {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -233,7 +233,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Parlay' ? 
+                  {slipType.type === 'Parlay' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
@@ -246,7 +246,7 @@ const Lines = (props) => {
                     </td>
                   : null
                   }
-                  {slipType.type === 'Teaser' ? 
+                  {slipType.type === 'Teaser' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}

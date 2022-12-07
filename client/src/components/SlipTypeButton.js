@@ -5,7 +5,7 @@ import '../styles/SlipTypeButton.css';
 const SlipTypeButton = (props) => {
 
   return (
-
+    <div></div>
   );
 }
 

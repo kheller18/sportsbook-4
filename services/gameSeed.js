@@ -223,7 +223,7 @@ mongoose.connect(
                               "game.keys.gameSpreadHome.currVal": game.bookmakers[0].markets[1].outcomes[1].point,
                               "game.keys.gameSpreadHome.prevVal": doc[0].game.keys.gameSpreadHome.currVal,
                               "game.keys.gameTotalUnder.id": `${ game.id }-6`,
-                              "game.keys.gameTotalUnder.currVal": game.game.bookmakers[0].markets[2].outcomes[1].point,
+                              "game.keys.gameTotalUnder.currVal": game.bookmakers[0].markets[2].outcomes[1].point,
                               "game.keys.gameTotalUnder.prevVal": doc[0].game.keys.gameTotalUnder.currVal,
                             },
                           },

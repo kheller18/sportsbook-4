@@ -14,13 +14,13 @@ const Nav = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [navContent, setNavContent] = useState(props.content)
   const sportClasses = {
-    'Baseball': 'fas fa-baseball-ball', 
-    'Football': 'fas fa-football-ball', 
-    'Soccer': 'fas fa-futbol', 
-    'Hockey': 'fas fa-hockey-puck', 
-    'Golf': 'fas fa-golf-ball', 
-    'Tennis': 'fas fa-table-tennis', 
-    'MMA': 'fas fa-user-ninja', 
+    'Baseball': 'fas fa-baseball-ball',
+    'Football': 'fas fa-football-ball',
+    'Soccer': 'fas fa-futbol',
+    'Hockey': 'fas fa-hockey-puck',
+    'Golf': 'fas fa-golf-ball',
+    'Tennis': 'fas fa-table-tennis',
+    'MMA': 'fas fa-user-ninja',
     'Basketball': 'fas fa-basketball-ball'
   }
 

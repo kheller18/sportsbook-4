@@ -41,13 +41,13 @@ const LinesContainer = (props) => {
   let newParlayArr;
 
   const sportClasses = {
-    'Baseball': 'fas fa-baseball-ball', 
-    'Football': 'fas fa-football-ball', 
-    'Soccer': 'fas fa-futbol', 
-    'Hockey': 'fas fa-hockey-puck', 
-    'Golf': 'fas fa-golf-ball', 
-    'Tennis': 'fas fa-table-tennis', 
-    'MMA': 'fas fa-user-ninja', 
+    'Baseball': 'fas fa-baseball-ball',
+    'Football': 'fas fa-football-ball',
+    'Soccer': 'fas fa-futbol',
+    'Hockey': 'fas fa-hockey-puck',
+    'Golf': 'fas fa-golf-ball',
+    'Tennis': 'fas fa-table-tennis',
+    'MMA': 'fas fa-user-ninja',
     'Basketball': 'fas fa-basketball-ball'
   }
 
@@ -57,21 +57,21 @@ const LinesContainer = (props) => {
   const handleSlipTypeChange = (type) => {
     switch (type) {
       case 'Straight':
-        setSlipType({type: "Straight", new: true, special: {value: false, slipID: ''}})        
+        setSlipType({type: "Straight", new: true, special: {value: false, slipID: ''}})
         // setStraightArr([])
         break;
 
       case 'Parlay':
-        setSlipType({type: "Parlay", new: true, special: {value: false, slipID: ''}})        
-        setParlayArr([])    
+        setSlipType({type: "Parlay", new: true, special: {value: false, slipID: ''}})
+        setParlayArr([])
         break;
 
       case 'Teaser':
         setSlipType({type: "Teaser", new: true, special: {value: false, slipID: ''}})
-        setTeaserArr([])    
+        setTeaserArr([])
         break;
 
-      default: 
+      default:
         console.log('inside sliptypedefalt')
         break
     }
@@ -109,7 +109,7 @@ const LinesContainer = (props) => {
 
             break;
 
-          default: 
+          default:
             console.log('not inside player unde or over')
         }
         break;
@@ -207,7 +207,6 @@ const LinesContainer = (props) => {
           }
         }
 
-
         break;
 
       default:
@@ -215,7 +214,7 @@ const LinesContainer = (props) => {
     }
 
   }
-  
+
 
   const handleClick = (e, game) => {
     e.preventDefault();

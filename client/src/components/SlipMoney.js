@@ -18,7 +18,7 @@ const SlipMoney = (props) => {
           value={props.toLose}
           // placeholder={props.value}
         />  */}
-      </div> 
+      </div>
       <div className='slip-win-money'>
         <label>TO WIN</label>
         <br />
