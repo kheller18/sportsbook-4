@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../styles/LinesContainer.css'
-import BetSlip from './BetSlip';
+// import BetSlip from './BetSlip';
 import Button from './Button';
-import API from '../utils/API';
+// import API from '../utils/API';
 
 const Lines = (props) => {
 
@@ -11,6 +11,8 @@ const Lines = (props) => {
   const straightArr = props.straightArr;
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
+
+  console.log(game)
 
   return (
     <table key={game.gameUID} className='render-main-body'>

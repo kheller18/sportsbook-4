@@ -39,7 +39,7 @@ export default {
       betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
     })
     return axios.post('/api/bet', {
-      betInfo, 
+      betInfo,
     });
   },
 

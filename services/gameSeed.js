@@ -6,8 +6,7 @@ const Slip = require('../models/betSlip');
 const axios = require('axios');
 const cron = require('node-cron');
 
-
-// base url "https://odds.p.rapidapi.com/v4/sports/?rapidapi-key="
+// connects to database and runs continually seeds it
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
   {
@@ -17,7 +16,6 @@ mongoose.connect(
     useFindAndModify: false
   }
 ).then(async () => {
-  console.log("connected")
   const getGames = async () => {
     const leagueRelations = {
       'MLB': 'Baseball',
@@ -44,19 +42,19 @@ mongoose.connect(
     }
 
     const getMLB = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getNBA = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getNCAABasketball = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getNCAAFootball = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getNFL = async () => {
@@ -68,27 +66,27 @@ mongoose.connect(
     }
 
     const getNHL = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getMMA = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getEPL = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getLigue = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getBundesliga = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getLaLiga = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american`)
+      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds/?rapidapi-key=10e60d49f2msh589d4bb3db44213p1157e2jsn1da5bcca0c7c&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
     }
 
     const getATP = async () => {

@@ -19,10 +19,10 @@ const gamesSchema = new Schema(
         player: {
 
         },
-        players: { 
-          // type: Object 
+        players: {
+          // type: Object
         },
-        // type: Object 
+        // type: Object
       },
       keys: {
         gameMoneylineAway: {
@@ -32,7 +32,7 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -44,7 +44,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -56,7 +59,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -68,8 +74,8 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
-          lineShift: { type: Boolean },
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
         },
@@ -80,7 +86,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -92,7 +101,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -104,7 +116,7 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -116,7 +128,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -128,7 +143,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -140,7 +158,7 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -152,7 +170,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
@@ -164,7 +185,10 @@ const gamesSchema = new Schema(
           currVal: { type: String },
           totalDelta: { type: String },
           currDelta: { type: String },
-          deltaOperator: { type: String }, 
+          deltaOperator: { type: String },
+          initialPrice: { type: String },
+          prevPrice: { type: String },
+          currPrice: { type: String },
           lineShift: { type: Boolean },
           dateLineShift: { type: Date },
           dateReset: { type: Number }
