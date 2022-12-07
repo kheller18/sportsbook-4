@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ActiveLinesContext } from './ActiveLines';
+// import { ActiveLinesContext } from './ActiveLines';
 import '../styles/RenderLines.css'
-import BetSlip from './BetSlip';
-import RenderBetSlips from './RenderBetSlips';
+// import BetSlip from './BetSlip';
+// import RenderBetSlips from './RenderBetSlips';
+// import API from '../utils/API';
 import Button from './Button';
 export const RenderLinesContext = React.createContext();
-import API from '../utils/API';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -47,21 +47,21 @@ const RenderLines = (props) => {
   const handleSlipTypeChange = (type) => {
     switch (type) {
       case 'Straight':
-        setSlipType({type: "Straight", new: true, special: {value: false, slipID: ''}})        
+        setSlipType({type: "Straight", new: true, special: {value: false, slipID: ''}})
         // setStraightArr([])
         break;
 
       case 'Parlay':
-        setSlipType({type: "Parlay", new: true, special: {value: false, slipID: ''}})        
-        setParlayArr([])    
+        setSlipType({type: "Parlay", new: true, special: {value: false, slipID: ''}})
+        setParlayArr([])
         break;
 
       case 'Teaser':
         setSlipType({type: "Teaser", new: true, special: {value: false, slipID: ''}})
-        setTeaserArr([])    
+        setTeaserArr([])
         break;
 
-      default: 
+      default:
         console.log('inside sliptypedefalt')
         break
     }
@@ -77,7 +77,7 @@ const RenderLines = (props) => {
         switch (e.target.value) {
           case 'away-moneyline':
             if (straightArr.includes(game.game.odds.keys.gameMoneylineAwayID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameMoneylineAwayID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameMoneylineAwayID)
               setStraightArr(newStraightArr)
               // props.passStraightData(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameMoneylineAwayID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: null, odds: game.game.odds.full.gameMoneylineAwayPrice, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null}, isLoading: true });
@@ -88,7 +88,7 @@ const RenderLines = (props) => {
             break;
           case 'away-spread':
             if (straightArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameSpreadAwayID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameSpreadAwayID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameSpreadAwayID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: (game.game.odds.full.gameSpreadAwayHandicap), odds: game.game.odds.full.gameSpreadAwayPrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -98,7 +98,7 @@ const RenderLines = (props) => {
             break;
           case 'over':
             if (straightArr.includes(game.game.odds.keys.gameTotalOverID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameTotalOverID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameTotalOverID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameTotalOverID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.awayTeam, line: (game.game.odds.full.gameTotalPoints), odds: game.game.odds.full.gameTotalOverPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -108,7 +108,7 @@ const RenderLines = (props) => {
             break;
           case 'home-moneyline':
             if (straightArr.includes(game.game.odds.keys.gameMoneylineHomeID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameMoneylineHomeID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameMoneylineHomeID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameMoneylineHomeID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: null, odds: game.game.odds.full.gameMoneylineHomePrice, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -118,7 +118,7 @@ const RenderLines = (props) => {
             break;
           case 'home-spread':
             if (straightArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameSpreadHomeID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameSpreadHomeID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameSpreadHomeID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: (game.game.odds.full.gameSpreadHomeHandicap), odds: game.game.odds.full.gameSpreadHomePrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -128,7 +128,7 @@ const RenderLines = (props) => {
             break;
           case 'under':
             if (straightArr.includes(game.game.odds.keys.gameTotalUnderID)) {
-              newStraightArr = straightArr.filter(bet => bet != game.game.odds.keys.gameTotalUnderID)
+              newStraightArr = straightArr.filter(bet => bet !== game.game.odds.keys.gameTotalUnderID)
               setStraightArr(newStraightArr)
               props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: game.game.odds.keys.gameTotalUnderID, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.homeTeam, line: (game.game.odds.full.gameTotalPoints), odds: game.game.odds.full.gameTotalUnderPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
             } else {
@@ -443,7 +443,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -460,7 +460,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -476,7 +476,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -492,7 +492,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -514,7 +514,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadAwayID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadAwayID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -530,7 +530,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalOverID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalOverID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -546,7 +546,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameSpreadHomeID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameSpreadHomeID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -562,7 +562,7 @@ const RenderLines = (props) => {
                 console.log('included')
               } else if (teaserArr.includes(game.game.odds.keys.gameTotalUnderID)) {
                 index = teaserArr.indexOf(game.game.odds.keys.gameTotalUnderID)
-                newTeaserArr = teaserArr.filter((bet, id) => id != index)
+                newTeaserArr = teaserArr.filter((bet, id) => id !== index)
                 if (newTeaserArr.length < 1) {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
@@ -579,7 +579,6 @@ const RenderLines = (props) => {
           };
         }
         break;
-  
 
       default:
         console.log('invalid sliptype')
@@ -602,7 +601,7 @@ const RenderLines = (props) => {
     //       console.log(err)
     //     })
     // }
-    if (removalData.target != '') {
+    if (removalData.target !== '') {
       switch (removalData.type) {
         case 'Straight':
           newStraightArr = straightArr.filter((bet) => bet != removalData.target)
@@ -713,7 +712,7 @@ const RenderLines = (props) => {
                           <tbody>
                             <tr>
                               <td className='render-team'>{game.game.odds.full.awayTeam}</td>
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -726,7 +725,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -739,11 +738,11 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'></td>
                               : null
                               }
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -756,7 +755,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -769,7 +768,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -782,7 +781,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -795,7 +794,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -808,7 +807,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -843,7 +842,7 @@ const RenderLines = (props) => {
                           <tbody>
                             <tr>
                               <td className='render-team'>{game.game.odds.full.homeTeam}</td>
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -856,7 +855,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -869,11 +868,11 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'></td>
                               : null
                               }
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -886,7 +885,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -899,7 +898,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -912,7 +911,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Straight' ? 
+                              {slipType.type === 'Straight' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -925,7 +924,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Parlay' ? 
+                              {slipType.type === 'Parlay' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}
@@ -938,7 +937,7 @@ const RenderLines = (props) => {
                                 </td>
                               : null
                               }
-                              {slipType.type === 'Teaser' ? 
+                              {slipType.type === 'Teaser' ?
                                 <td className='render-button'>
                                   <Button
                                     onClick={(e) => handleClick(e, game)}

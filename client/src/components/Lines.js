@@ -12,7 +12,7 @@ const Lines = (props) => {
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
 
-  console.log(game)
+  console.log(game.game)
 
   return (
     <table key={game.gameUID} className='render-main-body'>
@@ -22,16 +22,16 @@ const Lines = (props) => {
             <table className='render-sub-body'>
               <tbody>
                 <tr>
-                  <td className='render-team'>{game.game.odds.full.awayTeam}</td>
+                  <td className='render-team'>{game.game.odds.full.away_team}</td>
                   {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameMoneylineAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameMoneylineAway.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='away-moneyline'
                         value='away-moneyline'
                       >
-                        {game.game.odds.full.gameMoneylineAwayPrice}
+                        {game.game.keys.gameMoneylineAway.currVal}
                       </Button>
                     </td>
                   : null
@@ -44,7 +44,7 @@ const Lines = (props) => {
                         id='away-moneyline'
                         value='away-moneyline'
                       >
-                        {game.game.odds.full.gameMoneylineAwayPrice}
+                        {game.game.keys.gameMoneylineAway.currVal}
                       </Button>
                     </td>
                   : null
@@ -61,7 +61,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
+                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
                       </Button>
                     </td>
                   : null
@@ -74,7 +74,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
+                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
                       </Button>
                     </td>
                   : null
@@ -87,7 +87,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.odds.full.gameSpreadAwayHandicap} ({game.game.odds.full.gameSpreadAwayPrice})
+                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
                       </Button>
                     </td>
                   : null
@@ -96,11 +96,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameTotalOver.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='over'
                         value='over'
                       >
-                        O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null
@@ -113,7 +113,7 @@ const Lines = (props) => {
                         id='over'
                         value='over'
                       >
-                        O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null
@@ -126,7 +126,7 @@ const Lines = (props) => {
                         id='over'
                         value='over'
                       >
-                        O/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalOverPrice})
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null
@@ -141,7 +141,7 @@ const Lines = (props) => {
             <table className='render-gametime'>
               <tbody>
                 <tr>
-                  <td>{game.game.odds.full.startDate}</td>
+                  <td>{game.game.odds.full.commence_time}</td>
                 </tr>
               </tbody>
             </table>
@@ -152,16 +152,16 @@ const Lines = (props) => {
             <table className='render-sub-body'>
               <tbody>
                 <tr>
-                  <td className='render-team'>{game.game.odds.full.homeTeam}</td>
+                  <td className='render-team'>{game.game.odds.full.home_team}</td>
                   {slipType.type === 'Straight' ?
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameMoneylineHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameMoneylineHome.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='home-moneyline'
                         value='home-moneyline'
                       >
-                        {game.game.odds.full.gameMoneylineHomePrice}
+                        {game.game.keys.gameMoneylineHome.currVal}
                       </Button>
                     </td>
                   : null
@@ -170,11 +170,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameMoneylineHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameMoneylineHome.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='home-moneyline'
                         value='home-moneyline'
                       >
-                        {game.game.odds.full.gameMoneylineHomePrice}
+                        {game.game.keys.gameMoneylineHome.currVal}
                       </Button>
                     </td>
                   : null
@@ -187,11 +187,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameSpreadHome.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
+                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
                       </Button>
                     </td>
                   : null
@@ -200,11 +200,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameSpreadHome.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
+                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
                       </Button>
                     </td>
                   : null
@@ -213,11 +213,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={teaserArr.includes(game.game.odds.keys.gameSpreadHomeID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={teaserArr.includes(game.game.keys.gameSpreadHome.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.odds.full.gameSpreadHomeHandicap} ({game.game.odds.full.gameSpreadHomePrice})
+                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
                       </Button>
                     </td>
                   : null
@@ -226,11 +226,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameTotalUnder.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='under'
                         value='under'
                       >
-                        U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
+                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null
@@ -239,11 +239,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameTotalUnder.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='under'
                         value='under'
                       >
-                        U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
+                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null
@@ -252,11 +252,11 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={teaserArr.includes(game.game.odds.keys.gameTotalUnderID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={teaserArr.includes(game.game.keys.gameTotalUnder.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='under'
                         value='under'
                       >
-                        U/{game.game.odds.full.gameTotalPoints} ({game.game.odds.full.gameTotalUnderPrice})
+                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
                       </Button>
                     </td>
                   : null

@@ -24,17 +24,9 @@ const LinesContainer = (props) => {
   const [leagueType, setLeagueType] = useState('GAME LINES')
   const [straightArr, setStraightArr] = useState([])
   const [teaserArr, setTeaserArr] = useState([])
-  // const [slipTypeArr, setSlipTypeArr] = useState({straight: [], teaser: [], parlay: []})
-  // const currTarget = props.league;
   const content = props.state;
   const sport = content.sport;
-  // console.log(sport)
-  console.log(content)
-  // console.log(currTarget)
-  // const sportsLines = props.data;
   const removalData = props.removalData
-  // const content = props.content.leagues;
-  // console.log(content)
   let index;
   let newStraightArr;
   let newTeaserArr;
