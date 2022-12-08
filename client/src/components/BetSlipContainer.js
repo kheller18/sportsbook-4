@@ -608,8 +608,10 @@ const BetSlipContainer = (props) => {
   }
 
   const handleDelete = (e, target, data, sID) => {
-    console.log(e.target.id)
+    console.log(e.target)
+    console.log(e)
     console.log(data)
+    console.log(target)
     let slipLength = slips.length - 1;
     switch (data.type) {
       case 'Straight':
@@ -632,7 +634,10 @@ const BetSlipContainer = (props) => {
         console.log('invalid handle delete')
         break;
     }
-    const newList = slips.filter((slip, id) => id !== e.target.id);
+    console.log(slips)
+    // old way of finding
+    // const newList = slips.filter((slip, id) => id !== e.target.id);
+    const newList = slips.filter((slip, id) => id !== sID);
     calculateSlipTotals(newList)
     setSlips(newList);
   }

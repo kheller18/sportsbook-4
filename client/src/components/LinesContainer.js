@@ -27,6 +27,7 @@ const LinesContainer = (props) => {
   const content = props.state;
   const sport = content.sport;
   const removalData = props.removalData
+  console.log(removalData)
   let index;
   let newStraightArr;
   let newTeaserArr;

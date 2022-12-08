@@ -10,7 +10,7 @@ import LinesContainer from './LinesContainer';
 
 
 const BettingArea = (props) => {
-  console.log(props)
+  // console.log(props)
   const [isLoading, setIsLoading] = useState(true)
   const [clickData, setClickData] = useState("")
   const [removalData, setRemovalData] = useState({target: '', type: '', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})

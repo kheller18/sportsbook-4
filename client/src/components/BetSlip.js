@@ -11,6 +11,7 @@ const BetSlip = (props) => {
   const slipID = props.id;
   const slip = props.data;
   // console.log(slip)
+  console.log(slipID)
   const defaultIcon = 'fas fa-hockey-puck'
   console.log(slip)
   switch(slip.type) {
@@ -20,7 +21,7 @@ const BetSlip = (props) => {
           <div className='slip-body-top'>
             <div className='slip-type'>Straight</div>
             <Button
-              onClick={(e) => props.onRemove(e, slip.betUID[0], slip)}
+              onClick={(e) => props.onRemove(e, slip.betUID[0], slip, props.id)}
               id={props.id}
               type='button'
               className='slip-exit'
@@ -58,7 +59,7 @@ const BetSlip = (props) => {
             }
           </div>
           <div className='slip-money'>
-            <div className='slip-risk-money'><i class="fas fa-dollar-sign"></i>
+            <div className='slip-risk-money'><i className="fas fa-dollar-sign"></i>
               <Input
                   onChange={(event) => props.onChange(event, slip)}
                   className='slip-to-lose'
