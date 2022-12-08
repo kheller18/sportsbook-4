@@ -1320,7 +1320,7 @@ const BetSlipContainer = (props) => {
                 }
               }]))
             } else {
-              const newList = slips.filter((slip, id) => slip.betUID !== clickData.slipData.id);
+              const newList = slips.filter((slip, id) => slip.betUID[0] !== clickData.slipData.id);
               calculateSlipTotals(newList)
               setSlips(newList);
             }

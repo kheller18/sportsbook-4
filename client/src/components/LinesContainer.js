@@ -729,7 +729,6 @@ const LinesContainer = (props) => {
 
   // console.log(games)
   useEffect(() => {
-
     if (removalData.target !== '') {
       switch (removalData.type) {
         case 'Straight':
