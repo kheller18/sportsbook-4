@@ -11,7 +11,7 @@ const Lines = (props) => {
   const straightArr = props.straightArr;
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
-  console.log(game.game)
+  //console.log(game.game)
 
   return (
     <table key={game.gameUID} className='render-main-body'>

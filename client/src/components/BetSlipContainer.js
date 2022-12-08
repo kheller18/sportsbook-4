@@ -681,7 +681,7 @@ const BetSlipContainer = (props) => {
           if (slipLength === sID) {
             props.passRemovalData({target: data.betUID[tID], type: 'Teaser', operation: 'delete', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
           }
-          let newList = slips.filter((slip, id) => id != sID)
+          let newList = slips.filter((slip, id) => id !== sID)
           calculateSlipTotals(newList);
           setSlips(newList);
         } else {
@@ -1539,7 +1539,7 @@ const BetSlipContainer = (props) => {
                 } else {
                   slip.betUID = slip.betUID.filter((UID, id) => id !== clickData.operation.index)
                   slip.gameUID = slip.gameUID.filter((UID, id) => id !== clickData.operation.index)
-                  slip.payout.oddsArr = slip.payout.oddsArr.filter((odds, id) => id != clickData.operation.index)
+                  slip.payout.oddsArr = slip.payout.oddsArr.filter((odds, id) => id !== clickData.operation.index)
                   slip.quantity.total -= 1
                   delete slip.slips.keys[`${clickData.slipData.id}`]
                   let newOdds = calculateOdds(slip.payout.oddsArr, 'Teaser', slip.teaserVal)
@@ -1713,7 +1713,7 @@ const BetSlipContainer = (props) => {
       {
         (slipState === 'cart' && submittedSlips.length < 1 && isLoading === false && slips.length > 0) ?
           slips.map((slip, i) => {
-            if ((slip.type != 'Straight') && (i < slipLength - 1)) {
+            if ((slip.type !== 'Straight') && (i < slipLength - 1)) {
               return (
                 <BetSlip key={i} data={slip} id={i} slips={slips} addBet='true' onAddRetroactive={handleAddRetroactive} passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
               )

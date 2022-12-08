@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import React, { useEffect, useState } from 'react';
 import '../styles/BetSlip.css';
-import API from '../utils/API';
+// import API from '../utils/API';
 import Button from './Button';
 import Input from './Input';
-import SlipMoney from './SlipMoney';
+// import SlipMoney from './SlipMoney';
 import DropdownButton from './DropdownButton';
 
 const BetSlip = (props) => {
@@ -11,7 +12,7 @@ const BetSlip = (props) => {
   const slip = props.data;
   // console.log(slip)
   const defaultIcon = 'fas fa-hockey-puck'
-
+  console.log(slip)
   switch(slip.type) {
     case "Straight":
       return (
@@ -173,7 +174,7 @@ const BetSlip = (props) => {
                 }
               })
             }
-            {(props.addBet === 'true') ? 
+            {(props.addBet === 'true') ?
               <div className='slip-bet-info' id='add-bet-retroactive' onClick={(e) => props.onAddRetroactive(e, slip, slipID)}><i className={defaultIcon}></i>&nbsp;<em>Add another bet</em></div>
             : null
             }
@@ -208,7 +209,7 @@ const BetSlip = (props) => {
         <div className='slip-body' key={props.id} id={props.id}>
           <div className='slip-body-top'>
             <div className='slip-type'>Teaser ({Object.keys(slip.slips.keys).length})</div>
-            {(Object.keys(slip.slips.keys).length > 1) ? 
+            {(Object.keys(slip.slips.keys).length > 1) ?
               <DropdownButton {...props} type='Teaser' data={slip} activeLine={{line: slip.teaserVal, odds: slip.payout.odds.american}} altLines={slip.alternateLines} />
             : null
             }
@@ -275,7 +276,7 @@ const BetSlip = (props) => {
                 }
               })
             }
-            {(props.addBet === 'true') ? 
+            {(props.addBet === 'true') ?
               <div className='slip-bet-info' id='add-bet-retroactive' onClick={(e) => props.onAddRetroactive(e, slip, slipID)}><i className={defaultIcon}></i>&nbsp;<em>Add another bet</em></div>
             : null
             }
@@ -306,7 +307,6 @@ const BetSlip = (props) => {
       );
 
     default:
-      console.log('')
       break;
   }
 };

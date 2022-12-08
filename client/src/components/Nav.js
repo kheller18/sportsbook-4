@@ -1,18 +1,20 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
+// import React, {useContext, useState, useEffect} from 'react';
 import '../styles/Nav.css';
-import Button from './Button';
-import LeagueDropdown from './LeagueDropdown';
+// import Button from './Button';
+// import LeagueDropdown from './LeagueDropdown';
 import SportDropdown from './SportDropdown';
-import { GlobalContextProvider } from '../utils/GlobalContext';
-import API from '../utils/API';
-const _ = require('lodash')
+// import { GlobalContextProvider } from '../utils/GlobalContext';
+// import API from '../utils/API';
+// const _ = require('lodash')
 
 const Nav = (props) => {
-  const [sports, setSports] = useState([]);
-  const [sportsBtn, setSportsBtn] = useState('');
-  const [click, setClick] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
-  const [navContent, setNavContent] = useState(props.content)
+  // const [sports, setSports] = useState([]);
+  // const [sportsBtn, setSportsBtn] = useState('');
+  // const [click, setClick] = useState(true);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [navContent, setNavContent] = useState(props.content)
+
   const sportClasses = {
     'Baseball': 'fas fa-baseball-ball',
     'Football': 'fas fa-football-ball',

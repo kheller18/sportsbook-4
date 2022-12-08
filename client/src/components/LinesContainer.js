@@ -838,7 +838,7 @@ const LinesContainer = (props) => {
           <div className='scroll-container'>
             {content.games.map(game => {
               return (
-                <Lines game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handleClick={handleClick} />
+                <Lines key={game.gameUID} game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handleClick={handleClick} />
               );
             })}
           </div>

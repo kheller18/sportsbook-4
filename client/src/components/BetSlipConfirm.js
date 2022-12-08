@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import React, { useEffect, useState } from 'react';
 import '../styles/BetSlip.css';
-import API from '../utils/API';
-import Button from './Button';
-import Input from './Input';
+// import API from '../utils/API';
+// import Button from './Button';
+// import Input from './Input';
 
 const BetSlipConfirm = (props) => {
 
