@@ -720,6 +720,7 @@ const BetSlipContainer = (props) => {
   }
 
   const handleClear = () => {
+    props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
     setSlips([]);
   }
 
@@ -1311,7 +1312,7 @@ const BetSlipContainer = (props) => {
                       alternateLines: generateAltLines({line: clickData.slipData.line, odds: clickData.slipData.odds}, clickData.slipData.type),
                       odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Straight')},
                       status: 'Active',
-                      teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                      teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                       description: clickData.slipData.description,
                       icon: sportClasses[`${ clickData.slipData.sport }`]
                     }
@@ -1355,7 +1356,7 @@ const BetSlipContainer = (props) => {
                       alternateLines: generateAltLines({line: clickData.slipData.line, odds: clickData.slipData.odds}, clickData.slipData.type),
                       odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Parlay')}, 
                       status: 'Active',
-                      teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                      teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                       description: clickData.slipData.description,
                       icon: sportClasses[`${ clickData.slipData.sport }`]
                     }
@@ -1404,7 +1405,7 @@ const BetSlipContainer = (props) => {
                   alternateLines: generateAltLines({line: clickData.slipData.line, odds: clickData.slipData.odds}, clickData.slipData.type),
                   odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Parlay')},
                   status: 'Active',
-                  teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                  teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                   description: clickData.slipData.description,
                   icon: sportClasses[`${ clickData.slipData.sport }`]
                 }
@@ -1469,7 +1470,7 @@ const BetSlipContainer = (props) => {
                 alternateLines: generateAltLines({line: clickData.slipData.line, odds: clickData.slipData.odds}, clickData.slipData.type),
                 odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Parlay')},
                 status: 'Active',
-                teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                 description: clickData.slipData.description,
                 icon: sportClasses[`${ clickData.slipData.sport }`]
               }
@@ -1526,7 +1527,7 @@ const BetSlipContainer = (props) => {
                       line: generateActiveTeaserLine(clickData.slipData.line, clickData.slipData.type, clickData.slipData.sport, true, clickData.teaserVal),
                       odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Teaser')}, 
                       status: 'Active',
-                      teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                      teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                       description: clickData.slipData.description,
                       icon: sportClasses[`${ clickData.slipData.sport }`]
                     }
@@ -1579,7 +1580,7 @@ const BetSlipContainer = (props) => {
                   line: generateActiveTeaserLine(clickData.slipData.line, clickData.slipData.type, clickData.slipData.sport, true, slip.teaserVal),
                   odds: {num: clickData.slipData.odds, dec: newOdds},
                   status: 'Active',
-                  teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                  teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                   description: clickData.slipData.description,
                   icon: sportClasses[`${ clickData.slipData.sport }`]
                 }
@@ -1650,7 +1651,7 @@ const BetSlipContainer = (props) => {
                 line: generateActiveTeaserLine(clickData.slipData.line, clickData.slipData.type, clickData.slipData.sport, true, slip.teaserVal),
                 odds: {num: clickData.slipData.odds, dec: newOdds},
                 status: 'Active',
-                teams: {away: clickData.data.game.odds.full.awayTeam, home: clickData.data.game.odds.full.homeTeam},
+                teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                 description: clickData.slipData.description,
                 icon: sportClasses[`${ clickData.slipData.sport }`]
               }

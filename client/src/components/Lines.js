@@ -12,6 +12,10 @@ const Lines = (props) => {
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
   //console.log(game.game)
+  const convertTime = (date) => {
+    console.log(new Intl.DateTimeFormat('en-US').format(date))
+    return new Intl.DateTimeFormat('en-US').format(date);
+  }
 
   return (
     <table key={game.gameUID} className='render-main-body'>
@@ -140,6 +144,7 @@ const Lines = (props) => {
             <table className='render-gametime'>
               <tbody>
                 <tr>
+                  {/* <td>{convertTime(game.game.odds.full.commence_time)}</td> */}
                   <td>{game.game.odds.full.commence_time}</td>
                 </tr>
               </tbody>
