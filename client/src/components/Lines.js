@@ -1,17 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React from 'react';
+// import React, { useContext, useEffect, useState } from 'react';
 import '../styles/LinesContainer.css'
 // import BetSlip from './BetSlip';
 import Button from './Button';
 // import API from '../utils/API';
 
 const Lines = (props) => {
-
   const game = props.game;
   const slipType = props.slipType;
   const straightArr = props.straightArr;
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
-
   console.log(game.game)
 
   return (
@@ -40,7 +39,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameMoneylineAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameMoneylineAway.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='away-moneyline'
                         value='away-moneyline'
                       >
@@ -57,7 +56,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={straightArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={straightArr.includes(game.game.keys.gameSpreadAway.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='away-spread'
                         value='away-spread'
                       >
@@ -70,7 +69,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameSpreadAway.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='away-spread'
                         value='away-spread'
                       >
@@ -83,7 +82,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={teaserArr.includes(game.game.odds.keys.gameSpreadAwayID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={teaserArr.includes(game.game.keys.gameSpreadAway.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='away-spread'
                         value='away-spread'
                       >
@@ -109,7 +108,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={parlayArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={parlayArr.includes(game.game.keys.gameTotalOver.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='over'
                         value='over'
                       >
@@ -122,7 +121,7 @@ const Lines = (props) => {
                     <td className='render-button'>
                       <Button
                         onClick={(e) => props.handleClick(e, game)}
-                        className={teaserArr.includes(game.game.odds.keys.gameTotalOverID) ? 'activeBtn lineBtn' : 'lineBtn'}
+                        className={teaserArr.includes(game.game.keys.gameTotalOver.id) ? 'activeBtn lineBtn' : 'lineBtn'}
                         id='over'
                         value='over'
                       >

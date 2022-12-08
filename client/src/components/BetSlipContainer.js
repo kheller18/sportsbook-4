@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+// import React, { useContext, useState, useEffect } from 'react';
 import BetSlipConfirm from './BetSlipConfirm';
 import Button from './Button';
-import RenderBetSlips from './RenderBetSlips'
+// import RenderBetSlips from './RenderBetSlips'
 import '../styles/BetSlipContainer.css';
 import API from '../utils/API';
 import BetSlip from './BetSlip';
@@ -647,7 +648,7 @@ const BetSlipContainer = (props) => {
           if (slipLength === sID) {
             props.passRemovalData({target: data.betUID[tID], type: 'Parlay', operation: 'delete', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
           }
-          let newList = slips.filter((slip, id) => id != sID)
+          let newList = slips.filter((slip, id) => id !== sID)
           calculateSlipTotals(newList);
           setSlips(newList);
         } else {
@@ -1016,6 +1017,7 @@ const BetSlipContainer = (props) => {
         switch(type) {
           case 'Straight':
             oddsArr.map((odds, i) => {
+              console.log(odds)
               if (odds[0] === '-') {
                 let decOdds = Math.abs(parseFloat(odds))
                 let decCalc = ((decOdds + 100) / decOdds).toFixed(2)

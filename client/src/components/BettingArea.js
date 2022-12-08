@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 // import '../styles/BetSlip.css';
-import API from '../utils/API';
+// import API from '../utils/API';
 import BetSlipContainer from './BetSlipContainer';
 // import RenderLines from './RenderLines';
 import Nav from './Nav';
@@ -67,7 +67,7 @@ const BettingArea = (props) => {
     /* <div className='betting-container'>
         <Nav onClick={handleClick} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
       }
-      {state.isLoading ? null : 
+      {state.isLoading ? null :
         // <RenderLines state={state} removalData={removalData} passClickData={setClickData} />
         <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
       }

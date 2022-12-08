@@ -382,5 +382,6 @@ mongoose.connect(
         // console.log(gamesObj)
       })
   }
-  getGames()
+  // commenting this out so i don't go over my api calls
+  // getGames()
 })
