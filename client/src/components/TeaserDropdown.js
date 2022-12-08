@@ -47,3 +47,5 @@ const TeaserDropdown = (props) => {
     </div>
   )
 }
+
+export default TeaserDropdown;

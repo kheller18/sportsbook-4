@@ -803,8 +803,8 @@ const LinesContainer = (props) => {
         <div className='game-container-header'>
           <div className='render-sport-title'><i className={sportClasses[`${ content.sport }`]}></i>&nbsp;{content.league}&nbsp;<span className='sport-title-subheader'>GAME LINES</span></div>
           <div className='render-league-type'>
-            <Button type="button" className={leagueType === 'GAME LINES' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('GAME LINES')} id='game-lines'>GAME LINES</Button>
-            <Button type="button" className={leagueType === 'PLAYER PROPS' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('PLAYER PROPS')} id='player-props'>PLAYER PROPS</Button>
+            {/* <Button type="button" className={leagueType === 'GAME LINES' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('GAME LINES')} id='game-lines'>GAME LINES</Button> */}
+            {/* <Button type="button" className={leagueType === 'PLAYER PROPS' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('PLAYER PROPS')} id='player-props'>PLAYER PROPS</Button> */}
           </div>
         </div>
         {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football'))) ?

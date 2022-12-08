@@ -36,12 +36,12 @@ const LeagueDropdown = (props) => {
       <Button onClick={handleLeagueClick}>{league}&nbsp;<i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button>
       {
         showDropdown ? (
-          <div className='dropdown-buttons'> 
-            {subContent.games.active ? 
+          <div className='dropdown-buttons'>
+            {subContent.games.active ?
               <Button key={`${sport}-games`} onClick={(e) => {props.onClick(e, sport, league, 'games')}} id={`${sport}-${league}-games`} value={`${sport}-${league}-games`}>Games</Button>
             : null
             }
-            {subContent.props.active ? 
+            {subContent.props.active ?
               <Button key={`${sport}-props`} id={`${sport}-${league}-props`} value={`${sport}-${league}-props`}>Props</Button>
             : null
             }

@@ -11,7 +11,7 @@ import BetSlip from './BetSlip';
 const BetSlipContainer = (props) => {
   const clickData = props.data
   const [slipState, setSlipState] = useState('cart')
-  const [slipData, setSlipData] = useState();
+  // const [slipData, setSlipData] = useState();
   const [slips, setSlips] = useState([]);
   const [submittedSlips, setSubmittedSlips] = useState([])
   const [toWin, setToWin] = useState();
@@ -636,7 +636,7 @@ const BetSlipContainer = (props) => {
     }
     console.log(slips)
     // old way of finding
-    // const newList = slips.filter((slip, id) => id !== e.target.id);
+      // const newList = slips.filter((slip, id) => id !== e.target.id);
     const newList = slips.filter((slip, id) => id !== sID);
     calculateSlipTotals(newList)
     setSlips(newList);
