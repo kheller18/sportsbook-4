@@ -3,6 +3,7 @@ import React from 'react';
 import '../styles/LinesContainer.css'
 // import BetSlip from './BetSlip';
 import Button from './Button';
+import moment from 'moment';
 // import API from '../utils/API';
 
 const Lines = (props) => {
@@ -144,8 +145,10 @@ const Lines = (props) => {
             <table className='render-gametime'>
               <tbody>
                 <tr>
-                  {/* <td>{convertTime(game.game.odds.full.commence_time)}</td> */}
-                  <td>{game.game.odds.full.commence_time}</td>
+                  <td>{moment(game.game.odds.full.commence_time).format('L')}</td>
+                </tr>
+                <tr>
+                  <td>{moment(game.game.odds.full.commence_time).format('LT')}</td>
                 </tr>
               </tbody>
             </table>
