@@ -61,7 +61,7 @@ const SubHeader = (props) => {
                         <tbody>
                           <tr>
                             <td className='render-player'>{player[0]}</td>
-                            {slipType.type === 'Straight' ? 
+                            {slipType.type === 'Straight' ?
                               <td className='render-button'>
                                 <Button
                                   onClick={(e) => props.handlePropClick(e, player, propType, game)}
@@ -74,7 +74,7 @@ const SubHeader = (props) => {
                               </td>
                             : null
                             }
-                            {slipType.type === 'Parlay' ? 
+                            {slipType.type === 'Parlay' ?
                               <td className='render-button'>
                                 <Button
                                   onClick={(e) => props.handlePropClick(e, player, propType, game)}
@@ -97,7 +97,7 @@ const SubHeader = (props) => {
                                 {player[1].Over.line}
                               </Button>
                             </td>
-                            {slipType.type === 'Straight' ? 
+                            {slipType.type === 'Straight' ?
                               <td className='render-button'>
                                 <Button
                                   onClick={(e) => props.handlePropClick(e, player, propType, game)}
@@ -110,7 +110,7 @@ const SubHeader = (props) => {
                               </td>
                             : null
                             }
-                            {slipType.type === 'Parlay' ? 
+                            {slipType.type === 'Parlay' ?
                               <td className='render-button'>
                                 <Button
                                   onClick={(e) => props.handlePropClick(e, player, propType, game)}

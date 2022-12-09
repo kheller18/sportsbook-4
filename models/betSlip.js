@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const betSlipSchema = new Schema({
   userID: { type: String },
-  gameUID: { type: Array },  
+  gameUID: { type: Array },
   betUID: { type: Array },
   type: { type: String },
   quantity: { type: Object },
@@ -15,9 +15,9 @@ const betSlipSchema = new Schema({
     toLose: { type: String },
     final: { type: String },
     totalOdds: { type: Number },
-    decOdds: { type: Number }, 
+    decOdds: { type: Number },
     oddsArr: { type: Array }
-  }, 
+  },
   slips: { type: Object },
   date: { type: Date, default: Date.now }
 });
@@ -64,7 +64,7 @@ betSlipSchema.post('findOneAndUpdate', (slip) => {
       slip.payout.final = `-${ slip.payout.toLose }`;
       slip.save();
     }
-  } 
+  }
 });
 
 const BetSlip = mongoose.model("BetSlip", betSlipSchema);

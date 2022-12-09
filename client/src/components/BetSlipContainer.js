@@ -738,8 +738,8 @@ const BetSlipContainer = (props) => {
       let send = true;
       const userData = JSON.parse(localStorage.getItem('user'));
       slips.map(slip => {
+        console.log(slip)
         slip['userID'] = userData._id
-
         if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
             send = false;
         } else {
@@ -748,6 +748,7 @@ const BetSlipContainer = (props) => {
       })
 
       if (send) {
+        console.log(slipSend)
         return Promise.all(slipSend.map(slip => API.submitBetSlip(slip)))
       }
     }
@@ -760,7 +761,6 @@ const BetSlipContainer = (props) => {
         setSlips([])
         setSubmittedSlips([])
       }, 4000);
-
     })
     .catch(err => {
       console.log(err)
@@ -1023,7 +1023,7 @@ const BetSlipContainer = (props) => {
         switch(type) {
           case 'Straight':
             oddsArr.map((odds, i) => {
-              console.log(odds)
+              // console.log(odds)
               if (odds[0] === '-') {
                 let decOdds = Math.abs(parseFloat(odds))
                 let decCalc = ((decOdds + 100) / decOdds).toFixed(2)

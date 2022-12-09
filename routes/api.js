@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 // const connectEnsureLogin = require('connect-ensure-login');
 
 router.post('/api/bet', (req, res) => {
-  // console.log(req.body.betInfo)
+  console.log('req.body')
   BetSlip.create(req.body.betInfo)
     .then(dbBetSlip => {
       // console.log(dbBetSlip);
@@ -108,7 +108,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  // console.log(req.body);
+  console.log("inside /login");
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       res.json({success: false, message: err})

@@ -92,10 +92,10 @@ mongoose.connect(
             })
           })
           await Promise.all(promises2)
-        }) 
+        })
         await Promise.all(promises)
       }
-      
+
       await fetchActiveSports();
       await fetchActiveGames();
       socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
@@ -156,35 +156,3 @@ mongoose.connect(
 
     });
   });
-  // .catch(err => console.log(err));
-
-        // let sportsPackage = '';
-        // let leagues = {}
-        // let gamesPackage = {leagues}
-
-        // const fetchActiveSports = async () => {
-        //   const promise = await Sports.find({active: true}).then(async sports => {
-        //     let sportsObj = await sports.map((sport) => ({
-        //       name: sport.sportTitle,
-        //       leagues: sport.leagues
-        //     }))
-        //     sportsPackage = sportsObj;
-        //   })
-        // }
-
-        // const fetchActiveGames = async () => {
-        //   const promises = sportsPackage.map(async (sport, index) => {
-        //     const promises2 = await Object.keys(sport.leagues).map(async league => {
-        //       const promise = await Games.find({"league": league}).then((games, i) => {
-        //         if (games.length > 0) {
-        //           sportsPackage[index].leagues[`${ league }`].games.active = true
-        //           gamesPackage.leagues[`${ league }`] = games;
-        //         } else {
-        //           sportsPackage[index].leagues[`${ league }`].games.active = false
-        //         }
-        //       })
-        //     })
-        //     await Promise.all(promises2)
-        //   }) 
-        //   await Promise.all(promises)
-        // }

@@ -10,9 +10,9 @@ import DropdownButton from './DropdownButton';
 const BetSlip = (props) => {
   const slipID = props.id;
   const slip = props.data;
-  console.log(slipID)
+  // console.log(slipID)
   const defaultIcon = 'fas fa-hockey-puck'
-  console.log(slip)
+  // console.log(slip)
   switch(slip.type) {
     case "Straight":
       return (

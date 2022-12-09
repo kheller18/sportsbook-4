@@ -27,11 +27,7 @@ const LinesContainer = (props) => {
   const content = props.state;
   const sport = content.sport;
   const removalData = props.removalData
-  console.log(removalData)
   let index, newStraightArr, newTeaserArr, newParlayArr;
-  // let newStraightArr;
-  // let newTeaserArr;
-  // let newParlayArr;
 
   const sportClasses = {
     'Baseball': 'fas fa-baseball-ball',

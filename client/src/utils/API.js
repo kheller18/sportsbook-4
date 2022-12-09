@@ -1,5 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from 'axios';
+const mongoose = require('mongoose')
 
 export default {
   //call to get active sports to call for "getLines"
@@ -33,10 +34,13 @@ export default {
 
   // submits a bet
   submitBetSlip: async (betInfo) => {
-    const mongoose = require('mongoose')
+    // console.log('hello submit')
+    // const mongoose = require('mongoose')
+    console.log(betInfo.slips.keys)
     await Object.keys(betInfo.slips.keys).map((key) => {
       console.log(key)
       betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
+      // console.log(betInfo.slips.keys.key.id)
     })
     return axios.post('/api/bet', {
       betInfo,

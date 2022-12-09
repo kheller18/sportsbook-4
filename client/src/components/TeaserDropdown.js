@@ -7,7 +7,6 @@ const TeaserDropdown = (props) => {
   const [currentLine, setCurrentLine] = useState({line: props.activeLine.line, odds: props.activeLine.odds})
   const altLines = props.altLines;
 
-
   const handleTargetClick = () => {
     if (showDropdown) {
       setShowDropdown(false);
