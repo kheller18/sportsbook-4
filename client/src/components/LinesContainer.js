@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/LinesContainer.css'
 // import BetSlip from './BetSlip';
-import PropsContainer from './PropsContainer';
+// import PropsContainer from './PropsContainer';
 import Button from './Button';
 // import API from '../utils/API';
 import Lines from './Lines';
@@ -728,7 +728,7 @@ const LinesContainer = (props) => {
     if (removalData.target !== '') {
       switch (removalData.type) {
         case 'Straight':
-          newStraightArr = straightArr.filter((bet) => bet != removalData.target)
+          newStraightArr = straightArr.filter((bet) => bet !== removalData.target)
           setStraightArr(newStraightArr)
           break;
 
@@ -739,7 +739,7 @@ const LinesContainer = (props) => {
               setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
             }
           } else {
-            newParlayArr = parlayArr.filter((bet) => bet != removalData.target)
+            newParlayArr = parlayArr.filter((bet) => bet !== removalData.target)
             if (newParlayArr.length < 1) {
               setSlipType({type: "Parlay", new: true, special: {value: false, slipID: ''}})
             }
@@ -754,7 +754,7 @@ const LinesContainer = (props) => {
               setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
             }
           } else {
-            newTeaserArr = teaserArr.filter((bet) => bet != removalData.target)
+            newTeaserArr = teaserArr.filter((bet) => bet !== removalData.target)
             if (newTeaserArr.length < 1) {
               setSlipType({type: "Teaser", new: true, special: {value: false, slipID: ''}})
             }
@@ -842,7 +842,7 @@ const LinesContainer = (props) => {
         }
         {leagueType === 'PLAYER PROPS' ?
           <div className='scroll-container'>
-            <PropsContainer games={content.games} handlePropClick={handlePropClick} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr}/>
+            {/* <PropsContainer games={content.games} handlePropClick={handlePropClick} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr}/> */}
             {/* {content.games.map((game, i) => {
               if ((typeof game.game.props !== undefined)) {
                 if (i === 0) {

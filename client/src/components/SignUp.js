@@ -4,15 +4,15 @@ import '../styles/SignUp.css';
 import API from '../utils/API';
 
 const SignUp = () => {
-  const [ firstName, setFirstName ] = useState('');
-  const [ lastName, setLastName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ address, setAddress ] = useState('');
-  const [ city, setCity ] = useState('');
-  const [ state, setState ] = useState('');
-  const [ zipcode, setZipcode ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ confirmPassword, setConfirmPassword ] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (event) => {

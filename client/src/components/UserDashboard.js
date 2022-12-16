@@ -28,6 +28,7 @@ function UserDashboard() {
     <div className='dashboard-container'>
       <div className='dashboard-body'>
         <div className='dashboard-title'>Welcome, {user}!</div>
+        <div className='dashboard-title'>Welcome, {bets}!</div>
       </div>
     </div>
   );

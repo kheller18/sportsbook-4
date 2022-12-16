@@ -82,7 +82,6 @@ const BetSlip = (props) => {
         </div>
       );
 
-
     case "Parlay":
       return (
         <div className='slip-body' key={props.id} id={props.id}>
@@ -172,6 +171,9 @@ const BetSlip = (props) => {
                   default:
                     console.log('incorrect')
                 }
+                return (
+                  <div></div>
+                )
               })
             }
             {(props.addBet === 'true') ?
@@ -274,6 +276,9 @@ const BetSlip = (props) => {
                   default:
                     console.log('incorrect')
                 }
+                return (
+                  <div></div>
+                )
               })
             }
             {(props.addBet === 'true') ?

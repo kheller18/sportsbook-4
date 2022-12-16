@@ -32,7 +32,7 @@ export default {
       }
   },
 
-  // submits a bet
+  // submits a bet original not working here
   submitBetSlip: async (betInfo) => {
     // console.log('hello submit')
     // const mongoose = require('mongoose')
@@ -41,11 +41,27 @@ export default {
       console.log(key)
       betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
       // console.log(betInfo.slips.keys.key.id)
+      return betInfo;
     })
     return axios.post('/api/bet', {
       betInfo,
     });
   },
+
+  // submitBetSlip: async (betInfo) => {
+  //   // console.log('hello submit')
+  //   // const mongoose = require('mongoose')
+  //   console.log(betInfo.slips.keys)
+  //   await Object.keys(betInfo.slips.keys).map((key) => {
+  //     console.log(key)
+  //     betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
+  //     // console.log(betInfo.slips.keys.key.id)
+  //   })
+  //   console.log(betInfo)
+  //   return axios.post('/api/bet',
+  //     betInfo,
+  //   )
+  // },
 
   // gets bets per user
   getBets: (userId) => {
@@ -67,6 +83,7 @@ export default {
 
   // posts for logging in
   login: (username, password) => {
+    console.log('inside login')
     return axios.post('/login', {
       username,
       password

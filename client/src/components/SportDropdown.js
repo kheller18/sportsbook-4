@@ -6,7 +6,7 @@ import '../styles/SportDropdown.css';
 const SportDropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const sport = props.sport;
-  const leagues = props.leagues
+  // const leagues = props.leagues;
 
 
   const handleSportClick = () => {
@@ -29,6 +29,9 @@ const SportDropdown = (props) => {
                   <LeagueDropdown onClick={props.onClick} sport={sport.name} league={league} contents={sport.leagues[`${league}`]} />
                 )
               }
+              return (
+                <div></div>
+              )
             })}
           </div>
         ) : null
@@ -38,4 +41,3 @@ const SportDropdown = (props) => {
 }
 
 export default SportDropdown;
-

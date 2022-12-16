@@ -4,20 +4,20 @@ import '../styles/LeagueDropdown.css';
 
 const LeagueDropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showSecondaryDropdown, setShowSecondaryDropdown] = useState(true)
-  const [gamesVal, setGamesVal] = useState()
+  // const [showSecondaryDropdown, setShowSecondaryDropdown] = useState(true)
+  // const [gamesVal, setGamesVal] = useState()
   // console.log(props)
   const subContent = props.contents
   const sport = props.sport
   const league = props.league
   const sportClasses = {
-    'Baseball': 'fas fa-baseball-ball', 
-    'Football': 'fas fa-football-ball', 
-    'Soccer': 'fas fa-futbol', 
-    'Hockey': 'fas fa-hockey-puck', 
-    'Golf': 'fas fa-golf-ball', 
-    'Tennis': 'fas fa-table-tennis', 
-    'MMA': 'fas fa-user-ninja', 
+    'Baseball': 'fas fa-baseball-ball',
+    'Football': 'fas fa-football-ball',
+    'Soccer': 'fas fa-futbol',
+    'Hockey': 'fas fa-hockey-puck',
+    'Golf': 'fas fa-golf-ball',
+    'Tennis': 'fas fa-table-tennis',
+    'MMA': 'fas fa-user-ninja',
     'Basketball': 'fas fa-basketball-ball'
   }
 

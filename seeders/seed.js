@@ -12,10 +12,10 @@ mongoose.connect(
 );
 
 // const betSeed = {
-//   "gameUID" : [ 
+//   "gameUID" : [
 //     "2462438"
 //   ],
-//   "betUID" : [ 
+//   "betUID" : [
 //     "2462438-1",
 //     "2462438-4"
 //   ],
@@ -59,10 +59,10 @@ mongoose.connect(
 // }
 
 const betSeed = {
-  "gameUID" : [ 
+  "gameUID" : [
     "2462438"
   ],
-  "betUID" : [ 
+  "betUID" : [
     "2462438-1",
     "2462438-4"
   ],
@@ -91,7 +91,7 @@ const betSeed = {
         "odds" : "-105",
         "status" : "Active",
         "outcome" : true,
-      }, 
+      },
       "2462438-4": {
         "_id" : mongoose.Types.ObjectId(),
         "gameKey" : "2462438",
@@ -150,4 +150,3 @@ const betSeed = {
     console.error(err);
     process.exit(1);
   });
-

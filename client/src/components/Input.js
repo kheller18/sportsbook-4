@@ -1,8 +1,7 @@
 import React from 'react';
 
-// mmodule for dynamic input creation
+// module for dynamic input creation
 const Input = (props) => {
-  // console.log(props);
   return (
     <input
       onClick={props.onClick}

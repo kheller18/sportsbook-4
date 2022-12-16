@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/Header.css';
-// import API from '../utils/API';
 
 function Header() {
   return (

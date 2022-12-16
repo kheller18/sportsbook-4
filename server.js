@@ -44,7 +44,6 @@ mongoose.connect(
   }
 )
   .then(() => {
-    console.log("connected")
     app.use(routes)
 
     // Define any API routes before this runs
@@ -56,7 +55,7 @@ mongoose.connect(
     const io = require('socket.io')(server, {
       cors: {
         methods: ['GET', 'POST'],
-        allowedHeaders: ['x-access-token'],
+        allowedHeaders: ['x-access-token', 'Origin', 'Content-Type'],
         credentials: true
       }
     })
@@ -66,6 +65,7 @@ mongoose.connect(
       let leagues = {}
       let gamesPackage = {leagues}
 
+      // finds active sports in season and their attributes for nav bar
       const fetchActiveSports = async () => {
         sportsPackage = '';
         const promise = await Sports.find({active: true}).then(async sports => {
@@ -77,6 +77,7 @@ mongoose.connect(
         })
       }
 
+      // finds games based on active sports
       const fetchActiveGames = async () => {
         leagues = {}
         gamesPackage = {leagues}
@@ -99,13 +100,12 @@ mongoose.connect(
       await fetchActiveSports();
       await fetchActiveGames();
       socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
-      console.log('initial seed')
 
       const scheduleTask = cron.schedule('* * * * *', async () => {
         await fetchActiveSports();
         await fetchActiveGames();
         socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
-        console.log(new Date())
+        // console.log(new Date())
       })
     };
 
@@ -122,16 +122,16 @@ mongoose.connect(
         userId: socket.handshake.headers['x-current-user']
       })
 
-      console.log({users: loggedOnUsers})
+      // console.log({users: loggedOnUsers})
 
-      // fetchData(socket);
+      //fetchData(socket);
       // setInterval(() =>  fetchData(socket), 20000)
       // fetchData(socket)
 
       socket.on('disconnect', () => {
-        console.log('user disconnected', socket.id)
+        // console.log('user disconnected', socket.id)
         loggedOnUsers[socket.handshake.headers['x-current-user']] = null;
-        console.log({users: loggedOnUsers})
+        // console.log({users: loggedOnUsers})
         // socket.removeAllListeners()
       })
 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import React, { useContext, useState, useEffect } from 'react';
 import BetSlipConfirm from './BetSlipConfirm';
 import Button from './Button';
-// import RenderBetSlips from './RenderBetSlips'
 import '../styles/BetSlipContainer.css';
 import API from '../utils/API';
 import BetSlip from './BetSlip';

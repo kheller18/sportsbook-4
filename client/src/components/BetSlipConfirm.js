@@ -97,6 +97,11 @@ const BetSlipConfirm = (props) => {
                         {values.line} ({values.odds.num})
                       </div>
                     )
+
+                  default:
+                    return (
+                      <div></div>
+                    )
                 }
               })
             }
@@ -155,6 +160,11 @@ const BetSlipConfirm = (props) => {
                         {values.line} ({values.odds.num})
                       </div>
                     )
+
+                  default:
+                    return (
+                      <div></div>
+                    )
                 }
               })
             }
@@ -179,7 +189,6 @@ const BetSlipConfirm = (props) => {
     default:
       break;
   }
-
 };
 
 export default BetSlipConfirm;

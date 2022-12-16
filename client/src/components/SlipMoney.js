@@ -1,6 +1,6 @@
 import React from 'react';
 
-// mmodule for dynamic button creation
+// module for dynamic button creation
 const SlipMoney = (props) => {
   return (
     <div className='slip-money'>

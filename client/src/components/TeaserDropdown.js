@@ -34,10 +34,13 @@ const TeaserDropdown = (props) => {
                 // )
                 if (parseFloat(altLine.line) !== 0) {
                   return (
-                    // <Button className='dropdown-button' onClick={(e) => props.passLine(e, props.data, props.slipID)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} {altLine.odds > 0 ? `(+${ altLine.odds })` : (altLine.odds)}</Button>
-                    <Button key={i} className='dropdown-button' onClick={(e) => handleClick(e, props.data, props.index)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>
+                    <Button className='dropdown-button' onClick={(e) => props.passLine(e, props.data, props.slipID)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} {altLine.odds > 0 ? `(+${ altLine.odds })` : (altLine.odds)}</Button>
+                    // this should be it but handle click not defined <Button key={i} className='dropdown-button' onClick={(e) => handleClick(e, props.data, props.index)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>
                   )
                 }
+                return (
+                  <div></div>
+                )
               })
             }
           </div>

@@ -4,7 +4,7 @@
     "password": "6198HawkS6198!",
     "host": "localhost",
     "port": 27017,
-    "database": "sportsbook",
+    "database": "sportsbook4",
     "dialect": "mongodb"
   },
   "test": {
@@ -12,7 +12,7 @@
     "password": "password",
     "host": "localhost",
     "port": 5432,
-    "database": "sportsbook",
+    "database": "sportsbook4",
     "dialect": "mongodb"
   },
   "production": {

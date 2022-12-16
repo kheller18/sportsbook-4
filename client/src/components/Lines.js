@@ -12,11 +12,6 @@ const Lines = (props) => {
   const straightArr = props.straightArr;
   const parlayArr = props.parlayArr;
   const teaserArr = props.teaserArr;
-  //console.log(game.game)
-  const convertTime = (date) => {
-    console.log(new Intl.DateTimeFormat('en-US').format(date))
-    return new Intl.DateTimeFormat('en-US').format(date);
-  }
 
   return (
     <table key={game.gameUID} className='render-main-body'>

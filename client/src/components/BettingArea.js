@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-// import '../styles/BetSlip.css';
-// import API from '../utils/API';
 import BetSlipContainer from './BetSlipContainer';
-// import RenderLines from './RenderLines';
 import Nav from './Nav';
 import '../styles/BettingArea.css';
 import GlobalContext from '../utils/GlobalContext';

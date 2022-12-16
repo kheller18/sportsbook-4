@@ -1,4 +1,4 @@
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 import Button from './Button';
 import '../styles/DropdownButton.css';
 
@@ -14,11 +14,11 @@ const DropdownButton = (props) => {
     setShowDropdown(false)
   }
 
-  const handleTsrClick = (e, slip, id) => {
-    props.passTeaserLine(e, slip, id)
-    // setCurrentLine({line: e.target.attributes['line'].value, odds: e.target.attributes['odds'].value})
-    setShowDropdown(false);
-  }
+  // const handleTsrClick = (e, slip, id) => {
+  //   props.passTeaserLine(e, slip, id)
+  //   // setCurrentLine({line: e.target.attributes['line'].value, odds: e.target.attributes['odds'].value})
+  //   setShowDropdown(false);
+  // }
 
   const handleTargetClick = () => {
     if (showDropdown) {
@@ -42,7 +42,7 @@ const DropdownButton = (props) => {
           <div className='dropdown-buttons'>
             {
               altLines.map((altLine, i) => {
-                if (parseFloat(altLine.line) !== 0 && props.type != 'Teaser') {
+                if (parseFloat(altLine.line) !== 0 && props.type !== 'Teaser') {
                   return (
                     <Button key={i} className='dropdown-button' onClick={(e) => handleClick(e, props.data, props.index)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>
                   )
@@ -60,6 +60,5 @@ const DropdownButton = (props) => {
   );
 
 }
-
 
 export default DropdownButton;

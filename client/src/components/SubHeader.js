@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from './Button';
 import '../styles/SubHeader.css';
 import '../styles/LinesContainer.css'
@@ -13,7 +13,7 @@ const SubHeader = (props) => {
   const slipType = props.slipType;
   const straightArr = props.straightArr;
   const parlayArr = props.parlayArr;
-  const teaserArr = props.teaserArr;
+  // const teaserArr = props.teaserArr;
   const propType = props.activeTab;
   // const game = props.game;
   const playerPropsHeader = ['PLAYER', 'UNDER', 'LINE', 'OVER'];
@@ -133,93 +133,7 @@ const SubHeader = (props) => {
             )
           })
         }
-          {/* Object.entries(players).map((player, i) => {
-            return (
-              <table key={game.gameUID} className='prop-body'>
-                <tbody>
-                  <tr key={game.gameUID}>
-                    <td className='render-player-row'>
-                      <table className='render-sub-body'>
-                        <tbody>
-                          <tr>
-                            <td className='render-player'>{player[0]}</td>
-                            {slipType.type === 'Straight' ? 
-                              <td className='render-button'>
-                                <Button
-                                  onClick={(e) => props.handlePropClick(e, player)}
-                                  className={straightArr.includes(player[1][`Under`]['id']) ? 'activeBtn lineBtn' : 'lineBtn'}
-                                  id='player-under'
-                                  value='player-under'
-                                >
-                                  {player[1].Under.odds}
-                                </Button>
-                              </td>
-                            : null
-                            }
-                            {slipType.type === 'Parlay' ? 
-                              <td className='render-button'>
-                                <Button
-                                  onClick={(e) => props.handlePropClick(e, player)}
-                                  className={parlayArr.includes(player[1][`Under`]['id']) ? 'activeBtn lineBtn' : 'lineBtn'}
-                                  id='player-under'
-                                  value='player-under'
-                                >
-                                  {player[1].Under.odds}
-                                </Button>
-                              </td>
-                            : null
-                            }
-                            <td className='render-button'>
-                              <Button
-                                // onClick={(e) => handleClick(e, player)}
-                                className='lineBtn'
-                                id='player-line'
-                                value='player-line'
-                              >
-                                {player[1].Over.line}
-                              </Button>
-                            </td>
-                            {slipType.type === 'Straight' ? 
-                              <td className='render-button'>
-                                <Button
-                                  onClick={(e) => props.handlePropClick(e, player)}
-                                  className={straightArr.includes(player[1][`Over`]['id']) ? 'activeBtn lineBtn' : 'lineBtn'}
-                                  id='player-over'
-                                  value='player-over'
-                                >
-                                  {player[1].Over.odds}
-                                </Button>
-                              </td>
-                            : null
-                            }
-                            {slipType.type === 'Parlay' ? 
-                              <td className='render-button'>
-                                <Button
-                                  onClick={(e) => props.handlePropClick(e, player)}
-                                  className={parlayArr.includes(player[1][`Over`]['id']) ? 'activeBtn lineBtn' : 'lineBtn'}
-                                  id='player-over'
-                                  value='player-over'
-                                >
-                                  {player[1].Over.odds}
-                                </Button>
-                              </td>
-                            : null
-                            }
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            )
-          }) */}
-        {/* <div className='player-prop'>
-
-        </div> */}
       </div>
-
-
     </div>
   )
 }
