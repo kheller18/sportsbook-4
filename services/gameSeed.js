@@ -6,7 +6,8 @@ const axios = require('axios');
 const cron = require('node-cron');
 require('dotenv').config();
 
-// connects to database and runs continually seeds it
+// connects to database and continually seeds it
+console.log(process.env.MONGODB_URI)
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
   {
@@ -17,9 +18,18 @@ mongoose.connect(
   }
 ).then(async () => {
 
+  // function to continually update database with games information
+  // const scheduleTask = cron.schedule('1.5-59 * * * *', async () => {
+  //   // console.log(new Date())
+  //   await getGames();
+  //   // await updateResults();
+  // })
+
+
   // function to get active games and their respective lines for active sports
   const getGames = async () => {
     console.log('inside get games')
+
     // key value pairings for leagues and their respective sports
     const leagueRelations = {
       'MLB': 'Baseball',
@@ -45,6 +55,7 @@ mongoose.connect(
       'Ligue 1': 'Soccer',
     }
 
+    /* Functions for API calls for different sports  */
     const getMLB = async () => {
       return axios.get(
         `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
@@ -397,5 +408,5 @@ mongoose.connect(
       })
   }
   // commenting this out so i don't go over my api calls
-  // getGames()
+  getGames()
 })

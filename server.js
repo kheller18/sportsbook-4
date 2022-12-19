@@ -11,16 +11,20 @@ const Sports = require('./models/sport');
 const cron = require('node-cron');
 require('dotenv').config();
 
-
+// defining the port for heroku or local
 const PORT = process.env.PORT || 3001;
+
+// initializing app
 const app = express();
+
+// settting up express details
 const expressSession = require('express-session')({
   secret: 'secret',
   resave: false,
   saveUninitialized: false
 });
 
-// Serve up static assets (usually on heroku)
+// serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   console.log('product')
@@ -46,6 +50,7 @@ mongoose.connect(
   }
 )
   .then(() => {
+    // setting up routes
     app.use(routes)
 
     // Define any API routes before this runs
@@ -53,7 +58,10 @@ mongoose.connect(
       res.sendFile(path.join(__dirname, "./client/build/index.html"));
     });
 
+    // initializing server
     const server = require('http').createServer(app);
+
+    // setting up socket
     const io = require('socket.io')(server, {
       cors: {
         methods: ['GET', 'POST'],
@@ -104,8 +112,11 @@ mongoose.connect(
 
       await fetchActiveSports();
       await fetchActiveGames();
+
+      // this is supposed to emulate a seed so that the user has data when the page loads and then will auto every 1 minute after
       socket.emit('package', {navData: sportsPackage, gameData: gamesPackage})
 
+      // function to emit site data to users every minute using sockets
       const scheduleTask = cron.schedule('* * * * *', async () => {
         await fetchActiveSports();
         await fetchActiveGames();
@@ -116,6 +127,8 @@ mongoose.connect(
 
     let loggedOnUsers = [];
     let data = '';
+
+    // when a user connects, this should give them the data they need for the betting component
     io.on('connection', (socket) => {
       if (socket.handshake.headers['x-current-user']) {
         loggedOnUsers[socket.handshake.headers['x-current-user']] = socket.id;
@@ -127,8 +140,6 @@ mongoose.connect(
         userId: socket.handshake.headers['x-current-user']
       })
 
-      // console.log({users: loggedOnUsers})
-
       //fetchData(socket);
       // setInterval(() =>  fetchData(socket), 20000)
       // fetchData(socket)
@@ -136,7 +147,6 @@ mongoose.connect(
       socket.on('disconnect', () => {
         // console.log('user disconnected', socket.id)
         loggedOnUsers[socket.handshake.headers['x-current-user']] = null;
-        // console.log({users: loggedOnUsers})
         // socket.removeAllListeners()
       })
 

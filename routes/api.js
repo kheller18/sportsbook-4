@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const Game = require('../models/games')
 const Sport = require('../models/sport')
 const mongoose = require('mongoose');
-// const connectEnsureLogin = require('connect-ensure-login');
 
 router.post('/api/bet', (req, res) => {
   BetSlip.create(req.body.betInfo)

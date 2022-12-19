@@ -3,29 +3,17 @@ import axios from 'axios';
 const mongoose = require('mongoose')
 
 export default {
+  // fetches active sports
   getSports: () => {
     return axios.get(`/api/sports`);
   },
 
+  // fetches games
   getGames: (sport) => {
     return axios.get('/api/games', {
       sport
     })
   },
-
-  // call to get different api lines depending on sports and linetype
-  // getLines: (sport, lineType) => {
-  //   switch(lineType) {
-  //     case 'moneyline':
-  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
-  //     case 'spread':
-  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=spreads&oddsFormat=american`);
-  //     case 'totals':
-  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=totals&oddsFormat=american`);
-  //     default:
-  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
-  //     }
-  // },
 
   // submits a bet
   submitBetSlip: async (betInfo) => {
