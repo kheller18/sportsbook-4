@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Game = require('../models/games');
-// const db = require('../models');
 const Sport = require('../models/sport');
 const Slip = require('../models/betSlip');
 const axios = require('axios');
@@ -17,7 +16,11 @@ mongoose.connect(
     useFindAndModify: false
   }
 ).then(async () => {
+
+  // function to get active games and their respective lines for active sports
   const getGames = async () => {
+
+    // key value pairings for leagues and their respective sports
     const leagueRelations = {
       'MLB': 'Baseball',
       'NCAA Basketball': 'Basketball',
@@ -43,19 +46,27 @@ mongoose.connect(
     }
 
     const getMLB = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getNBA = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getNCAABasketball = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getNCAAFootball = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getNFL = async () => {
@@ -65,39 +76,57 @@ mongoose.connect(
     }
 
     const getPGA = async () => {
-      return axios.get(`https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/golf/golf?api-key=`)
+      return axios.get(
+        `https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/golf/golf?api-key=`
+      )
     }
 
     const getNHL = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)    
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getMMA = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getEPL = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getLigue = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getBundesliga = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)    
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getLaLiga = async () => {
-      return axios.get(`https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`)
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
     }
 
     const getATP = async () => {
-      return axios.get(`https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/tennis/atp?api-key=`)
+      return axios.get(
+        `https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/tennis/atp?api-key=`
+      )
     }
 
     const getWTA = async () => {
-      return axios.get(`https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/tennis/wta?api-key=`)
+      return axios.get(
+        `https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/tennis/wta?api-key=`
+      )
     }
 
     // await Promise.all([getMLB(), getNBA(), getNCAABasketball(), getNCAAFootball(), getNFL(), getPGA(), getNHL(), getMMA(), getEPL(), getLigue(), getBundesliga(), getLaLiga(), getATP(), getWTA()])
