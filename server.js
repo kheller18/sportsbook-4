@@ -55,8 +55,11 @@ mongoose.connect(
     const io = require('socket.io')(server, {
       cors: {
         methods: ['GET', 'POST'],
-        allowedHeaders: ['x-access-token', 'Origin', 'Content-Type'],
-        credentials: true
+        allowedHeaders: ['x-access-token', 'Origin', 'Content-Type', 'application/json'],
+        credentials: true,
+        origin: 'http://localhost:3000',
+        'Access-Control-Allow-Private-Network': true,
+        'Access-Control-Allow-Origin': 'http://localhost:3000'
       }
     })
 

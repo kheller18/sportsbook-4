@@ -9,10 +9,8 @@ const mongoose = require('mongoose');
 // const connectEnsureLogin = require('connect-ensure-login');
 
 router.post('/api/bet', (req, res) => {
-  console.log('req.body')
   BetSlip.create(req.body.betInfo)
     .then(dbBetSlip => {
-      // console.log(dbBetSlip);
       res.json(dbBetSlip);
     })
     .catch(err => {
