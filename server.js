@@ -9,7 +9,7 @@ const Scores = require('./client/src/utils/Scores')
 const Games = require('./models/games');
 const Sports = require('./models/sport');
 const cron = require('node-cron');
-const db = require('./models');
+// const db = require('./models');
 // require('dotenv').config();
 
 // defining the port for heroku or local
@@ -28,7 +28,8 @@ const expressSession = require('express-session')({
 // serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  require('./seeders/herokuSeed')(db);
+  // require('./seeders/herokuSeed')(db);
+  require('./seeders/sportSeed');
   console.log('product')
 } else {
   require('dotenv').config();
