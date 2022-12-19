@@ -17,7 +17,7 @@
     "seed": "node seeders/manualSeed.js",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "Keenan Heller",
   "license": "ISC",
