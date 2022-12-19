@@ -129,7 +129,6 @@ mongoose.connect(
       )
     }
 
-    // await Promise.all([getMLB(), getNBA(), getNCAABasketball(), getNCAAFootball(), getNFL(), getPGA(), getNHL(), getMMA(), getEPL(), getLigue(), getBundesliga(), getLaLiga(), getATP(), getWTA()])
     // await Promise.all([getMLB(), getNBA(), getNHL(), getMMA(), getEPL(), getATP(), getWTA()])
     // await Promise.all([getNFL(), getNBA(), getNCAABasketball(), getNCAAFootball(), getNHL()])
     await Promise.all([getNFL()])
