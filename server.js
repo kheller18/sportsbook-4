@@ -9,6 +9,8 @@ const Scores = require('./client/src/utils/Scores')
 const Games = require('./models/games');
 const Sports = require('./models/sport');
 const cron = require('node-cron');
+require('dotenv').config();
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -57,9 +59,9 @@ mongoose.connect(
         methods: ['GET', 'POST'],
         allowedHeaders: ['x-access-token', 'Origin', 'Content-Type', 'application/json'],
         credentials: true,
-        origin: 'http://localhost:3000',
-        'Access-Control-Allow-Private-Network': true,
-        'Access-Control-Allow-Origin': 'http://localhost:3000'
+        // origin: 'http://localhost:3000',
+        // 'Access-Control-Allow-Private-Network': true,
+        // 'Access-Control-Allow-Origin': 'http://localhost:3000'
       }
     })
 
