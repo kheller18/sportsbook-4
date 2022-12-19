@@ -1,18 +1,4 @@
-const mongoose = require('mongoose');
-const db = require('../models/sport');
-require('dotenv').config();
-
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
-
-const sportSeed = [
+module.exports = [
   {
     "sportTitle": "Baseball",
     "leagues": {
@@ -374,14 +360,3 @@ const sportSeed = [
     "date": Date.now()
   },
 ]
-
-db.insertMany(sportSeed)
-.then(data => {
-  // console.log(data);
-  // console.log(data.result.n + " records inserted!");
-  process.exit(0);
-})
-.catch(err => {
-  console.error(err);
-  process.exit(1);
-});

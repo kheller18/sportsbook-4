@@ -7,7 +7,6 @@ const cron = require('node-cron');
 require('dotenv').config();
 
 // connects to database and continually seeds it
-console.log(process.env.MONGODB_URI)
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
   {

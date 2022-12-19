@@ -1,2 +1,2 @@
-require('./seed');
+require('./herokuSeed');
 require('../models');

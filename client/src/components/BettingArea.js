@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react';
 import BetSlipContainer from './BetSlipContainer';
 import Nav from './Nav';
-import '../styles/BettingArea.css';
 import GlobalContext from '../utils/GlobalContext';
 import LinesContainer from './LinesContainer';
-
+import '../styles/BettingArea.css';
 
 const BettingArea = (props) => {
   // console.log(props)
@@ -48,7 +47,6 @@ const BettingArea = (props) => {
   }
 
   useEffect(() => {
-
 
   }, [])
 
