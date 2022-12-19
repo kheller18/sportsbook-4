@@ -21,7 +21,7 @@
   },
   "author": "Keenan Heller",
   "license": "ISC",
-  "homepage": "http://kheller18.github.io/react-gh-pages",
+  "homepage": "https://sbook-kman.herokuapp.com/",
   "devDependencies": {
     "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
