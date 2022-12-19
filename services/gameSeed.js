@@ -195,7 +195,7 @@ mongoose.connect(
                 }
 
                 const promise = await Object.values(sport[1]).map(async (game, index) => {
-                  console.log(game.bookmakers[0].markets[2])
+                  // console.log(game.bookmakers[0].markets[2])
                   const updateGame = await Game.find(
                     {
                       gameUID: game.id
