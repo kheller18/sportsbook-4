@@ -1,0 +1,12 @@
+language: node_js
+node_js: "12"
+branches:
+  only:
+    - main
+cache:
+  directories:
+    - node_modules
+services:
+  - mongodb
+before_script:
+  - mongo sportsbook4_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
