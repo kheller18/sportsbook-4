@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "16.13.2",
-    "npm": "9.1.2"
+    "npm": "9.2.0"
   },
   "description": "sportsbook app",
   "main": "server.js",
@@ -19,7 +19,7 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "author": "",
+  "author": "Keenan Heller",
   "license": "ISC",
   "homepage": "http://kheller18.github.io/react-gh-pages",
   "devDependencies": {
@@ -32,7 +32,6 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-ensure-login": "^0.1.1",
-    "crypto": "^1.0.1",
     "dotenv": "^8.6.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
@@ -48,8 +47,6 @@
     "node": "^15.3.0",
     "node-cron": "^3.0.0",
     "node-fetch": "^3.3.0",
-    "node.js": "0.0.1-security",
-    "nodejs": "0.0.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1",

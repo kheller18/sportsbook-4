@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const db = require('../models/betSlip');
+require('dotenv').config();
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
@@ -142,8 +143,8 @@ const betSeed = {
 
   db.create(betSeed)
   .then(data => {
-    console.log(data);
-    // console.log(data.result.n + " records inserted!");
+    // console.log(data);
+    console.log(data.result.n + " records inserted!");
     process.exit(0);
   })
   .catch(err => {

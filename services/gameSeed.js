@@ -398,5 +398,5 @@ mongoose.connect(
       })
   }
   // commenting this out so i don't go over my api calls
-  getGames()
+  // getGames()
 })

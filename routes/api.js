@@ -19,7 +19,7 @@ router.post('/api/bet', (req, res) => {
 });
 
 router.post('/api/bet/bulk', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   BetSlip.insertMany(req.body)
     .then(dbSlip => {
       res.json(dbSlip);
@@ -30,7 +30,7 @@ router.post('/api/bet/bulk', (req, res) => {
 });
 
 router.get('/api/games', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   Game.find({})
     .then(dbGame => {
       res.json(dbGame);
@@ -41,7 +41,7 @@ router.get('/api/games', (req, res) => {
 });
 
 router.get('/api/sports', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   Sport.find({ active: true })
     .then(dbGame => {
       res.json(dbGame);
@@ -65,14 +65,14 @@ router.get('/api/sports', (req, res) => {
 // });
 
 router.get('/api/bet', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   BetSlip.find({
     // where: {
     //   betInfo.userId:
     // }
   })
     .then(dbBetSlip => {
-      console.log(dbBetSlip);
+      // console.log(dbBetSlip);
       res.json(dbBetSlip);
     })
     .catch(err => {
@@ -106,7 +106,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  console.log("inside /login");
+  // console.log("inside /login");
   passport.authenticate('local', (err, user, info) => {
     if (err) {
       res.json({success: false, message: err})

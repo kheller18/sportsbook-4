@@ -14,28 +14,25 @@ export default {
   },
 
   // call to get different api lines depending on sports and linetype
-  getLines: (sport, lineType) => {
-    switch(lineType) {
-      case 'moneyline':
-        return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
-      case 'spread':
-        return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=spreads&oddsFormat=american`);
-      case 'totals':
-        return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=totals&oddsFormat=american`);
-      default:
-        return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
-      }
-  },
+  // getLines: (sport, lineType) => {
+  //   switch(lineType) {
+  //     case 'moneyline':
+  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
+  //     case 'spread':
+  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=spreads&oddsFormat=american`);
+  //     case 'totals':
+  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=totals&oddsFormat=american`);
+  //     default:
+  //       return axios.get(`https://api.the-odds-api.com/v3/odds?&apiKey=${ process.env.REACT_APP_API_KEY }&sport=${ sport }&region=us&mkt=h2h&oddsFormat=american`);
+  //     }
+  // },
 
-  // submits a bet original not working here
+  // submits a bet
   submitBetSlip: async (betInfo) => {
-    // console.log('hello submit')
     // const mongoose = require('mongoose')
     console.log(betInfo.slips.keys)
     await Object.keys(betInfo.slips.keys).map((key) => {
-      console.log(key)
       betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
-      // console.log(betInfo.slips.keys.key.id)
       return betInfo;
     })
     return axios.post('/api/bet', {
@@ -57,7 +54,6 @@ export default {
 
   // post for logging in
   login: (username, password) => {
-    console.log('inside login')
     return axios.post('/login', {
       username,
       password
@@ -82,6 +78,7 @@ export default {
     return true;
   },
 
+  // function to get the data of the current user
   getCurrentUser: () => JSON.parse(localStorage.getItem('user')),
 
   // logs user out
