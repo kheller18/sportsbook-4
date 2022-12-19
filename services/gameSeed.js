@@ -19,7 +19,7 @@ mongoose.connect(
 
   // function to get active games and their respective lines for active sports
   const getGames = async () => {
-
+    console.log('inside get games')
     // key value pairings for leagues and their respective sports
     const leagueRelations = {
       'MLB': 'Baseball',
@@ -397,5 +397,5 @@ mongoose.connect(
       })
   }
   // commenting this out so i don't go over my api calls
-  // getGames()
+  getGames()
 })
