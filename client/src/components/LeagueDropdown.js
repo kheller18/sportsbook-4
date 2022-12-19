@@ -21,8 +21,6 @@ const LeagueDropdown = (props) => {
     'Basketball': 'fas fa-basketball-ball'
   }
 
-  // console.log(subContent)
-
   const handleLeagueClick = () => {
     if (showDropdown) {
       setShowDropdown(false);
@@ -49,7 +47,6 @@ const LeagueDropdown = (props) => {
         ) : null
       }
     </div>
-
   );
 }
 

@@ -1031,6 +1031,7 @@ const BetSlipContainer = (props) => {
                 let decCalc = ((decOdds + 100) / 100).toFixed(2)
                 totalOdds *= decCalc
               }
+            return totalOdds - 1;
             })
             // totalOdds -= 1;
             return totalOdds - 1;
@@ -1046,6 +1047,7 @@ const BetSlipContainer = (props) => {
                 let decCalc = ((decOdds + 100) / 100).toFixed(2)
                 totalOdds *= decCalc
               }
+              return totalOdds - 1;
             })
             // totalOdds -= 1;
             return totalOdds - 1;

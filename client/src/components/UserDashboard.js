@@ -15,6 +15,7 @@ function UserDashboard() {
       const userId = userData._id;
       await API.getBets(userId)
         .then(res => {
+          console.log(res.data)
           setBets(res.data);
         })
         .catch(err => {

@@ -1,5 +1,3 @@
-// import React from 'react';
-// import axios from 'axios';
 const axios = require('axios');
 
 const Scores = () => {
@@ -17,9 +15,7 @@ const Scores = () => {
       .catch(err => {
         console.log(err)
       })
-
     }
 }
 
 module.exports = Scores;
- 

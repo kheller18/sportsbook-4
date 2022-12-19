@@ -3,11 +3,6 @@ import axios from 'axios';
 const mongoose = require('mongoose')
 
 export default {
-  //call to get active sports to call for "getLines"
-  // getSports: () => {
-  //   return axios.get(`https://api.the-odds-api.com/v3/sports?apiKey=${ process.env.REACT_APP_API_KEY }`);
-  // },
-
   getSports: () => {
     return axios.get(`/api/sports`);
   },
@@ -48,21 +43,6 @@ export default {
     });
   },
 
-  // submitBetSlip: async (betInfo) => {
-  //   // console.log('hello submit')
-  //   // const mongoose = require('mongoose')
-  //   console.log(betInfo.slips.keys)
-  //   await Object.keys(betInfo.slips.keys).map((key) => {
-  //     console.log(key)
-  //     betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
-  //     // console.log(betInfo.slips.keys.key.id)
-  //   })
-  //   console.log(betInfo)
-  //   return axios.post('/api/bet',
-  //     betInfo,
-  //   )
-  // },
-
   // gets bets per user
   getBets: (userId) => {
     return axios.get('/api/bet', {
@@ -70,18 +50,12 @@ export default {
     });
   },
 
-  // getUserBets: (userId) => {
-  //   return axios.get('/api/bet', {
-  //     userId
-  //   });
-  // },
-
   // post for a new user
   signup: (userData) => {
     return axios.post('/signup', userData);
   },
 
-  // posts for logging in
+  // post for logging in
   login: (username, password) => {
     console.log('inside login')
     return axios.post('/login', {

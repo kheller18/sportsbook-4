@@ -5,8 +5,6 @@ import '../styles/LinesContainer.css'
 
 
 const SubHeader = (props) => {
-  // console.log(props.title)
-  // const title = props.title;
   const game = props.game;
   const players = props.players;
   const [showDropdown, setShowDropdown] = useState(props.show)

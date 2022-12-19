@@ -4,7 +4,6 @@ import '../styles/LinesContainer.css'
 // import BetSlip from './BetSlip';
 import Button from './Button';
 import moment from 'moment';
-// import API from '../utils/API';
 
 const Lines = (props) => {
   const game = props.game;
