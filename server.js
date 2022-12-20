@@ -10,7 +10,6 @@ const Games = require('./models/games');
 const Sports = require('./models/sport');
 const cron = require('node-cron');
 // const db = require('./models');
-// require('dotenv').config();
 
 // defining the port for heroku or local
 const PORT = process.env.PORT || 3001;
@@ -72,9 +71,6 @@ mongoose.connect(
         methods: ['GET', 'POST'],
         allowedHeaders: ['x-access-token', 'Origin', 'Content-Type', 'application/json'],
         credentials: true,
-        // origin: 'http://localhost:3000',
-        // 'Access-Control-Allow-Private-Network': true,
-        // 'Access-Control-Allow-Origin': 'http://localhost:3000'
       }
     })
 
@@ -155,24 +151,16 @@ mongoose.connect(
         // socket.removeAllListeners()
       })
 
-      // Games.find().then(res => {
-      //   // console.log(res)
-      //   data = res;
-      // })
-
       // // socket.emit('data', data)
       // io.emit('data', data)
       // socket.on('package', (data) => {
       //   // socket.emit('data', (data))
       //   io.emit('data', (data))
       // })
-
-      // socket.emit('hello can u hear me')
     })
 
     server.listen(PORT, () => {
       console.log(`🌎 ==> API Socket server now on port ${PORT}!`);
       // require('./services/gameSeed');
-
     });
   });

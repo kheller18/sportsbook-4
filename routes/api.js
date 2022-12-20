@@ -50,8 +50,6 @@ router.get('/api/sports', (req, res) => {
     });
 });
 
-
-
 // router.get('/api/bet', (req, res) => {
 //   BetSlip.find({})
 //     .then(dbBetSlip => {
