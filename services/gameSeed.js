@@ -55,6 +55,8 @@ mongoose.connect(
     }
 
     /* Functions for API calls for different sports  */
+    console.log(process.env.REACT_APP_API_KEY)
+    console.log(process.env.MONGODB_URI)
     const getMLB = async () => {
       return axios.get(
         `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`

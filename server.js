@@ -29,7 +29,7 @@ const expressSession = require('express-session')({
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   // require('./seeders/herokuSeed')(db);
-  require('./seeders/sportSeed');
+  // require('./seeders/sportSeed');
   console.log('product')
 } else {
   require('dotenv').config();
