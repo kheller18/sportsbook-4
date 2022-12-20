@@ -1,11 +1,9 @@
 import React from 'react';
-// import React, { useEffect, useState } from 'react';
-import '../styles/BetSlip.css';
-// import API from '../utils/API';
 import Button from './Button';
 import Input from './Input';
 // import SlipMoney from './SlipMoney';
 import DropdownButton from './DropdownButton';
+import '../styles/BetSlip.css';
 
 const BetSlip = (props) => {
   const slipID = props.id;

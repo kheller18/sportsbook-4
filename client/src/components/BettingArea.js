@@ -6,18 +6,10 @@ import LinesContainer from './LinesContainer';
 import '../styles/BettingArea.css';
 
 const BettingArea = (props) => {
-  // console.log(props)
-  // const [isLoading, setIsLoading] = useState(true)
   const [clickData, setClickData] = useState("")
   const [removalData, setRemovalData] = useState({target: '', type: '', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
-  // const [retroactiveData, setRetroactiveData] = useState()
-  // const [nav, setNav] = useState([]);
-  // const [sport, setSport] = useState('basketball_nba');
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
-  // const [targetGames, setTargetGames] = useState([])
-  // const [siteData, setSiteData] = useState([]);
-  // const [navData, setNavData] = useState([])
   const { socket } = useContext(GlobalContext);
 
   socket.on('package', (data) => {

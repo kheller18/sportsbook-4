@@ -27,6 +27,7 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "apexcharts": "^3.36.3",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
@@ -51,6 +52,7 @@
     "passport-local-mongoose": "^6.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-apexcharts": "^1.4.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "socket.io": "^4.5.4",

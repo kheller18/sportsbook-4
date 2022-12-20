@@ -4,6 +4,7 @@ const Sport = require('../models/sport');
 const Slip = require('../models/betSlip');
 const axios = require('axios');
 const cron = require('node-cron');
+// const { update } = require('lodash');
 require('dotenv').config();
 
 // connects to database and continually seeds it
@@ -55,35 +56,39 @@ mongoose.connect(
     }
 
     /* Functions for API calls for different sports  */
-    console.log(process.env.REACT_APP_API_KEY)
-    console.log(process.env.MONGODB_URI)
     const getMLB = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getNBA = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/basketball_nba/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=draftkings`
       )
     }
 
     const getNCAABasketball = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getNCAAFootball = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getNFL = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+      )
+    }
+
+    const getNHL = async () => {
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=draftkings`
       )
     }
 
@@ -93,39 +98,33 @@ mongoose.connect(
       )
     }
 
-    const getNHL = async () => {
-      return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
-      )
-    }
-
     const getMMA = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getEPL = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getLigue = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getBundesliga = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
     const getLaLiga = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds/?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
       )
     }
 
@@ -141,18 +140,17 @@ mongoose.connect(
       )
     }
 
-    // await Promise.all([getMLB(), getNBA(), getNHL(), getMMA(), getEPL(), getATP(), getWTA()])
-    // await Promise.all([getNFL(), getNBA(), getNCAABasketball(), getNCAAFootball(), getNHL()])
-    await Promise.all([getNFL()])
+    await Promise.all([getNBA()])
+    // await Promise.all([getNFL()])
       .then(data => {
         const gamesObj = {
           // MLB: data[0].data.games,
-          // NBA: data[1].data.games,
-          // NCAABasketball: data[2].data.games,
-          // NCAAFootball: data[3].data.games,
-          NFL: data[0].data,
+          NBA: data[0].data,
+          // NCAABasketball: data[3].data,
+          // NCAAFootball: data[4].data,
+          // NFL: data[0].data,
+          // NHL: data[2].data,
           // // PGA: data[5].data.games,
-          // NHL: data[4].data.games,
           // // MMA: data[7].data.games,
           // // EPL: data[4].data.games,
           // // Ligue: data[9].data.games,
@@ -167,6 +165,7 @@ mongoose.connect(
             {
               sportTitle: leagueRelations[`${ sport[0] }`],
             }, async (err, doc) => {
+              console.log(sport[0])
               // console.log(Object.values(sport[1]).length < 1)
               if (Object.values(sport[1]).length < 1) {
                 if (doc.leagues[`${ sport[0] }`].games.active === true) {
@@ -186,6 +185,7 @@ mongoose.connect(
                   )
                 }
               } else {
+                console.log(doc)
                 if (doc.leagues[`${ sport[0] }`].games.active === false) {
                   await Sport.findOneAndUpdate(
                     { sportTitle: leagueRelations[`${ sport[0] }`] },
@@ -263,6 +263,8 @@ mongoose.connect(
                             new: true
                           }
                         )
+                      } else if (game.bookmakers.length === 0) {
+                        console.log('skipped')
                       } else {
                         await Game.findOneAndUpdate(
                           { gameUID: game.id },
@@ -285,9 +287,9 @@ mongoose.connect(
                               "game.keys": {
                                 "gameMoneylineAway": {
                                   'id': `${ game.id }-1`,
-                                  'initialVal': game.bookmakers[0].markets[0].outcomes[0].price,
-                                  'prevVal': game.bookmakers[0].markets[0].outcomes[0].price,
-                                  'currVal': game.bookmakers[0].markets[0].outcomes[0].price,
+                                  'initialVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[0].price,
+                                  'prevVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[0].price,
+                                  'currVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[0].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -297,12 +299,12 @@ mongoose.connect(
                                 },
                                 "gameSpreadAway": {
                                   'id': `${ game.id }-2`,
-                                  'initialVal': game.bookmakers[0].markets[1].outcomes[0].point,
-                                  'prevVal': game.bookmakers[0].markets[1].outcomes[0].point,
-                                  'currVal': game.bookmakers[0].markets[1].outcomes[0].point,
-                                  'initialPrice': game.bookmakers[0].markets[1].outcomes[0].price,
-                                  'prevPrice': game.bookmakers[0].markets[1].outcomes[0].price,
-                                  'currPrice': game.bookmakers[0].markets[1].outcomes[0].price,
+                                  'initialVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].point,
+                                  'prevVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].point,
+                                  'currVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].point,
+                                  'initialPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].price,
+                                  'prevPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].price,
+                                  'currPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -317,12 +319,12 @@ mongoose.connect(
                                 },
                                 "gameTotalOver": {
                                   'id': `${ game.id }-3`,
-                                  'initialVal': game.bookmakers[0].markets[2].outcomes[0].point,
-                                  'prevVal': game.bookmakers[0].markets[2].outcomes[0].point,
-                                  'currVal': game.bookmakers[0].markets[2].outcomes[0].point,
-                                  'initialPrice': game.bookmakers[0].markets[2].outcomes[0].price,
-                                  'prevPrice': game.bookmakers[0].markets[2].outcomes[0].price,
-                                  'currPrice': game.bookmakers[0].markets[2].outcomes[0].price,
+                                  'initialVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].point,
+                                  'prevVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].point,
+                                  'currVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].point,
+                                  'initialPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].price,
+                                  'prevPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].price,
+                                  'currPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -337,9 +339,9 @@ mongoose.connect(
                                 },
                                 "gameMoneylineHome": {
                                   'id': `${ game.id }-4`,
-                                  'initialVal': game.bookmakers[0].markets[0].outcomes[1].price,
-                                  'prevVal': game.bookmakers[0].markets[0].outcomes[1].price,
-                                  'currVal': game.bookmakers[0].markets[0].outcomes[1].price,
+                                  'initialVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[1].price,
+                                  'prevVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[1].price,
+                                  'currVal': game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[1].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -349,12 +351,12 @@ mongoose.connect(
                                 },
                                 "gameSpreadHome": {
                                   'id': `${ game.id }-5`,
-                                  'initialVal': game.bookmakers[0].markets[1].outcomes[1].point,
-                                  'prevVal': game.bookmakers[0].markets[1].outcomes[1].point,
-                                  'currVal': game.bookmakers[0].markets[1].outcomes[1].point,
-                                  'initialPrice': game.bookmakers[0].markets[1].outcomes[1].price,
-                                  'prevPrice': game.bookmakers[0].markets[1].outcomes[1].price,
-                                  'currPrice': game.bookmakers[0].markets[1].outcomes[1].price,
+                                  'initialVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].point,
+                                  'prevVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].point,
+                                  'currVal': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].point,
+                                  'initialPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].price,
+                                  'prevPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].price,
+                                  'currPrice': game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
@@ -369,12 +371,12 @@ mongoose.connect(
                                 },
                                 "gameTotalUnder": {
                                   'id': `${ game.id }-6`,
-                                  'initialVal': game.bookmakers[0].markets[2].outcomes[1].point,
-                                  'prevVal': game.bookmakers[0].markets[2].outcomes[1].point,
-                                  'currVal': game.bookmakers[0].markets[2].outcomes[1].point,
-                                  'initialPrice': game.bookmakers[0].markets[2].outcomes[1].price,
-                                  'prevPrice': game.bookmakers[0].markets[2].outcomes[1].price,
-                                  'currPrice': game.bookmakers[0].markets[2].outcomes[1].price,
+                                  'initialVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].point,
+                                  'prevVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].point,
+                                  'currVal': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].point,
+                                  'initialPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].price,
+                                  'prevPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].price,
+                                  'currPrice': game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].price,
                                   'totalDelta': '0',
                                   'currDelta': '0',
                                   'deltaOperator': 'none',
