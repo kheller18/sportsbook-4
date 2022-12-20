@@ -64,7 +64,7 @@ const betSeed = [
 ]
 
 db.insertMany(betSeed).then(data => {
-  // console.log(data);
+  console.log('inside insert many')
   console.log(data.result.n + " records inserted!");
   process.exit(0);
 })
