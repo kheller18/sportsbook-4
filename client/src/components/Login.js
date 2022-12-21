@@ -16,12 +16,10 @@ const Login = () => {
       .then((response) => {
         if (response.data.success === true) {
           setIsLoggedIn(true);
-        } else {
-          // setIsError(true);
-        };
+        }
       })
-      .catch(() => {
-        // setIsError(true);
+      .catch((err) => {
+        console.log(err);
       });
   };
 
@@ -31,7 +29,7 @@ const Login = () => {
 
   if (isLoggedIn) {
     return <Redirect to='/members' />;
-  }
+  };
 
   return (
     <form className='login-form'>

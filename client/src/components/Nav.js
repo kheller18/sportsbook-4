@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
-// import React, {useContext, useState, useEffect} from 'react';
 import '../styles/Nav.css';
-// import Button from './Button';
-// import LeagueDropdown from './LeagueDropdown';
 import SportDropdown from './SportDropdown';
-// import { GlobalContextProvider } from '../utils/GlobalContext';
-// import API from '../utils/API';
-// const _ = require('lodash')
 
 const Nav = (props) => {
   // const [sports, setSports] = useState([]);
@@ -49,13 +43,11 @@ const Nav = (props) => {
 
   }, []);
 
-  // console.log(navContent)
   return (
     <div className='nav-container'>
       <div className='nav-header'>
         <div className='nav-title'>AVAILABLE SPORTS</div>
       </div>
-      {/* {isLoading ? null : */}
       {content.length < 1 ? null :
         <div className='nav-sports-container'>
           {content.map((sport, i) => {
@@ -69,32 +61,6 @@ const Nav = (props) => {
       }
     </div>
   );
-
-  // return (
-  //   <div className='nav-container'>
-  //     <div className='nav-header'>Sports</div>
-  //     {isLoading ? '' :
-  //       <div className='nav-sports-container'>
-  //         {sports.map((sport, i) => {
-  //             return (
-  //               <div key={sport.sportTitle}>
-  //                 <Button
-  //                   onClick={(e) => handleClick(e, sport)}
-  //                   data={sport.sportTitle}
-  //                   className='nav-button'
-  //                   // id='away-moneyline'
-  //                 >
-  //                   {sport.sportTitle}
-  //                 </Button>
-  //               </div>
-  //             );
-  //           // }
-  //         })}
-  //       </div>
-  //     }
-  //   </div>
-  // );
-
 };
 
 export default Nav;

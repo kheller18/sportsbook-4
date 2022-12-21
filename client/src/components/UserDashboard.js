@@ -4,8 +4,8 @@ import '../styles/UserDashboard.css'
 
 function UserDashboard() {
   const [bets, setBets] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState('');
+
 // BREAK down bet type and percentage
   useEffect(() => {
     // function to get user data for indiviaulized dashboard

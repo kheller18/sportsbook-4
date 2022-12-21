@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/LinesContainer.css'
-// import BetSlip from './BetSlip';
-// import PropsContainer from './PropsContainer';
 import Button from './Button';
-// import API from '../utils/API';
 import Lines from './Lines';
-// import Props from './Props';
+import '../styles/LinesContainer.css'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /* <i className="fas fa-chevron-circle-up"></i> */
 /* <i class="fas fa-spinner"></i> */
