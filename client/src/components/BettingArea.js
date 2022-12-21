@@ -11,6 +11,7 @@ const BettingArea = (props) => {
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
   const { socket } = useContext(GlobalContext);
+  // console.log('inside betting area')
 
   socket.on('package', (data) => {
     console.log('received package')
@@ -39,7 +40,8 @@ const BettingArea = (props) => {
   }
 
   useEffect(() => {
-
+    // get socket data here one time and then never run again
+    socket.emit('package')
   }, [])
 
   return (

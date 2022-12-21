@@ -120,9 +120,9 @@ mongoose.connect(
 
       // this is supposed to emulate a seed so that the user has data when the page loads and then will auto every 1 minute after
       console.log('package before');
-      console.log(sportsPackage)
-      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage});
-
+      // console.log(sportsPackage)
+      // socket.emit('package', {navData: sportsPackage, gameData: gamesPackage});
+      const returnData = {navData: sportsPackage, gameData: gamesPackage}
       // function to emit site data to users every minute using sockets
       const scheduleTask = cron.schedule('* * * * *', async () => {
         await fetchActiveSports();
@@ -130,16 +130,20 @@ mongoose.connect(
         console.log('package after');
         socket.emit('package', {navData: sportsPackage, gameData: gamesPackage});
       });
+
+      return returnData;
     };
 
     let loggedOnUsers = [];
     let data = '';
+    let sendData;
 
     // when a user connects, this should give them the data they need for the betting component
-    io.on('connection', (socket) => {
+    io.on('connection', async (socket) => {
       if (socket.handshake.headers['x-current-user']) {
         loggedOnUsers[socket.handshake.headers['x-current-user']] = socket.id;
-        fetchData(socket);
+        sendData = await fetchData(socket);
+        console.log(sendData)
       }
 
       console.log('connection granted' , {
@@ -147,9 +151,15 @@ mongoose.connect(
         userId: socket.handshake.headers['x-current-user']
       });
 
+
       //fetchData(socket);
       // setInterval(() =>  fetchData(socket), 20000)
       // fetchData(socket)
+      socket.on('package', () => {
+        console.log(sendData)
+        socket.emit('package', sendData)
+        console.log('anyone hear me')
+      })
 
       socket.on('disconnect', () => {
         // console.log('user disconnected', socket.id)

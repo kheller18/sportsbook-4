@@ -5,21 +5,16 @@ import '../styles/Login.css';
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [isError, setIsError] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(event)
-    console.log(email)
-    console.log(password)
-    // login function
+
+    // calls to API once user clicks submit
     API.login(email, password)
       .then((response) => {
-        console.log(response)
         if (response.data.success === true) {
-          console.log(response)
           setIsLoggedIn(true);
         } else {
           // setIsError(true);
@@ -50,7 +45,7 @@ const Login = () => {
       <div className='login-row'>
         <button type='submit' className='login-button' onClick={handleSubmit}>LOGIN</button>
       </div>
-      <div>Not a member? <a href='/signup'>Signup.</a></div>
+      <div>Not a member? <a href='/signup'>Sign Up</a></div>
     </form>
   );
 };
