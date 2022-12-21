@@ -140,7 +140,7 @@ mongoose.connect(
       )
     }
 
-    await Promise.all([getNBA(), getNFL()])
+    await Promise.all([getNBA(), getNFL(), getNHL()])
     // await Promise.all([getNFL()])
       .then(data => {
         const gamesObj = {
@@ -149,7 +149,7 @@ mongoose.connect(
           // NCAABasketball: data[3].data,
           // NCAAFootball: data[4].data,
           NFL: data[1].data,
-          // NHL: data[2].data,
+          NHL: data[2].data,
           // // PGA: data[5].data.games,
           // // MMA: data[7].data.games,
           // // EPL: data[4].data.games,
@@ -411,5 +411,5 @@ mongoose.connect(
       })
   }
   // commenting this out so i don't go over my api calls
-  getGames()
+  // getGames()
 })
