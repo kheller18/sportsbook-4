@@ -140,7 +140,7 @@ mongoose.connect(
       )
     }
 
-    await Promise.all([getNBA()])
+    await Promise.all([getNBA(), getNFL()])
     // await Promise.all([getNFL()])
       .then(data => {
         const gamesObj = {
@@ -148,7 +148,7 @@ mongoose.connect(
           NBA: data[0].data,
           // NCAABasketball: data[3].data,
           // NCAAFootball: data[4].data,
-          // NFL: data[0].data,
+          NFL: data[1].data,
           // NHL: data[2].data,
           // // PGA: data[5].data.games,
           // // MMA: data[7].data.games,
@@ -212,7 +212,9 @@ mongoose.connect(
                     {
                       gameUID: game.id
                     }, async (err, doc) => {
-                      if (doc.length > 0) {
+                      if (game.bookmakers.length === 0) {
+                        console.log('fail safe')
+                      } else if (doc.length > 0) {
                         await Game.findOneAndUpdate(
                           { gameUID: game.id },
                           {
@@ -232,30 +234,30 @@ mongoose.connect(
                                 "gameTotalUnderID": `${ game.id }-6`,
                               },
                               "game.keys.gameMoneylineAway.id": `${ game.id }-1`,
-                              "game.keys.gameMoneylineAway.currVal": game.bookmakers[0].markets[0].outcomes[0].price,
+                              "game.keys.gameMoneylineAway.currVal": game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[0].price,
                               "game.keys.gameMoneylineAway.prevVal": doc[0].game.keys.gameMoneylineAway.currVal,
                               "game.keys.gameSpreadAway.id": `${ game.id }-2`,
-                              "game.keys.gameSpreadAway.currVal": game.bookmakers[0].markets[1].outcomes[0].point,
+                              "game.keys.gameSpreadAway.currVal": game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].point,
                               "game.keys.gameSpreadAway.prevVal": doc[0].game.keys.gameSpreadAway.currVal,
-                              "game.keys.gameSpreadAway.currPrice": game.bookmakers[0].markets[1].outcomes[0].price,
+                              "game.keys.gameSpreadAway.currPrice": game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[0].price,
                               "game.keys.gameSpreadAway.prevPrice": doc[0].game.keys.gameSpreadAway.currPrice,
                               "game.keys.gameTotalOver.id": `${ game.id}-3`,
-                              "game.keys.gameTotalOver.currVal": game.bookmakers[0].markets[2].outcomes[0].point,
+                              "game.keys.gameTotalOver.currVal": game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].point,
                               "game.keys.gameTotalOver.prevVal": doc[0].game.keys.gameTotalOver.currVal,
-                              "game.keys.gameTotalOver.currPrice": game.bookmakers[0].markets[2].outcomes[0].price,
+                              "game.keys.gameTotalOver.currPrice": game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[0].price,
                               "game.keys.gameTotalOver.prevPrice": doc[0].game.keys.gameTotalOver.currPrice,
                               "game.keys.gameMoneylineHome.id": `${ game.id }-4`,
-                              "game.keys.gameMoneylineHome.currVal": game.bookmakers[0].markets[0].outcomes[1].price,
+                              "game.keys.gameMoneylineHome.currVal": game.bookmakers[0].markets[0] === undefined ? null : game.bookmakers[0].markets[0].outcomes[1].price,
                               "game.keys.gameMoneylineHome.prevVal": doc[0].game.keys.gameMoneylineHome.currVal,
                               "game.keys.gameSpreadHome.id": `${ game.id }-5`,
-                              "game.keys.gameSpreadHome.currVal": game.bookmakers[0].markets[1].outcomes[1].point,
+                              "game.keys.gameSpreadHome.currVal": game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].point,
                               "game.keys.gameSpreadHome.prevVal": doc[0].game.keys.gameSpreadHome.currVal,
-                              "game.keys.gameSpreadHome.currPrice": game.bookmakers[0].markets[1].outcomes[1].price,
+                              "game.keys.gameSpreadHome.currPrice": game.bookmakers[0].markets[1] === undefined ? null : game.bookmakers[0].markets[1].outcomes[1].price,
                               "game.keys.gameSpreadHome.prevPrice": doc[0].game.keys.gameSpreadHome.currPrice,
                               "game.keys.gameTotalUnder.id": `${ game.id }-6`,
-                              "game.keys.gameTotalUnder.currVal": game.bookmakers[0].markets[2].outcomes[1].point,
+                              "game.keys.gameTotalUnder.currVal": game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].point,
                               "game.keys.gameTotalUnder.prevVal": doc[0].game.keys.gameTotalUnder.currVal,
-                              "game.keys.gameTotalUnder.currPrice": game.bookmakers[0].markets[2].outcomes[1].price,
+                              "game.keys.gameTotalUnder.currPrice": game.bookmakers[0].markets[2] === undefined ? null : game.bookmakers[0].markets[2].outcomes[1].price,
                               "game.keys.gameTotalUnder.prevPrice": doc[0].game.keys.gameTotalUnder.currPrice,
                             },
                           },
@@ -263,8 +265,6 @@ mongoose.connect(
                             new: true
                           }
                         )
-                      } else if (game.bookmakers.length === 0) {
-                        console.log('skipped')
                       } else {
                         await Game.findOneAndUpdate(
                           { gameUID: game.id },
