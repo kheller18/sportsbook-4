@@ -10,7 +10,7 @@ const BetSlip = (props) => {
   const slip = props.data;
   // console.log(slipID)
   const defaultIcon = 'fas fa-hockey-puck'
-  // console.log(slip)
+  console.log(slip)
   switch(slip.type) {
     case "Straight":
       return (

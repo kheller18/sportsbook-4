@@ -1,7 +1,7 @@
 .dashboard-container {
   width: 80%;
   background-color: white;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   /* margin-left: 30px;
   margin-top: 30px; */
 }
@@ -15,6 +15,8 @@
   font-size: 20px;
   padding-left: 10px;
   padding-top: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .dashboard-body {

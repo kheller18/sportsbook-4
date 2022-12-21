@@ -278,6 +278,7 @@ const LinesContainer = (props) => {
       case 'Parlay':
         if (slipType.new) {
           setParlayArr([]);
+          console.log(game)
           switch (e.target.value) {
             case 'away-moneyline':
               setParlayArr([game.game.keys.gameMoneylineAway.id])
@@ -285,11 +286,11 @@ const LinesContainer = (props) => {
               break;
             case 'away-spread':
               setParlayArr([game.game.keys.gameSpreadAway.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameSpreadAway.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameSpreadAwayHandicap), odds: game.game.keys.gameSpreadAway.currPrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: false });
+              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameSpreadAway.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameSpreadAway.currVal), odds: game.game.keys.gameSpreadAway.currPrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: false });
               break;
             case 'over':
               setParlayArr([game.game.keys.gameTotalOver.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
+              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
               break;
             case 'home-moneyline':
               setParlayArr([game.game.keys.gameMoneylineHome.id])
@@ -301,7 +302,7 @@ const LinesContainer = (props) => {
               break;
             case 'under':
               setParlayArr([game.game.keys.gameTotalUnder.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
+              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
               break;
             default:
               console.log('None selected.')
@@ -354,10 +355,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
                 setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setParlayArr([...parlayArr, game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
 
@@ -405,10 +406,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
                 setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setParlayArr([...parlayArr, game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             default:
@@ -459,10 +460,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
                 setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setParlayArr([...parlayArr, game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             case 'home-moneyline':
@@ -507,10 +508,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
                 }
                 setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setParlayArr([...parlayArr, game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameTotalPoints), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.keys.gameTotalOver.currVal), odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             default:
@@ -531,7 +532,7 @@ const LinesContainer = (props) => {
                 break;
               case 'over':
                 setTeaserArr([game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, teaserVal: '4', type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
+                props.passClickData({ data: game, teaserVal: '4', type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
                 break;
               case 'home-spread':
                 setTeaserArr([game.game.keys.gameSpreadHome.id])
@@ -539,7 +540,7 @@ const LinesContainer = (props) => {
                 break;
               case 'under':
                 setTeaserArr([game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, teaserVal: '4', type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
+                props.passClickData({ data: game, teaserVal: '4', type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
                 break;
               default:
                 console.log('None selected.')
@@ -553,7 +554,7 @@ const LinesContainer = (props) => {
                 break;
               case 'over':
                 setTeaserArr([game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, teaserVal: '6', type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
+                props.passClickData({ data: game, teaserVal: '6', type: slipType, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: false });
                 break;
               case 'home-spread':
                 setTeaserArr([game.game.keys.gameSpreadHome.id])
@@ -561,7 +562,7 @@ const LinesContainer = (props) => {
                 break;
               case 'under':
                 setTeaserArr([game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, teaserVal: '6', type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
+                props.passClickData({ data: game, teaserVal: '6', type: slipType, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: false });
                 break;
               default:
                 console.log('None selected.')
@@ -598,10 +599,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
                 setTeaserArr(newTeaserArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setTeaserArr([...teaserArr, game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             case 'home-spread':
@@ -630,10 +631,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
                 setTeaserArr(newTeaserArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setTeaserArr([...teaserArr, game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             default:
@@ -668,10 +669,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
                 setTeaserArr(newTeaserArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setTeaserArr([...teaserArr, game.game.keys.gameTotalOver.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalOver.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalOver.currPrice, description: game.game.odds.full.description, type: 'TotalOver', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             case 'home-spread':
@@ -700,10 +701,10 @@ const LinesContainer = (props) => {
                   setSlipType({type: 'Teaser', new: true, special: {value: false, slipID: ''}})
                 }
                 setTeaserArr(newTeaserArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               } else {
                 setTeaserArr([...teaserArr, game.game.keys.gameTotalUnder.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.odds.full.gameTotalPoints, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
+                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: game.game.keys.gameTotalUnder.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: game.game.keys.gameTotalOver.currVal, odds: game.game.keys.gameTotalUnder.currPrice, description: game.game.odds.full.description, type: 'TotalUnder', outcome: null, status: 'Active', payout: null},  isLoading: true });
               }
               break;
             default:
