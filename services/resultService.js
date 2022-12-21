@@ -88,7 +88,7 @@ mongoose.connect(
     const updateGamesDB = async () => {
       const promises = Object.entries(resultsObj).map(async (sport, index) => {
         const promises2 = await Object.values(sport[1]).map(async (game, index) => {
-          console.log(game)
+          // console.log(game)
           if (game.scores === null) {
           } else {
             const updated = await Game.findOneAndUpdate(
@@ -130,7 +130,7 @@ mongoose.connect(
 
     const updateSlipsDB = async (gameResults) => {
       const promises = await gameResults.map(async (results) => {
-        console.log(results)
+        // console.log(results)
 
         const updateMoneylineHome = await Slip.find(
           {
@@ -449,5 +449,5 @@ mongoose.connect(
       await Promise.all([updateSlipsDB(resultsArr)]);
     }
   }
-  updateResults();
+  // updateResults();
 })
