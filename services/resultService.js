@@ -21,77 +21,75 @@ mongoose.connect(
 
     const getMLBResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/baseball_mlb/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getNBAResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/basketball_nba/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getNFLResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/americanfootball_nfl/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getNCAAFootballResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/americanfootball_ncaaf/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getNCAABasketballResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/basketball_ncaab/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getNHLResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/icehockey_nhl/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       );
     }
 
     const getMMAResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/mma_mixed_martial_arts/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getEPLResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getLigueResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       );
     }
 
     const getBundesligaResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       )
     }
 
     const getLaLigaResults = () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/scores?rapidapi-key=${process.env.REACT_APP_API_KEY}`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
       );
     }
 
     const updateGamesDB = async () => {
       const promises = Object.entries(resultsObj).map(async (sport, index) => {
-        // console.log(sport)
         const promises2 = await Object.values(sport[1]).map(async (game, index) => {
-          // console.log(game)
+          console.log(game)
           if (game.scores === null) {
-            // console.log('game is null')
           } else {
             const updated = await Game.findOneAndUpdate(
               {

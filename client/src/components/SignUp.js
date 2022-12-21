@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import '../styles/SignUp.css';
 import API from '../utils/API';
+import '../styles/SignUp.css';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
