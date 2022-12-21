@@ -1,10 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import API from '../utils/API';
+import Chart from 'react-apexcharts';
 import '../styles/UserDashboard.css'
 
 function UserDashboard() {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
+  const series = [
+    {
+      name: "Account",
+      data: [0, 40, 33, 18, 100, 90]
+    }
+  ]
+
+  const options = {
+    xaxis: {
+      categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"],
+      // labels: {
+      //   show: true
+      // }
+      // title: {
+      //   text: "Account Value Over time",
+      //   offsetY: 0,
+      //   offsetX: 0
+      // }
+    }
+  };
 
 // BREAK down bet type and percentage
   useEffect(() => {
@@ -30,6 +51,7 @@ function UserDashboard() {
       <div className='dashboard-body'>
         <div className='dashboard-title'>Welcome, {user}!</div>
         {/* <div className='dashboard-title'>Welcome, {bets}!</div> */}
+        <Chart type='line' series={series} options={options} height='85%'/>
       </div>
     </div>
   );
