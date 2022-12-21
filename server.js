@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const Games = require('./models/games');
 const Sports = require('./models/sport');
 const cron = require('node-cron');
+const moment = require('moment');
 // const db = require('./models');
 
 // defining the port for heroku or local
@@ -44,6 +45,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 require('./services/gameService');
+require('./services/resultService');
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4", {
@@ -97,8 +99,10 @@ mongoose.connect(
         gamesPackage = {leagues};
         const promises = sportsPackage.map(async (sport, index) => {
           const promises2 = await Object.keys(sport.leagues).map(async league => {
-            const promise = await Games.find({"league": league}).then((games, i) => {
+            const promise = await Games.find({"league": league, "startDate": { $gte: moment()} }).then((games, i) => {
               if (games.length > 0) {
+                // rearranges games array by ascending start date
+                games.sort((a, b) => a.startDate - b.startDate)
                 sportsPackage[index].leagues[`${ league }`].games.active = true;
                 gamesPackage.leagues[`${ league }`] = games;
               } else {
@@ -116,6 +120,7 @@ mongoose.connect(
 
       // this is supposed to emulate a seed so that the user has data when the page loads and then will auto every 1 minute after
       console.log('package before');
+      console.log(sportsPackage)
       socket.emit('package', {navData: sportsPackage, gameData: gamesPackage});
 
       // function to emit site data to users every minute using sockets

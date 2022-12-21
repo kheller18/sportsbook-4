@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Game = require('../models/games');
-// const Sport = require('../models/sport');
 const Slip = require('../models/betSlip');
 const axios = require('axios');
 const cron = require('node-cron');
@@ -15,6 +14,7 @@ mongoose.connect(
     useFindAndModify: false
   }
 ).then(async () => {
+
   const updateResults = async () => {
     let resultsArr = [];
     let resultsObj = {};
@@ -87,36 +87,42 @@ mongoose.connect(
 
     const updateGamesDB = async () => {
       const promises = Object.entries(resultsObj).map(async (sport, index) => {
+        // console.log(sport)
         const promises2 = await Object.values(sport[1]).map(async (game, index) => {
-          const updated = await Game.findOneAndUpdate(
-            {
-              $and: [ { gameUID: { $eq: game.gameUID  } }, { status: { $in: ['Unplayed', 'Upcoming', 'Live']} } ]
-            },
-            {
-              $set: {
-                "game.results.full": game,
-                "game.results.final": {
-                  "moneylineHome": {"id": `${ game.gameUID }-4`, "value": parseInt(game.scoreHomeTotal) > parseInt(game.scoreAwayTotal)},
-                  "moneylineAway": {"id": `${ game.gameUID }-1`, "value": parseInt(game.scoreAwayTotal) > parseInt(game.scoreHomeTotal)},
-                  "homeDifference": {"id": `${ game.gameUID }-5`, "value": 0 - (parseInt(game.scoreHomeTotal) - parseInt(game.scoreAwayTotal))},
-                  "awayDifference": {"id": `${ game.gameUID }-2`, "value": 0 - (parseInt(game.scoreAwayTotal) - parseInt(game.scoreHomeTotal))},
-                  "totalOver": {"id": `${ game.gameUID }-3`, "value": parseInt(game.scoreAwayTotal) + parseInt(game.scoreHomeTotal)},
-                  "totalUnder": {"id": `${ game.gameUID }-6`, "value": parseInt(game.scoreAwayTotal) + parseInt(game.scoreHomeTotal)},
-                },
-                status: game.status,
-                date: new Date().setDate(new Date().getDate()),
-              }
-            },
-            {
-              new: true,
-            }, (err, doc) => {
-              if (doc != null) {
-                if (doc.status === 'Completed') {
-                  resultsArr.push({"gameUID": doc.gameUID,  "results": doc.game.results.final})
+          // console.log(game)
+          if (game.scores === null) {
+            // console.log('game is null')
+          } else {
+            const updated = await Game.findOneAndUpdate(
+              {
+                $and: [ { gameUID: { $eq: game.id } }, { status: { $in: ['Unplayed', 'Upcoming', 'Live', null] } } ]
+              },
+              {
+                $set: {
+                  "game.results.full": game,
+                  "game.results.final": {
+                    "moneylineHome": {"id": `${ game.id }-4`, "value": parseInt(game.scores[0].score) > parseInt(game.scores[1].score)},
+                    "moneylineAway": {"id": `${ game.id }-1`, "value": parseInt(game.scores[1].score) > parseInt(game.scores[0].score)},
+                    "homeDifference": {"id": `${ game.id }-5`, "value": 0 - (parseInt(game.scores[0].score) - parseInt(game.scores[1].score))},
+                    "awayDifference": {"id": `${ game.id }-2`, "value": 0 - (parseInt(game.scores[1].score) - parseInt(game.scores[0].score))},
+                    "totalOver": {"id": `${ game.id }-3`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                    "totalUnder": {"id": `${ game.id }-6`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                  },
+                  status: (game.completed === false) ? 'Live' : 'Completed',
+                  date: new Date().setDate(new Date().getDate()),
+                }
+              },
+              {
+                new: true,
+              }, (err, doc) => {
+                if (doc != null) {
+                  if (doc.status === 'Completed') {
+                    resultsArr.push({"gameUID": doc.gameUID,  "results": doc.game.results.final})
+                  }
                 }
               }
-            }
-          )
+            )
+          }
         })
         await Promise.all(promises2)
       })
@@ -426,19 +432,19 @@ mongoose.connect(
       await Promise.all(promises);
     }
 
-    await Promise.all([getMLBResults(), getNBAResults(), getNFLResults(), getNHLResults()])
+    await Promise.all([getNBAResults()])
       .then((data) => {
         resultsObj = {
             // MLB: data[0].data.games,
-            // NBA: data[1].data.games,
+            NBA: data[0].data,
             // NFL: data[2].data.games,
-            NHL: data[3].data
+            // NHL: data[3].data
         }
       })
 
     await Promise.all([updateGamesDB()])
       .then((data) => {
-        // console.log(data[0])
+        console.log(data)
       })
 
     if (resultsArr.length > 0) {

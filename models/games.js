@@ -245,39 +245,42 @@ const gamesSchema = new Schema(
 );
 
 gamesSchema.post('findOneAndUpdate', async (game) => {
-  const promise = await Object.keys(game.game.keys).map(async (type, i) => {
-    const currDate = parseFloat(Date.now())
-    switch (true) {
-      case (parseFloat(game.game.keys[`${ type }`].currVal) > parseFloat(game.game.keys[`${ type }`].prevVal)):
-        game.game.keys[`${ type }`].currDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].prevVal)).toString()
-        game.game.keys[`${ type }`].totalDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].initialVal)).toString()
-        game.game.keys[`${ type }`].lineShift = true
-        game.game.keys[`${ type }`].dateLineShift = Date.now()
-        game.game.keys[`${ type }`].dateReset = currDate + 900000
-        game.game.keys[`${ type }`].deltaOperator = 'positive'
-        break;
+  console.log(game)
+  if (game !== null) {
+    const promise = await Object.keys(game.game.keys).map(async (type, i) => {
+      const currDate = parseFloat(Date.now())
+      switch (true) {
+        case (parseFloat(game.game.keys[`${ type }`].currVal) > parseFloat(game.game.keys[`${ type }`].prevVal)):
+          game.game.keys[`${ type }`].currDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].prevVal)).toString()
+          game.game.keys[`${ type }`].totalDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].initialVal)).toString()
+          game.game.keys[`${ type }`].lineShift = true
+          game.game.keys[`${ type }`].dateLineShift = Date.now()
+          game.game.keys[`${ type }`].dateReset = currDate + 900000
+          game.game.keys[`${ type }`].deltaOperator = 'positive'
+          break;
 
-      case (parseFloat(game.game.keys[`${ type }`].currVal) < parseFloat(game.game.keys[`${ type }`].prevVal)):
-        game.game.keys[`${ type }`].currDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].prevVal)).toString()
-        game.game.keys[`${ type }`].totalDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].initialVal)).toString()
-        game.game.keys[`${ type }`].lineShift = true
-        game.game.keys[`${ type }`].dateLineShift = Date.now()
-        game.game.keys[`${ type }`].dateReset = currDate + 900000
-        game.game.keys[`${ type }`].deltaOperator = 'negative'
-        break;
+        case (parseFloat(game.game.keys[`${ type }`].currVal) < parseFloat(game.game.keys[`${ type }`].prevVal)):
+          game.game.keys[`${ type }`].currDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].prevVal)).toString()
+          game.game.keys[`${ type }`].totalDelta = (parseFloat(game.game.keys[`${ type }`].currVal) - parseFloat(game.game.keys[`${ type }`].initialVal)).toString()
+          game.game.keys[`${ type }`].lineShift = true
+          game.game.keys[`${ type }`].dateLineShift = Date.now()
+          game.game.keys[`${ type }`].dateReset = currDate + 900000
+          game.game.keys[`${ type }`].deltaOperator = 'negative'
+          break;
 
-      case ((game.game.keys[`${ type }`].lineShift === true) && (game.game.keys[`${ type }`].dateReset < currDate)):
-        game.game.keys[`${ type }`].lineShift = false
-        game.game.keys[`${ type }`].dateReset = null
-        game.game.keys[`${ type }`].currDelta = '0'
-        game.game.keys[`${ type }`].deltaOperator = 'none'
-        break;
+        case ((game.game.keys[`${ type }`].lineShift === true) && (game.game.keys[`${ type }`].dateReset < currDate)):
+          game.game.keys[`${ type }`].lineShift = false
+          game.game.keys[`${ type }`].dateReset = null
+          game.game.keys[`${ type }`].currDelta = '0'
+          game.game.keys[`${ type }`].deltaOperator = 'none'
+          break;
 
-      default:
-        break;
-    }
-  })
-  game.save()
+        default:
+          break;
+      }
+    })
+    game.save()
+  }
 })
 // gamesSchema.set('autoIndex', false)
 // gamesSchema.index({game: 1 }, { sparse: true })
