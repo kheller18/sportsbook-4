@@ -10,9 +10,6 @@ import '../styles/LinesContainer.css'
 
 const LinesContainer = (props) => {
   const header = ['TIME', 'TEAM', 'MONEYLINE', 'SPREAD', 'TOTAL'];
-  // const playerPropsHeader = ['PLAYER', 'UNDER', 'LINE', 'OVER'];
-  // const [games, setGames] = useState([])
-  // const [currHeader, setCurrHeader] = useState(['TIME', 'TEAM', 'MONEY', 'SPREAD', 'TOTAL'])
   const [isLoading, setIsLoading] = useState(false);
   const [slipType, setSlipType] = useState({type: "Straight", new: true, special: {value: false, slipID: ''}})
   // const [activeBtn, setActiveBtn] = useState({ color: '#EFEFEF' })
@@ -60,147 +57,6 @@ const LinesContainer = (props) => {
         break
     }
   }
-
-  const handlePropClick = (e, player, propType, game) => {
-    e.preventDefault();
-    console.log(player[0])
-    console.log(player[1])
-
-    switch (slipType.type) {
-      case 'Straight':
-        switch (e.target.value) {
-          case 'player-under':
-            if (straightArr.includes(player[1].Under.id)) {
-              newStraightArr = straightArr.filter(bet => bet !== player[1].Under.id)
-              setStraightArr(newStraightArr)
-              props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-            } else {
-              setStraightArr([...straightArr, player[1].Under.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-            }
-            break;
-
-          case 'player-over':
-            if (straightArr.includes(player[1].Over.id)) {
-              newStraightArr = straightArr.filter(bet => bet !== player[1].Over.id)
-              setStraightArr(newStraightArr)
-              props.passClickData({ data: game, type: slipType, operation: 'remove', slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-            } else {
-              setStraightArr([...straightArr, player[1].Over.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-            }
-            break;
-
-          default:
-            console.log('not inside player unde or over')
-        }
-        break;
-
-      case 'Parlay':
-        if (slipType.new) {
-          // setParlayArr([]);
-          switch (e.target.value) {
-            case 'player-under':
-              setParlayArr([player[1].Under.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              break;
-
-            case 'player-over':
-              setParlayArr([player[1].Over.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              break;
-
-            default:
-              console.log('incorrect choice')
-          }
-          setSlipType({type: 'Parlay', new: false, special: {value: false, slipID: ''}})
-        } else if (slipType.special.value === true) {
-          switch (e.target.value) {
-            case 'player-under':
-              if (parlayArr.includes(player[1].Over.id)) {
-                console.log('included')
-              } else if (parlayArr.includes(player[1].Under.id)) {
-                index = parlayArr.indexOf(player[1].Under.id)
-                newParlayArr = parlayArr.filter((bet, id) => id !== index)
-                if (newParlayArr.length < 1) {
-                  setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
-                }
-                setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              } else {
-                setParlayArr([...parlayArr, player[1].Under.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              }
-              break;
-
-            case 'player-over':
-              if (parlayArr.includes(player[1].Under.id)) {
-                console.log('included')
-              } else if (parlayArr.includes(player[1].Over.id)) {
-                index = parlayArr.indexOf(player[1].Over.id)
-                newParlayArr = parlayArr.filter((bet, id) => id !== index)
-                if (newParlayArr.length < 1) {
-                  setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
-                }
-                setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'remove', index: index}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              } else {
-                setParlayArr([...parlayArr, player[1].Over.id])
-                props.passClickData({ data: game, type: slipType, special: {value: slipType.special.value, slipID: slipType.special.slipID}, operation: {type: 'add'}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null}, isLoading: true });
-              }
-              break;
-
-            default:
-            break;
-          }
-
-        } else {
-          switch (e.target.value) {
-            case 'player-under':
-              if (parlayArr.includes(player[1].Over.id)) {
-                console.log('included')
-              } else if (parlayArr.includes(player[1].Under.id)) {
-                index = parlayArr.indexOf(player[1].Under.id)
-                newParlayArr = parlayArr.filter((bet, id) => id !== index)
-                if (newParlayArr.length < 1) {
-                  setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
-                }
-                setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
-              } else {
-                setParlayArr([...parlayArr, player[1].Under.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: player[1].Under.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Under.name, line: player[1].Under.line, odds: player[1].Under.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
-              }
-              break;
-
-            case 'player-over':
-              if (parlayArr.includes(player[1].Under.id)) {
-                console.log('included')
-              } else if (parlayArr.includes(player[1].Over.id)) {
-                index = parlayArr.indexOf(player[1].Over.id)
-                newParlayArr = parlayArr.filter((bet, id) => id !== index)
-                if (newParlayArr.length < 1) {
-                  setSlipType({type: 'Parlay', new: true, special: {value: false, slipID: ''}})
-                }
-                setParlayArr(newParlayArr)
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'remove', index: index}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
-              } else {
-                setParlayArr([...parlayArr, player[1].Over.id])
-                props.passClickData({ data: game, type: slipType, special: {value: false}, operation: {type: 'add'}, slipData: {id: player[1].Over.id, sport: game.game.odds.full.sport, gameUID: game.gameUID, team: player[1].Over.name, line: player[1].Over.line, odds: player[1].Over.odds, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: true });
-              }
-              break;
-
-            default:
-              break;
-          }
-        }
-        break;
-
-      default:
-        console.log('incorrect sliptype handle prop click')
-    }
-  }
-
 
   const handleClick = (e, game) => {
     e.preventDefault();
@@ -791,72 +647,49 @@ const LinesContainer = (props) => {
   return (
     <div className='container'>
       {isLoading ? '' :
-      <div className='game-container'>
-        <div className='game-container-header'>
-          <div className='render-sport-title'><i className={sportClasses[`${ content.sport }`]}></i>&nbsp;{content.league}&nbsp;<span className='sport-title-subheader'>GAME LINES</span></div>
-          <div className='render-league-type'>
-            {/* <Button type="button" className={leagueType === 'GAME LINES' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('GAME LINES')} id='game-lines'>GAME LINES</Button> */}
-            {/* <Button type="button" className={leagueType === 'PLAYER PROPS' ? 'leagueTypeBtn leagueTypeBtnActive' : 'leagueTypeBtn'} onClick={() => setLeagueType('PLAYER PROPS')} id='player-props'>PLAYER PROPS</Button> */}
+        <div className='game-container'>
+          <div className='game-container-header'>
+            <div className='render-sport-title'><i className={sportClasses[`${ content.sport }`]}></i>&nbsp;{content.league}&nbsp;<span className='sport-title-subheader'>GAME LINES</span></div>
           </div>
-        </div>
-        {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football'))) ?
-          <div className='render-bet-type-buttons'>
-            <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
-            <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='parlay' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
-            <Button type="button" className={slipType.type === 'Teaser' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='teaser' onClick={() => handleSlipTypeChange('Teaser')}>TEASER</Button>
-          </div>
-        :
-          <div className='render-bet-type-buttons'>
-            <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
-            <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='parlay-two' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
-          </div>
-        }
-        <table className='table'>
+          {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football'))) ?
+            <div className='render-bet-type-buttons'>
+              <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
+              <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='parlay' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
+              <Button type="button" className={slipType.type === 'Teaser' ? 'betTypeBtn betTypeBtnThree betTypeBtnActive' : 'betTypeBtn betTypeBtnThree'} id='teaser' onClick={() => handleSlipTypeChange('Teaser')}>TEASER</Button>
+            </div>
+          :
+            <div className='render-bet-type-buttons'>
+              <Button type="button" className={slipType.type === 'Straight' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='straight' onClick={() => handleSlipTypeChange('Straight')}>STRAIGHT</Button>
+              <Button type="button" className={slipType.type === 'Parlay' ? 'betTypeBtn betTypeBtnTwo betTypeBtnActive' : 'betTypeBtn betTypeBtnTwo'} id='parlay-two' onClick={() => handleSlipTypeChange('Parlay')}>PARLAY</Button>
+            </div>
+          }
+          <table className='table'>
+            {leagueType === 'GAME LINES' ?
+              <thead>
+                <tr className='table-headers'>
+                  <th className='th' id='header-time'>{header[0]}</th>
+                  <th className='th' id='header-team'>{header[1]}</th>
+                  {slipType.type === 'Straight' || slipType.type === 'Parlay' ?
+                    <th className='th' id='header-money'>{header[2]}</th>
+                  : <th className='th' id='header-money'></th>}
+                  <th className='th' id='header-spread'>{header[3]}</th>
+                  <th className='th' id='header-total'>{header[4]}</th>
+                </tr>
+              </thead>
+            : null
+            }
+          </table>
           {leagueType === 'GAME LINES' ?
-            <thead>
-              <tr className='table-headers'>
-                <th className='th' id='header-time'>{header[0]}</th>
-                <th className='th' id='header-team'>{header[1]}</th>
-                {slipType.type === 'Straight' || slipType.type === 'Parlay' ?
-                  <th className='th' id='header-money'>{header[2]}</th>
-                : <th className='th' id='header-money'></th>}
-                <th className='th' id='header-spread'>{header[3]}</th>
-                <th className='th' id='header-total'>{header[4]}</th>
-              </tr>
-            </thead>
+            <div className='scroll-container'>
+              {content.games.map(game => {
+                return (
+                  <Lines key={game.gameUID} game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handleClick={handleClick} />
+                );
+              })}
+            </div>
           : null
           }
-        </table>
-        {leagueType === 'GAME LINES' ?
-          <div className='scroll-container'>
-            {content.games.map(game => {
-              return (
-                <Lines key={game.gameUID} game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handleClick={handleClick} />
-              );
-            })}
-          </div>
-        : null
-        }
-        {leagueType === 'PLAYER PROPS' ?
-          <div className='scroll-container'>
-            {/* <PropsContainer games={content.games} handlePropClick={handlePropClick} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr}/> */}
-            {/* {content.games.map((game, i) => {
-              if ((typeof game.game.props !== undefined)) {
-                if (i === 0) {
-                  return (
-                    <Props game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handlePropClick={handlePropClick} show={true} />
-                  );
-                } else {
-                  return (
-                    <Props game={game} slipType={slipType} straightArr={straightArr} parlayArr={parlayArr} teaserArr={teaserArr} handlePropClick={handlePropClick} show={false}/>
-                  );
-                }
-              }
-            })} */}
-          </div>
-        : null
-        }
-      </div>
+        </div>
       }
     </div>
   );
