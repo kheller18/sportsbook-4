@@ -1,6 +1,7 @@
 .slip-container {
-  width: 350px;
+  min-width: 400px;
   margin: 10px;
+  padding: 5px;
   /* border: 1px solid; */
   /* border-radius: 15px; */
 }
@@ -86,7 +87,7 @@
 .slip-header {
   background-color: darkblue;
   color: white;
-  height: 40px;
+  /* height: 40px; */
   display: flex;
   flex-direction: row;
   align-items: center;

@@ -447,5 +447,5 @@ mongoose.connect(
       await Promise.all([updateSlipsDB(resultsArr)]);
     }
   }
-  updateResults();
+  // updateResults();
 })

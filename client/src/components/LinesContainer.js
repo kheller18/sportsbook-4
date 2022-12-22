@@ -134,7 +134,7 @@ const LinesContainer = (props) => {
           switch (e.target.value) {
             case 'away-moneyline':
               setParlayArr([game.game.keys.gameMoneylineAway.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameMoneylineAway.id, sport: game.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: null, odds: game.game.keys.gameMoneylineAwayPrice, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null}, isLoading: false });
+              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameMoneylineAway.id, sport: game.sport, gameUID: game.gameUID, team: game.game.odds.full.away_team, line: null, odds: game.game.keys.gameMoneylineAway.currVal, description: game.game.odds.full.description, type: 'Moneyline', outcome: null, status: 'Active', payout: null}, isLoading: false });
               break;
             case 'away-spread':
               setParlayArr([game.game.keys.gameSpreadAway.id])
@@ -150,7 +150,7 @@ const LinesContainer = (props) => {
               break;
             case 'home-spread':
               setParlayArr([game.game.keys.gameSpreadHome.id])
-              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameSpreadHome.id, sport: game.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameSpreadHomeHandicap), odds: game.game.odds.full.gameSpreadHomePrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: false });
+              props.passClickData({ data: game, type: slipType, slipData: {id: game.game.keys.gameSpreadHome.id, sport: game.sport, gameUID: game.gameUID, team: game.game.odds.full.home_team, line: (game.game.odds.full.gameSpreadHome.currVal), odds: game.game.odds.full.gameSpreadHome.currPrice, description: game.game.odds.full.description, type: 'Spread', outcome: null, status: 'Active', payout: null},  isLoading: false });
               break;
             case 'under':
               setParlayArr([game.game.keys.gameTotalUnder.id])

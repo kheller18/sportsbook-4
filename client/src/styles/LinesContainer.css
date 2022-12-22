@@ -7,10 +7,6 @@ button:hover {
   cursor: pointer;
 }
 
-.leagueTypeBtn {
-
-}
-
 .leagueTypeBtnActive {
   background-color: #85bb65;
   color: white;
@@ -45,23 +41,24 @@ button:hover {
   display: flex;
   border-radius: 15px;
   height: 770px;
-  /* height: 500px; */
+  margin: 10px;
+  padding: 5px;
   /* max-height: 500px; */
   /* flex-direction: row; */
   /* margin-top: 30px; */
 }
 
 .game-container {
-  width: 750px;
-  margin: 10px;
+  /* width: 750px; commented this out and that's why buttons look weird now*/
+  /* margin: 10px; */
   /* margin-left: 30px; */
 }
 
-.bet-slip {
+/* .bet-slip {
   width: 345px;
-  /* margin-top: 30px; */
+  margin-top: 30px;
   margin-left: 100px;
-}
+} */
 
 .table {
   border: none;

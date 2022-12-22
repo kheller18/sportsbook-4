@@ -5,7 +5,7 @@ import '../styles/BetSlipContainer.css';
 import API from '../utils/API';
 import BetSlip from './BetSlip';
 
-// have to control the slips here otherwise you can't pass back and forth correctly.. pass to RenderBetSlips for the list 
+// have to control the slips here otherwise you can't pass back and forth correctly.. pass to RenderBetSlips for the list
 const BetSlipContainer = (props) => {
   const clickData = props.data
   const [slipState, setSlipState] = useState('cart')
@@ -16,8 +16,7 @@ const BetSlipContainer = (props) => {
   const [slipTotalMoney, setSlipTotalMoney] = useState({wager: 0.00, payout: 0.00})
   const [isLoading, setIsLoading] = useState(true)
   const slipLength = slips.length;
-  // console.log(slipLength);
-  console.log(clickData.slipData)
+
   const sportClasses = {
     'Baseball': 'fas fa-baseball-ball',
     'Football': 'fas fa-football-ball',

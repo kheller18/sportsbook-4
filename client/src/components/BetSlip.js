@@ -8,9 +8,9 @@ import '../styles/BetSlip.css';
 const BetSlip = (props) => {
   const slipID = props.id;
   const slip = props.data;
-  // console.log(slipID)
   const defaultIcon = 'fas fa-hockey-puck'
   console.log(slip)
+
   switch(slip.type) {
     case "Straight":
       return (
