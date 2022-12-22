@@ -17,7 +17,7 @@ const BetSlipContainer = (props) => {
   const [isLoading, setIsLoading] = useState(true)
   const slipLength = slips.length;
   // console.log(slipLength);
-
+  console.log(clickData.slipData)
   const sportClasses = {
     'Baseball': 'fas fa-baseball-ball',
     'Football': 'fas fa-football-ball',

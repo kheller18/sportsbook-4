@@ -282,9 +282,7 @@ gamesSchema.post('findOneAndUpdate', async (game) => {
     game.save()
   }
 })
-// gamesSchema.set('autoIndex', false)
-// gamesSchema.index({game: 1 }, { sparse: true })
+
 const Games = mongoose.model("Games", gamesSchema);
 
-// Games.createIndex( { game: 1 } )
 module.exports = Games;

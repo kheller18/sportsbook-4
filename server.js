@@ -5,12 +5,10 @@ const routes = require('./routes/api.js');
 const passport = require('passport');
 const User = require('./models/user');
 const LocalStrategy = require('passport-local').Strategy;
-// const Scores = require('./client/src/utils/Scores');
 const Games = require('./models/games');
 const Sports = require('./models/sport');
 const cron = require('node-cron');
 const moment = require('moment');
-// const db = require('./models');
 
 // defining the port for heroku or local
 const PORT = process.env.PORT || 3001;

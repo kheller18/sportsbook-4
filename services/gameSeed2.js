@@ -6,7 +6,6 @@
 // const axios = require('axios');
 // const cron = require('node-cron');
 
-
 // // base url "https://odds.p.rapidapi.com/v4/sports/?rapidapi-key="
 // mongoose.connect(
 //   process.env.MONGODB_URI || "mongodb://localhost:27017/sportsbook4",
