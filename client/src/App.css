@@ -2,9 +2,17 @@ body {
   height: 100%;
 }
 
+:root {
+  --main-blue-back-color: darkblue ;
+  --dark-back-font-color: #fff;
+
+  --secondary-back-color: #EAFAF1;
+  --light-back-font-color: #333;
+}
+
 .App {
   text-align: center;
-  background-color: darkgray;
+  background-color: #D0D3D4;
   height: 100%;
   overflow: scroll;
 }

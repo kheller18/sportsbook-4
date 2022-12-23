@@ -36,7 +36,7 @@ button:hover {
   background-color: green;
 } */
 
-.container {
+.lines-container {
   width: 100%;
   display: flex;
   border-radius: 15px;
@@ -52,6 +52,7 @@ button:hover {
   /* width: 750px; commented this out and that's why buttons look weird now*/
   /* margin: 10px; */
   /* margin-left: 30px; */
+  width: 100%;
 }
 
 /* .bet-slip {
@@ -81,7 +82,7 @@ button:hover {
 .render-main-body {
   background-color: white;
   margin-bottom: 10px;
-  width: 750px;
+  /* width: 750px; */
   padding: 10px;
   height: 100px;
   border-radius: 5px;
@@ -127,7 +128,7 @@ button:hover {
   justify-content: space-between;
 }
 
-.render-sport-title {
+.sport-title {
   font-size: 20px;
   height: 25px;
   background-color: darkblue;
@@ -145,15 +146,16 @@ button:hover {
   align-self: center; */
 }
 
-.render-bet-type-buttons {
+.bet-type-buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  max-width: 750px;
+  /* max-width: 750px; */
+  width: 100%;
   max-height: 35px;
   /* border: 2px solid darkblue; */
-  border-right: 2px solid;
-  border-left: 2px solid;
+  /* border-right: 2px solid;
+  border-left: 2px solid; */
   border-left-color: darkblue;
 }
 
@@ -170,7 +172,8 @@ button:hover {
 }
 
 .betTypeBtnThree {
-  width: 250px;
+  width: 100%;
+  /* width: 250px; */
   background-color: lightgray;
   /* border: none; */
 }

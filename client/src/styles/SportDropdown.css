@@ -1,5 +1,5 @@
 .nav-button {
-  width: 235px;
+  width: 100%;
   background-color: #FFFFFF;
   display: flex;
   flex-direction: row;
@@ -12,6 +12,16 @@
   color: white;
   font-weight: bold;
   background-color: #85bb65;
+}
+
+.league-dropdown {
+  width: 100%;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
 }
 
 .nav-button-icon {

@@ -20,7 +20,7 @@ const SportDropdown = (props) => {
       <Button className={(props.activeSport === sport.name) ? 'nav-button nav-button-active' : 'nav-button'} onClick={handleSportClick}><span className='nav-button-icon'><i className={props.icon}></i>&nbsp;{sport.name}</span>&nbsp;<span className='nav-button-right'><i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></span></Button>
       {
         showDropdown ? (
-          <div>
+          <div className='league-dropdown'>
             {Object.keys(sport.leagues).map((league) => {
               if (sport.leagues[`${ league }`]['games']['active'] || sport.leagues[`${ league }`]['props']['active']) {
                 return (

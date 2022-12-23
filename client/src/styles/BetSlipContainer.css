@@ -7,37 +7,44 @@
 }
 
 .slip-tabs {
-  height: 35px;
+  /* height: 35px; */
   display: flex;
   flex-direction: row;
-  /* justify-content: space-evenly; */
+  /* justify-content: space-between; */
+  align-items: center;
+  /* width: 100%; */
   /* background-color: green; */
 }
 
 .slip-tab {
-  width: 150px;
-  height: 35px;
+  /* width: 150px; */
+  /* height: 35px; */
+  display: flex;
+  /* flex-direction: column; */
+  /* width: 100%; */
   background-color: #FFFFFF;
 }
 
 #slip-tab-cart {
   border: none;
+  width: 50%;
 }
 
 #slip-tab-active {
   border: none;
+  width: 50%;
 }
 
 .slip-tab-focus {
-  width: 150px;
+  /* width: 150px; */
   background-color: #85bb65;
   color: white;
   font-weight: bold;
 }
 
 .slip-tab-unfocus {
-  width: 150px;
-  background-color: #FFFFFF;
+  /* width: 150px; */
+  background-color: #D0D3D4;
 }
 
 .empty-slip-container {
@@ -85,7 +92,7 @@
 }
 
 .slip-header {
-  background-color: darkblue;
+  background-color: var(--main-blue-back-color);
   color: white;
   /* height: 40px; */
   display: flex;
