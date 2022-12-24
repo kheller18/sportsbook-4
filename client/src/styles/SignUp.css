@@ -1,6 +1,6 @@
 .signup-field {
   /* margin-bottom: 15px; */
-  background-color: white;
+  background-color: var(--primary-light-body-color);
   height: 30px;
   padding-left: 10px;
   border-radius: 5px;
@@ -10,7 +10,7 @@
   background-color: lightgray;
   width: 400px;
   padding: 30px;
-  border: 1px solid black;
+  border: 1px solid darkblue;
   /* margin-top: 20px; */
   /* margin-left: 35%; */
   /* margin-bottom: 20px; */
@@ -54,7 +54,7 @@
 .signup-button {
   width: 400px;
   background-color: green;
-  color: white;
+  color: var(--primary-light-font-color);
   border-radius: 5px;
 }
 

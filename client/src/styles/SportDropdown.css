@@ -1,6 +1,6 @@
 .nav-button {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--primary-light-body-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,14 +9,14 @@
 }
 
 .nav-button-active {
-  color: white;
+  color: var(--primary-light-font-color);
   font-weight: bold;
   background-color: #85bb65;
 }
 
 .league-dropdown {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--primary-light-body-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

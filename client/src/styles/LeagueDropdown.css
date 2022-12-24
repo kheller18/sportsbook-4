@@ -1,6 +1,6 @@
 .league-dropdown2 {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--primary-light-body-color);
   /* display: flex;
   flex-direction: row; */
   /* justify-content: space-between; */
@@ -16,7 +16,7 @@
 
 .league-button {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: var(--primary-light-body-color);
   /* display: flex;
   flex-direction: row; */
   /* justify-content: space-between; */

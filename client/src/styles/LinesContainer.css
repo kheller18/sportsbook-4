@@ -9,7 +9,7 @@ button:hover {
 
 .leagueTypeBtnActive {
   background-color: #85bb65;
-  color: white;
+  color: var(--primary-light-font-color);
   font-weight: bold;
 }
 
@@ -89,12 +89,6 @@ button:hover {
   font-size: 13px;
 }
 
-
-/* .render-games {
-  background-color: white;
-  margin-bottom: 50px;
-} */
-
 .render-game {
   display: flex;
   flex-direction: row;
@@ -111,10 +105,7 @@ button:hover {
 }
 
 .game-container-header {
-  /* font-size: 20px; */
-  background-color: darkblue;
-  /* color: white; */
-  /* margin-left: 30px; */
+  background-color: var(--primary-dark-header-color);
   font-weight: bold;
   height: 50px;
   text-align: left;
@@ -131,8 +122,8 @@ button:hover {
 .sport-title {
   font-size: 20px;
   height: 25px;
-  background-color: darkblue;
-  color: white;
+  background-color: var(--primary-dark-header-color);
+  color: var(--primary-light-font-color);
   /* margin-left: 30px; */
   font-weight: bold;
   /* height: 40px; */
@@ -201,7 +192,7 @@ button:hover {
 
 .betTypeBtnActive {
   background-color: #85bb65;
-  color: white;
+  color: var(--primary-light-font-color);
   font-weight: bold;
 
 }

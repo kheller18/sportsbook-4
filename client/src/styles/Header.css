@@ -2,23 +2,27 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  background-color: darkblue;
+  height: 50px;
+  /* background-color: ; */
 }
 
 .header-title {
-  display: flex;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
   margin-left: 15px;
-  color: white;
+  color: darkblue;
   font-weight: bold;
   font-size: 28px;
-  height: 50px;
-  padding-top: 10px;
+  /* height: 50px; */
+  /* padding-top: 10px; */
 }
 
 .header-links {
   margin-right: 15px;
-  color: white;
+  color: var(--primary-light-font-color);
 }
 
 .header-link {

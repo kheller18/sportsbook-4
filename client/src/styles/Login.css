@@ -1,9 +1,5 @@
-/* body {
-  height: 100vh;
-} */
-
 .login-form {
-  background-color: lightgray;
+  /* background-color: lightgray; */
   height: 300px;
   width: 300px;
   position: fixed;
@@ -12,7 +8,7 @@
   transform: translate(-50%, -50%);
   border-radius: 5px;
   padding: 10px;
-  border: 1px black solid;
+  border: 1px darkblue solid;
 }
 
 .login-row {
@@ -29,7 +25,7 @@
   width: 200px;
   height: 30px;
   background-color: green;
-  color: white;
+  color: var(--primary-light-font-color);
 }
 
 .login-form-title {

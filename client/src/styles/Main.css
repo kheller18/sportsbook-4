@@ -7,10 +7,6 @@
   height: 100%;
 }
 
-/* body {
-  height: 100%;
-} */
-
 .members-section-top {
   display: flex;
   flex-direction: row;
@@ -30,4 +26,3 @@
   margin-bottom: 50px;
   height: 100%;
 }
-

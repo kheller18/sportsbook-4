@@ -3,11 +3,14 @@ body {
 }
 
 :root {
-  --main-blue-back-color: darkblue ;
-  --dark-back-font-color: #fff;
+  --primary-dark-header-color: darkblue;
+  --primary-light-body-color: #FFFFFF;
+  --primary-dark-font-color: darkblue;
+  --primary-light-font-color: #FFFFFF;
+  /* --dark-back-font-color: #fff;
 
   --secondary-back-color: #EAFAF1;
-  --light-back-font-color: #333;
+  --light-back-font-color: #333; */
 }
 
 .App {

@@ -1,9 +1,9 @@
 .slip-container {
   min-width: 400px;
   margin: 10px;
-  padding: 5px;
-  /* border: 1px solid; */
-  /* border-radius: 15px; */
+  padding: 10px;
+  border: 2px solid darkblue;
+  border-radius: 5px;
 }
 
 .slip-tabs {
@@ -22,7 +22,7 @@
   display: flex;
   /* flex-direction: column; */
   /* width: 100%; */
-  background-color: #FFFFFF;
+  background-color: var(--primary-light-body-color);
 }
 
 #slip-tab-cart {
@@ -38,7 +38,7 @@
 .slip-tab-focus {
   /* width: 150px; */
   background-color: #85bb65;
-  color: white;
+  color: var(--primary-light-font-color);
   font-weight: bold;
 }
 
@@ -49,7 +49,7 @@
 
 .empty-slip-container {
   height: 150px;
-  background-color: white;
+  background-color: var(--primary-light-body-color);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -92,7 +92,7 @@
 }
 
 .slip-header {
-  background-color: var(--main-blue-back-color);
+  background-color: var(--primary-dark-header-color);
   color: white;
   /* height: 40px; */
   display: flex;
