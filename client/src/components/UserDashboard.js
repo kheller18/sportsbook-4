@@ -48,10 +48,11 @@ function UserDashboard() {
 
   return (
     <div className='dashboard-container'>
-      <div className='dashboard-body'>
+      <div className='dashboard-header'>
         <div className='dashboard-title'>Welcome, {user}!</div>
-        {/* <div className='dashboard-title'>Welcome, {bets}!</div> */}
-        <Chart type='line' series={series} options={options} height='85%'/>
+      </div>
+      <div className='dashboard-body'>
+        <Chart type='line' series={series} options={options} height='100%'/>
       </div>
     </div>
   );

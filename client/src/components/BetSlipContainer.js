@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import BetSlipConfirm from './BetSlipConfirm';
 import Button from './Button';
-import '../styles/BetSlipContainer.css';
 import API from '../utils/API';
 import BetSlip from './BetSlip';
+import '../styles/BetSlipContainer.css';
 
 // have to control the slips here otherwise you can't pass back and forth correctly.. pass to RenderBetSlips for the list
 const BetSlipContainer = (props) => {
@@ -1680,8 +1680,6 @@ const BetSlipContainer = (props) => {
     currSlip().then(() => {setIsLoading(false)})
   }, [props.data])
 
-
-  // console.log(slips)
   return (
     <div className='slip-container'>
       <div className='slip-header'>
@@ -1708,7 +1706,6 @@ const BetSlipContainer = (props) => {
 
       {
         (slipState === 'cart' && submittedSlips.length < 1 && isLoading === false && slips.length < 1) ?
-          // <RenderBetSlips passSlipState={setSlipState} passSlipData={setSlipData} passClickedData={setClickedData} data={clickedData} />
             <div className='empty-slip-container'>
               <span><i id='empty-slip-image' className='fa fa-shopping-cart' aria-hidden="true"></i></span>
             </div>

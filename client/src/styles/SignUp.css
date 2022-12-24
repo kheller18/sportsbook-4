@@ -1,5 +1,4 @@
 .signup-field {
-  /* margin-bottom: 15px; */
   background-color: var(--primary-light-body-color);
   height: 30px;
   padding-left: 10px;
@@ -11,9 +10,6 @@
   width: 400px;
   padding: 30px;
   border: 1px solid darkblue;
-  /* margin-top: 20px; */
-  /* margin-left: 35%; */
-  /* margin-bottom: 20px; */
   position: fixed;
   top: 50%;
   left: 50%;

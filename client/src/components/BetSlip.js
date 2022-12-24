@@ -9,7 +9,7 @@ const BetSlip = (props) => {
   const slipID = props.id;
   const slip = props.data;
   const defaultIcon = 'fas fa-hockey-puck'
-  console.log(slip)
+  // console.log(slip)
 
   switch(slip.type) {
     case "Straight":
@@ -91,7 +91,7 @@ const BetSlip = (props) => {
               type='button'
               className='slip-exit'
             >
-              X
+              <i className="fas fa-trash-alt"></i>
             </Button>
           </div>
           <div className='slip-body-main'>
@@ -110,14 +110,14 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
 
                   case 'Spread':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team}&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team}&nbsp;
                         <DropdownButton {...props} index={i} data={slip} activeLine={{line: values.line, odds: values.odds.num}} altLines={values.alternateLines} />&nbsp;&nbsp;
                         <Button
                           key={i}
@@ -127,14 +127,14 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
 
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
                         <DropdownButton {...props} index={i} data={slip} activeLine={{line: values.line, odds: values.odds.num}} altLines={values.alternateLines} />&nbsp;&nbsp;
                         <Button
                           key={i}
@@ -144,14 +144,14 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
 
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
                         <DropdownButton {...props} index={i} data={slip} activeLine={{line: values.line, odds: values.odds.num}} altLines={values.alternateLines} />&nbsp;&nbsp;
                         <Button
                           key={i}
@@ -161,7 +161,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
@@ -219,7 +219,7 @@ const BetSlip = (props) => {
               type='button'
               className='slip-exit'
             >
-              X
+              <i className="fas fa-trash-alt"></i>
             </Button>
           </div>
           <div className='slip-body-main'>
@@ -228,7 +228,7 @@ const BetSlip = (props) => {
                 switch(values.betType) {
                   case 'Spread':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} {parseFloat(values.line) > 0 ? `+${ values.line }` : values.line}&nbsp;&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} {parseFloat(values.line) > 0 ? `+${ values.line }` : values.line}&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}
@@ -237,13 +237,13 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Over{values.line}&nbsp;&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Over{values.line}&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}
@@ -252,13 +252,13 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Under{values.line}&nbsp;&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Under{values.line}&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}
@@ -267,7 +267,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-times"></i>
+                          <i className="fas fa-trash-alt"></i>
                         </Button>
                       </div>
                     );

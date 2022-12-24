@@ -18,18 +18,11 @@ mongoose.connect(
   }
 ).then(async () => {
 
-  // function to continually update database with games information
-  // const scheduleTask = cron.schedule('1.5-59 * * * *', async () => {
-  //   // console.log(new Date())
-  //   await getGames();
-  //   // await updateResults();
-  // })
-
+  // runs every 12 hours
+  setInterval(() => getGames(), 43200000)
 
   // function to get active games and their respective lines for active sports
   const getGames = async () => {
-    console.log('inside get games')
-
     // key value pairings for leagues and their respective sports
     const leagueRelations = {
       'MLB': 'Baseball',
@@ -141,7 +134,6 @@ mongoose.connect(
     }
 
     await Promise.all([getNBA(), getNFL(), getNHL()])
-    // await Promise.all([getNFL()])
       .then(data => {
         const gamesObj = {
           // MLB: data[0].data.games,
@@ -409,6 +401,13 @@ mongoose.connect(
         })
         // console.log(gamesObj)
       })
+        // function to continually update database with games information
+    // const scheduleTask = cron.schedule('30 * * * *', async () => {
+    //   console.log(new Date());
+    //   await getGames();
+    //   console.log('games');
+    // })
+
   }
   // commenting this out so i don't go over my api calls
   // getGames()

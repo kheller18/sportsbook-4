@@ -12,5 +12,5 @@
 }
 
 .footer-title {
-  color: white;
+  color: var(--primary-dark-font-color);
 }

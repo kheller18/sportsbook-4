@@ -32,9 +32,6 @@ button:hover {
 .noDelta {
   display: none;
 }
-/* button:focus {
-  background-color: green;
-} */
 
 .lines-container {
   width: 100%;
@@ -55,16 +52,9 @@ button:hover {
   width: 100%;
 }
 
-/* .bet-slip {
-  width: 345px;
-  margin-top: 30px;
-  margin-left: 100px;
-} */
-
 .table {
   border: none;
   background-color: lightgray;
-  /* padding: 5px; */
   width: 100%;
 }
 
@@ -72,7 +62,7 @@ button:hover {
   margin-bottom: 20px;
   margin-left: 30px;
   padding: 10px;
-  background-color: white;
+  background-color: var(--primary-light-body-color);
   /* display: flex; */
   /* flex-direction: column; */
   /* flex-wrap: wrap; */
@@ -80,7 +70,7 @@ button:hover {
 }
 
 .render-main-body {
-  background-color: white;
+  background-color: var(--primary-light-body-color);
   margin-bottom: 10px;
   /* width: 750px; */
   padding: 10px;

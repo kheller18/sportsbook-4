@@ -1,19 +1,26 @@
 .dropdown-buttons {
   display: flex;
   flex-direction: column;
+  position: absolute;
 }
 
 .dropdown-button {
   height: 20px;
+  display: flex;
+  flex-direction: row;
+  /* position: relative; */
+  width: 100px;
 }
 
 .target-button {
+  display: flex;
   height: 20px;
+  width: 100px;
 }
 
 .target-button-contents {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }

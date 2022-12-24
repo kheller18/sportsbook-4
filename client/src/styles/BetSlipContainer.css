@@ -2,26 +2,18 @@
   min-width: 400px;
   margin: 10px;
   padding: 10px;
-  border: 2px solid darkblue;
-  border-radius: 5px;
+  /* border: 2px solid darkblue; */
+  /* border-radius: 5px; */
 }
 
 .slip-tabs {
-  /* height: 35px; */
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
   align-items: center;
-  /* width: 100%; */
-  /* background-color: green; */
 }
 
 .slip-tab {
-  /* width: 150px; */
-  /* height: 35px; */
   display: flex;
-  /* flex-direction: column; */
-  /* width: 100%; */
   background-color: var(--primary-light-body-color);
 }
 
@@ -36,14 +28,12 @@
 }
 
 .slip-tab-focus {
-  /* width: 150px; */
   background-color: #85bb65;
   color: var(--primary-light-font-color);
   font-weight: bold;
 }
 
 .slip-tab-unfocus {
-  /* width: 150px; */
   background-color: #D0D3D4;
 }
 
@@ -61,22 +51,17 @@
 #empty-slip-image {
   height: 50px;
   width: 50px;
-  /* color: black; */
 }
 
 .slip-total-money {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  color: white;
+  color: var(--primary-light-font-color);
 }
 
 .slip-summary-section {
   background-color: #63676b;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-right: 10px;
-  padding-bottom: 5px;
 }
 
 .slip-button {
@@ -87,22 +72,18 @@
   display: flex;
   flex-direction: row;
   align-self: center;
-  /* width: 300px; */
   margin-left: 10px;
 }
 
 .slip-header {
   background-color: var(--primary-dark-header-color);
-  color: white;
-  /* height: 40px; */
+  color: var(--primary-light-font-color);
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* justify-content: center; */
   font-weight: bold;
   font-size: 20px;
   height: 50px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-

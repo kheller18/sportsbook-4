@@ -1,8 +1,4 @@
 .members-page {
-  padding-left: 20px;
-  padding-right: 20px;
-  /* margin-left: 20px; */
-  /* margin-bottom: 20px; */
   width: 100%;
   height: 100%;
 }
@@ -23,6 +19,6 @@
   justify-content: space-evenly;
   /* padding: 20px; */
   margin-top: 20px;
-  margin-bottom: 50px;
-  height: 100%;
+  margin-bottom: 20px;
+  /* height: 100%; */
 }
