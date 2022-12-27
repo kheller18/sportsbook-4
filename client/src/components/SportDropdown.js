@@ -8,11 +8,7 @@ const SportDropdown = (props) => {
   const sport = props.sport;
 
   const handleSportClick = () => {
-    if (showDropdown) {
-      setShowDropdown(false);
-    } else {
-      setShowDropdown(true);
-    }
+    showDropdown ? setShowDropdown(false) : setShowDropdown(true);
   }
 
   return (

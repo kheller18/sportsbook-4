@@ -1,27 +1,33 @@
 .line-edit-container {
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  position: relative; */
+  position: relative;
 }
 
-.dropdown-buttons {
+.dropdown-buttons-slip {
   /* display: flex; */
+  /* top: 100%; */
   /* flex-direction: column; */
-  /* position: fixed; */
+  position: absolute;
+  /* z-index:1; */
 }
 
-.dropdown-button {
+.dropdown-button-slip {
   height: 20px;
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: row;
+  /* z-index: 1; */
   /* position: absolute; */
-  width: 100px;
+  /* top: 100%; */
+  /* flex-direction: column; */
+  width: 110px;
 }
 
 .target-button {
-  /* display: flex; */
+  display: flex;
   height: 20px;
-  width: 100px;
+  width: 110px;
+  /* position: relative; */
 }
 
 /* .target-button-contents {

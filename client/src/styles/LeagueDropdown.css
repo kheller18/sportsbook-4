@@ -2,7 +2,7 @@
   width: 100%;
   background-color: var(--primary-light-body-color);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
   font-size: 14px;
@@ -12,6 +12,14 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 35px;
+  background-color: var(--primary-light-body-color);
+}
+
+.dropdown-button {
+  width: 100%;
+  height: 35px;
+  background-color: var(--primary-light-body-color);
 }
 
 .league-button {

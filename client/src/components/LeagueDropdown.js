@@ -3,10 +3,7 @@ import Button from './Button';
 import '../styles/LeagueDropdown.css';
 
 const LeagueDropdown = (props) => {
-  const [showDropdown, setShowDropdown] = useState(false);
-  // const [showSecondaryDropdown, setShowSecondaryDropdown] = useState(true)
-  // const [gamesVal, setGamesVal] = useState()
-  // console.log(props)
+  const [showDropdown, setShowDropdown] = useState(true);
   const subContent = props.contents
   const sport = props.sport
   const league = props.league
@@ -22,11 +19,7 @@ const LeagueDropdown = (props) => {
   }
 
   const handleLeagueClick = () => {
-    if (showDropdown) {
-      setShowDropdown(false);
-    } else {
-      setShowDropdown(true);
-    }
+    showDropdown ? setShowDropdown(false) : setShowDropdown(true);
   }
 
   return (
@@ -36,7 +29,7 @@ const LeagueDropdown = (props) => {
         showDropdown ? (
           <div className='dropdown-buttons'>
             {subContent.games.active ?
-              <Button key={`${sport}-games`} onClick={(e) => {props.onClick(e, sport, league, 'games')}} id={`${sport}-${league}-games`} value={`${sport}-${league}-games`}>Games</Button>
+              <Button key={`${sport}-games`} onClick={(e) => {props.onClick(e, sport, league, 'games')}} className='dropdown-button' id={`${sport}-${league}-games`} value={`${sport}-${league}-games`}>Games</Button>
             : null
             }
           </div>
