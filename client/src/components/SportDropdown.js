@@ -4,7 +4,7 @@ import LeagueDropdown from './LeagueDropdown';
 import '../styles/SportDropdown.css';
 
 const SportDropdown = (props) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(true);
   const sport = props.sport;
 
   const handleSportClick = () => {

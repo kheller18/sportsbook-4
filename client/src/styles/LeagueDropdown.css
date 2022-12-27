@@ -1,24 +1,24 @@
 .league-dropdown2 {
   width: 100%;
   background-color: var(--primary-light-body-color);
-  /* display: flex;
-  flex-direction: row; */
+  display: flex;
+  flex-direction: row;
   /* justify-content: space-between; */
   align-items: center;
   font-size: 14px;
 }
 
 .dropdown-buttons {
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: row;
   width: 100%;
 }
 
 .league-button {
   width: 100%;
   background-color: var(--primary-light-body-color);
-  /* display: flex;
-  flex-direction: row; */
+  display: flex;
+  flex-direction: row;
   /* justify-content: space-between; */
   align-items: center;
   font-size: 14px;

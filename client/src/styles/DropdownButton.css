@@ -1,26 +1,32 @@
-.dropdown-buttons {
-  display: flex;
+.line-edit-container {
+  /* display: flex;
   flex-direction: column;
-  position: absolute;
+  position: relative; */
+}
+
+.dropdown-buttons {
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* position: fixed; */
 }
 
 .dropdown-button {
   height: 20px;
-  display: flex;
-  flex-direction: row;
-  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* position: absolute; */
   width: 100px;
 }
 
 .target-button {
-  display: flex;
+  /* display: flex; */
   height: 20px;
   width: 100px;
 }
 
-.target-button-contents {
-  /* display: flex;
+/* .target-button-contents {
+  display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center; */
-}
+  align-items: center;
+} */

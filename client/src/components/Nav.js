@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import '../styles/Nav.css';
 import SportDropdown from './SportDropdown';
+import '../styles/Nav.css';
 
 const Nav = (props) => {
   // const [sports, setSports] = useState([]);
