@@ -11,10 +11,8 @@ const BettingArea = (props) => {
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
   const { socket } = useContext(GlobalContext);
-  // console.log('inside betting area')
 
   socket.on('package', (data) => {
-    console.log('received package')
     socket.off('package')
     setState((prevState) => ({
       sport: prevState.sport,
@@ -40,7 +38,7 @@ const BettingArea = (props) => {
   }
 
   useEffect(() => {
-    // get socket data here one time and then never run again
+    // get socket data here one time on login and then never run again
     socket.emit('package')
   }, [])
 
@@ -54,15 +52,6 @@ const BettingArea = (props) => {
         </div>
       }
     </div>
-    /* <div className='betting-container'>
-        <Nav onClick={handleClick} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
-      }
-      {state.isLoading ? null :
-        // <RenderLines state={state} removalData={removalData} passClickData={setClickData} />
-        <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
-      }
-      <BetSlipContainer data={clickData} passRemovalData={setRemovalData} />
-    </div> */
   );
 };
 

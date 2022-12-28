@@ -3,6 +3,10 @@ import BetSlipConfirm from './BetSlipConfirm';
 import Button from './Button';
 import API from '../utils/API';
 import BetSlip from './BetSlip';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { } from '@fortawesome/free-regular-svg-icons';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import '../styles/BetSlipContainer.css';
 
 // have to control the slips here otherwise you can't pass back and forth correctly.. pass to RenderBetSlips for the list
@@ -227,7 +231,7 @@ const BetSlipContainer = (props) => {
 
   const calculateOdds = (oddsArr, type, teaserVal) => {
     let totalOdds = 1;
-
+    console.log('hellop')
     switch(type) {
       case 'Straight':
         oddsArr.map((odds, i) => {
@@ -263,6 +267,7 @@ const BetSlipContainer = (props) => {
 
       case 'Teaser':
         const numBets = oddsArr.length;
+        console.log(numBets)
         switch (numBets) {
           case 2:
             switch(teaserVal) {
@@ -540,13 +545,12 @@ const BetSlipContainer = (props) => {
   }
 
   const handleLineAdjustment = (e, data, id) => {
-    console.log(e)
-    console.log(data)
+    // console.log(e)
+    // console.log(data)
     // console.log(id)
 
     switch(data.type) {
       case 'Straight':
-        console.log('inside line')
         data.slips.keys[`${ data.betUID[0] }`]['line'] = e.target.attributes['line'].value
         data.slips.keys[`${ data.betUID[0] }`]['odds'] = {
           num: e.target.attributes['odds'].value,
@@ -576,9 +580,10 @@ const BetSlipContainer = (props) => {
         }
         data.payout['oddsArr'][id] = e.target.attributes['odds'].value
         data.payout['totalOdds'] = calculateOdds(data.payout.oddsArr, "Parlay")
-        // data.payout['odds']['american'] = parseInt((calculateOdds(data.payout.oddsArr, 'Parlay') * 100))
-        // data.payout['odds']['american'] = (calculateOdds(data.payout.oddsArr, 'Parlay') * 100) 
-        data.payout['odds']['american'] = e.target.attributes['odds'].value
+        data.payout['odds']['american'] = parseInt((calculateOdds(data.payout.oddsArr, 'Parlay') * 100))
+        console.log(data.payout.odds.american)
+        // data.payout['odds']['american'] = (calculateOdds(data.payout.oddsArr, 'Parlay') * 100)
+        // data.payout['odds']['american'] = e.target.attributes['odds'].value
         data.payout['odds']['dec'] = calculateOdds(data.payout.oddsArr, 'Parlay')
         data.payout['odds']['oddsArr'][id] = e.target.attributes['odds'].value
         data.payout['decOdds'] = calculateOdds(data.payout.oddsArr, 'Parlay')
@@ -1023,6 +1028,7 @@ const BetSlipContainer = (props) => {
 
       const calculateOdds = (oddsArr, type, teaserVal) => {
         let totalOdds = 1;
+        console.log(oddsArr)
         switch(type) {
           case 'Straight':
             oddsArr.map((odds, i) => {
@@ -1541,6 +1547,7 @@ const BetSlipContainer = (props) => {
                 }
               }]))
             } else if (clickData.special.value === true) {
+              console.log('special')
               if (clickData.operation.type === 'remove') {
                 let allSlips = slips;
                 let slip = {...slips[clickData.special.slipID]}
@@ -1570,12 +1577,14 @@ const BetSlipContainer = (props) => {
                   setSlips(allSlips);
                 }
               } else {
+                console.log('after special')
                 let allSlips = slips;
-                let slip = {...slips[clickData.special.slipID]}
-                slip.betUID.push(clickData.slipData.id)
-                slip.gameUID.push(clickData.slipData.gameUID)
-                slip.payout.oddsArr.push(clickData.slipData.odds)
-                const newOdds = calculateOdds(slip.payout.oddsArr, 'Teaser', slip.teaserVal)
+                let slip = {...slips[clickData.special.slipID]};
+                slip.betUID.push(clickData.slipData.id);
+                slip.gameUID.push(clickData.slipData.gameUID);
+                slip.payout.oddsArr.push(clickData.slipData.odds);
+                const newOdds = calculateOdds(slip.payout.oddsArr, 'Teaser', slip.teaserVal);
+                console.log(newOdds)
                 slip.slips.keys[`${ clickData.slipData.id }`] = {
                   gameUID: clickData.data.gameUID,
                   betUID: clickData.slipData.id,
@@ -1641,12 +1650,14 @@ const BetSlipContainer = (props) => {
                 setSlips(allSlips);
               }
             } else {
+              console.log('last resort')
               let allSlips = slips;
               let slip = {...slips[allSlips.length - 1]}
               slip.betUID.push(clickData.slipData.id)
               slip.gameUID.push(clickData.slipData.gameUID)
               slip.payout.oddsArr.push(clickData.slipData.odds)
               const newOdds = calculateOdds(slip.payout.oddsArr, 'Teaser', slip.teaserVal)
+              console.log(newOdds)
               slip.slips.keys[`${ clickData.slipData.id }`] = {
                 gameUID: clickData.data.gameUID,
                 betUID: clickData.slipData.id,
@@ -1661,6 +1672,7 @@ const BetSlipContainer = (props) => {
                 description: clickData.slipData.description,
                 icon: sportClasses[`${ clickData.slipData.sport }`]
               }
+              console.log(slip.slips)
               slip.payout.odds.american = parseInt(newOdds * 100)
               slip.payout.odds.dec = newOdds
               slip.quantity['total'] = Object.keys(slip.slips.keys).length
@@ -1714,7 +1726,8 @@ const BetSlipContainer = (props) => {
       {
         (slipState === 'cart' && submittedSlips.length < 1 && isLoading === false && slips.length < 1) ?
             <div className='empty-slip-container'>
-              <span><i id='empty-slip-image' className='fa fa-shopping-cart' aria-hidden="true"></i></span>
+              <FontAwesomeIcon icon={faCartShopping} />
+              {/* <span><i id='empty-slip-image' className='fa fa-shopping-cart' aria-hidden="true"></i></span> */}
             </div>
         : ''
       }

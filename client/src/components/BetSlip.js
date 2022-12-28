@@ -10,8 +10,7 @@ import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import '../styles/BetSlip.css';
 
 const BetSlip = (props) => {
-  const slipID = props.id;
-  const slip = props.data;
+  const [slipID, slip] = [props.id, props.data];
   const defaultIcon = 'fas fa-hockey-puck'
   // console.log(slip)
 
@@ -299,15 +298,15 @@ const BetSlip = (props) => {
                   placeholder={slip.payout.toLose}
               />
               <br />
-              <label>WAGER</label>
+              <label className='slip-money-label'>WAGER</label>
             </div>
             <div>
               <div className='slip-odds'>{slip.payout.odds.american >= 0 ? `+${slip.payout.odds.american}` : slip.payout.odds.american}</div>
-              <label>ODDS</label>
+              <label className='slip-money-label'>ODDS</label>
             </div>
             <div className='slip-win-money'>
               <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div>
-              <label>PAYOUT</label>
+              <label className='slip-money-label'>PAYOUT</label>
             </div>
           </div>
         </div>

@@ -8,18 +8,18 @@ button:hover {
 }
 
 .leagueTypeBtnActive {
-  background-color: #85bb65;
+  background-color: var(--secondary-light-background-color);
   color: var(--primary-light-font-color);
   font-weight: bold;
 }
 
 .activeBtn {
-  background-color: #85bb65;
+  background-color: var(--secondary-light-background-color);
   color: var(--primary-light-font-color);
 }
 
 .sport-title-subheader {
-  color: #85bb65
+  color: var(--secondary-light-font-color);
 }
 
 .posDelta {
@@ -177,7 +177,7 @@ button:hover {
 }
 
 .betTypeBtnActive {
-  background-color: #85bb65;
+  background-color: var(--secondary-light-background-color);
   color: var(--primary-light-font-color);
   font-weight: bold;
 

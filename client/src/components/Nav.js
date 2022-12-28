@@ -21,10 +21,7 @@ const Nav = (props) => {
   }
 
   const content = props.state;
-  console.log(content)
   // console.log(content)
-
-  // console.log(props.content)
 
   // const handleClick = (e, sport, league, type) => {
   //   e.preventDefault();
