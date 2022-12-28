@@ -645,7 +645,8 @@ const LinesContainer = (props) => {
       {isLoading ? '' :
         <div className='game-container'>
           <div className='game-container-header'>
-            <div className='sport-title'><i className={sportClasses[`${ content.sport }`]}></i>&nbsp;{content.league}&nbsp;<span className='sport-title-subheader'>GAME LINES</span></div>
+            {/* <div className='sport-title'><i className={sportClasses[`${ content.sport }`]}></i>&nbsp;{content.league}&nbsp;<span className='sport-title-subheader'>GAME LINES</span></div> */}
+            <div className='sport-title'><i className={sportClasses[`${ content.sport }`]}></i> {content.league} GAME LINES</div>
           </div>
           {((leagueType === 'GAME LINES') && ((sport === 'Basketball') || (sport === 'Football'))) ?
             <div className='bet-type-buttons'>

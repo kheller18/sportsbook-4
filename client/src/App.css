@@ -19,7 +19,7 @@ body {
   text-align: center;
   background-color: #D0D3D4;
   height: 100%;
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 
 .App-logo {
