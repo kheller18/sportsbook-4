@@ -38,10 +38,11 @@ button:hover {
   min-width: 750px;
   /* width: 100%; */
   display: flex;
-  border-radius: 15px;
+  border: 4px darkblue solid;
+  border-radius: 5px;
   height: 770px;
   margin: 10px;
-  padding: 5px;
+  /* padding: 5px; */
 }
 
 .game-container {
@@ -97,8 +98,8 @@ button:hover {
   text-align: left;
   /* padding-left: 10px;
   padding-top: 5px; */
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -108,7 +109,7 @@ button:hover {
 .sport-title {
   font-size: 20px;
   height: 25px;
-  background-color: var(--primary-dark-header-color);
+  /* background-color: var(--primary-dark-header-color); */
   color: var(--primary-light-font-color);
   /* margin-left: 30px; */
   font-weight: bold;
@@ -197,7 +198,6 @@ button:hover {
   /* padding: 10px; */
   height: 10px;
 }
-
 
 .render-button {
   /* padding-left: 10px;

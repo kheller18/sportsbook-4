@@ -1,8 +1,10 @@
 .dashboard-container {
   width: 90%;
   background-color: var(--primary-light-body-color);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: 4px darkblue solid;
+  border-radius: 5px;
+  /* border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; */
   /* background-color: #D0D3D4; */
   /* border-radius: 5px; */
   /* margin-left: 30px;
@@ -14,8 +16,8 @@
   flex-direction: row;
   align-items: center;
   height: 50px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
   background-color: var(--primary-dark-header-color);
 }
 
@@ -29,5 +31,5 @@
 .dashboard-body {
   height: 300px;
   background-color: var(--primary-light-body-color);
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
