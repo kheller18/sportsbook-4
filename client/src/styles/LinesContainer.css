@@ -153,11 +153,13 @@ button:hover {
 
 .betTypeBtnThree {
   width: 100%;
-  /* width: 250px; */
   background-color: lightgray;
-  /* border: none; */
 }
 
+.betTypeBtn:hover {
+  background-color: darkgrey;
+  color: white;
+}
 
 #parlay {
   /* border-top: 1px;
@@ -211,6 +213,11 @@ button:hover {
   width: 112px;
   border-radius: 5px;
   border: .5px;
+}
+
+.lineBtn:hover {
+  background-color: darkgrey;
+  color: white;
 }
 
 #header-time {

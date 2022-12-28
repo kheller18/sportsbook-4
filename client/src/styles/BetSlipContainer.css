@@ -14,8 +14,13 @@
 }
 
 .slip-tab {
-  display: flex;
-  background-color: var(--primary-light-body-color);
+  /* display: flex;
+  background-color: var(--primary-light-body-color); */
+}
+
+.slip-tab:hover {
+  background-color: darkgrey;
+  color: white;
 }
 
 #slip-tab-cart {

@@ -24,7 +24,8 @@
 }
 
 .dropdown-button:hover {
-  background-color: lightblue;
+  background-color: darkgrey;
+  color: white;
 }
 
 .league-button {

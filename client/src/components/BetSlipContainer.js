@@ -1709,7 +1709,7 @@ const BetSlipContainer = (props) => {
           onClick={handleClick}
           id='slip-tab-cart'
           type='button'
-          className={slipState === 'cart' ? 'slip-tab-focus' : 'slip-tab-unfocus'}
+          className={slipState === 'cart' ? 'slip-tab slip-tab-focus' : 'slip-tab slip-tab-unfocus'}
         >
         CART ({slips.length})
         </Button>
@@ -1717,7 +1717,7 @@ const BetSlipContainer = (props) => {
           onClick={handleClick}
           id='slip-tab-active'
           type='button'
-          className={slipState === 'active' ? 'slip-tab-focus' : 'slip-tab-unfocus'}
+          className={slipState === 'active' ? 'slip-tab slip-tab-focus' : 'slip-tab slip-tab-unfocus'}
         >
         ACTIVE
         </Button>
