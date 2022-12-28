@@ -235,14 +235,15 @@ const BetSlipContainer = (props) => {
             let decOdds = Math.abs(parseFloat(odds))
             let decCalc = ((decOdds + 100) / decOdds).toFixed(2)
             totalOdds *= decCalc
+            console.log(totalOdds)
           } else {
             let decOdds = parseFloat(odds)
             let decCalc = ((decOdds + 100) / 100).toFixed(2)
             totalOdds *= decCalc
           }
-          return totalOdds - 1;
+          // return totalOdds - 1;
         })
-        break;
+        return totalOdds - 1;
 
       case 'Parlay':
         oddsArr.map((odds, i) => {
@@ -257,6 +258,7 @@ const BetSlipContainer = (props) => {
           }
           return totalOdds - 1;
         })
+        return totalOdds - 1;
         break;
 
       case 'Teaser':
@@ -540,10 +542,11 @@ const BetSlipContainer = (props) => {
   const handleLineAdjustment = (e, data, id) => {
     console.log(e)
     console.log(data)
-    console.log(id)
+    // console.log(id)
 
     switch(data.type) {
       case 'Straight':
+        console.log('inside line')
         data.slips.keys[`${ data.betUID[0] }`]['line'] = e.target.attributes['line'].value
         data.slips.keys[`${ data.betUID[0] }`]['odds'] = {
           num: e.target.attributes['odds'].value,
@@ -553,6 +556,7 @@ const BetSlipContainer = (props) => {
         data.payout['oddsArr'] = [e.target.attributes['odds'].value]
         data.payout['odds']['american'] = e.target.attributes['odds'].value
         data.payout['odds']['dec'] = calculateOdds([e.target.attributes['odds'].value], 'Straight')
+        console.log(data.payout.odds.dec)
         data.payout['odds']['oddsArr'] = [e.target.attributes['odds'].value]
         data.payout['decOdds'] = calculateOdds([e.target.attributes['odds'].value], 'Straight')
         if (parseFloat(data.payout.toLose) >= 5) {
@@ -572,7 +576,9 @@ const BetSlipContainer = (props) => {
         }
         data.payout['oddsArr'][id] = e.target.attributes['odds'].value
         data.payout['totalOdds'] = calculateOdds(data.payout.oddsArr, "Parlay")
-        data.payout['odds']['american'] = parseInt((calculateOdds(data.payout.oddsArr, 'Parlay') * 100))
+        // data.payout['odds']['american'] = parseInt((calculateOdds(data.payout.oddsArr, 'Parlay') * 100))
+        // data.payout['odds']['american'] = (calculateOdds(data.payout.oddsArr, 'Parlay') * 100) 
+        data.payout['odds']['american'] = e.target.attributes['odds'].value
         data.payout['odds']['dec'] = calculateOdds(data.payout.oddsArr, 'Parlay')
         data.payout['odds']['oddsArr'][id] = e.target.attributes['odds'].value
         data.payout['decOdds'] = calculateOdds(data.payout.oddsArr, 'Parlay')
@@ -585,7 +591,7 @@ const BetSlipContainer = (props) => {
 
       case 'Teaser':
         for (let i=0; i < Object.keys(data.slips.keys).length; i++) {
-          data.slips.keys[`${ data.betUID[i] }`]['line'] = generateActiveTeaserLine(data.slips.keys[`${ data.betUID[i] }`].initialLine, data.slips.keys[`${ data.betUID[i] }`].betType, e.target.attributes['line'].value) 
+          data.slips.keys[`${ data.betUID[i] }`]['line'] = generateActiveTeaserLine(data.slips.keys[`${ data.betUID[i] }`].initialLine, data.slips.keys[`${ data.betUID[i] }`].betType, e.target.attributes['line'].value)
         }
         data.teaserVal = e.target.attributes['line'].value
         data.payout['odds']['american'] = e.target.attributes['odds'].value
@@ -723,6 +729,7 @@ const BetSlipContainer = (props) => {
 
   const handleChange = (e, data) => {
     data.payout.toLose = e.target.value;
+    console.log(data)
     data.payout.toWin=(parseFloat(data.payout.toLose) * data.payout.decOdds).toFixed(2).toString()
     calculateSlipTotals(slips)
   };
@@ -1016,15 +1023,15 @@ const BetSlipContainer = (props) => {
 
       const calculateOdds = (oddsArr, type, teaserVal) => {
         let totalOdds = 1;
-
         switch(type) {
           case 'Straight':
             oddsArr.map((odds, i) => {
-              // console.log(odds)
+              console.log(odds)
               if (odds[0] === '-') {
                 let decOdds = Math.abs(parseFloat(odds))
                 let decCalc = ((decOdds + 100) / decOdds).toFixed(2)
                 totalOdds *= decCalc
+                console.log(totalOdds)
               } else {
                 let decOdds = parseFloat(odds)
                 let decCalc = ((decOdds + 100) / 100).toFixed(2)
@@ -1353,7 +1360,7 @@ const BetSlipContainer = (props) => {
                       team: clickData.slipData.team,
                       line: clickData.slipData.line,
                       alternateLines: generateAltLines({line: clickData.slipData.line, odds: clickData.slipData.odds}, clickData.slipData.type),
-                      odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Parlay')}, 
+                      odds: {num: clickData.slipData.odds, dec: calculateOdds([clickData.slipData.odds], 'Parlay')},
                       status: 'Active',
                       teams: {away: clickData.data.game.odds.full.away_team, home: clickData.data.game.odds.full.home_team},
                       description: clickData.slipData.description,

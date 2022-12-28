@@ -29,7 +29,7 @@ const Lines = (props) => {
                         id='away-moneyline'
                         value='away-moneyline'
                       >
-                        {game.game.keys.gameMoneylineAway.currVal}
+                        {(game.game.keys.gameMoneylineAway.currVal).charAt(0) === '-' ? game.game.keys.gameMoneylineAway.currVal : `+${game.game.keys.gameMoneylineAway.currVal}`}
                       </Button>
                     </td>
                   : null
@@ -42,7 +42,7 @@ const Lines = (props) => {
                         id='away-moneyline'
                         value='away-moneyline'
                       >
-                        {game.game.keys.gameMoneylineAway.currVal}
+                        {(game.game.keys.gameMoneylineAway.currVal).charAt(0) === '-' ? game.game.keys.gameMoneylineAway.currVal : `+${game.game.keys.gameMoneylineAway.currVal}`}
                       </Button>
                     </td>
                   : null
@@ -59,7 +59,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
+                        {(game.game.keys.gameSpreadAway.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})` : `+${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})`}
                       </Button>
                     </td>
                   : null
@@ -72,7 +72,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
+                        {(game.game.keys.gameSpreadAway.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})` : `+${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})`}
                       </Button>
                     </td>
                   : null
@@ -85,7 +85,7 @@ const Lines = (props) => {
                         id='away-spread'
                         value='away-spread'
                       >
-                        {game.game.keys.gameSpreadAway.currVal} ({game.game.keys.gameSpreadAway.currPrice})
+                        {(game.game.keys.gameSpreadAway.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})` : `+${game.game.keys.gameSpreadAway.currVal} (${game.game.keys.gameSpreadAway.currPrice})`}
                       </Button>
                     </td>
                   : null
@@ -99,6 +99,8 @@ const Lines = (props) => {
                         value='over'
                       >
                         O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* O/{(game.game.keys.gameTotalOver.currVal).charAt(0) === '-' ? `${game.game.keys.gameTotalOver.currVal} (${game.game.keys.gameTotalOver.currPrice})` : `+${game.game.keys.gameTotalOver.currVal} (${game.game.keys.gameTotalOver.currPrice})`} */}
+
                       </Button>
                     </td>
                   : null
@@ -162,7 +164,7 @@ const Lines = (props) => {
                         id='home-moneyline'
                         value='home-moneyline'
                       >
-                        {game.game.keys.gameMoneylineHome.currVal}
+                        {(game.game.keys.gameMoneylineHome.currVal).charAt(0) === '-' ? game.game.keys.gameMoneylineHome.currVal : `+${game.game.keys.gameMoneylineHome.currVal}`}
                       </Button>
                     </td>
                   : null
@@ -175,7 +177,8 @@ const Lines = (props) => {
                         id='home-moneyline'
                         value='home-moneyline'
                       >
-                        {game.game.keys.gameMoneylineHome.currVal}
+                        {/* {game.game.keys.gameMoneylineHome.currVal} */}
+                        {(game.game.keys.gameMoneylineHome.currVal).charAt(0) === '-' ? game.game.keys.gameMoneylineHome.currVal : `+${game.game.keys.gameMoneylineHome.currVal}`}
                       </Button>
                     </td>
                   : null
@@ -192,7 +195,8 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
+                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
+                        {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>
                   : null
@@ -205,7 +209,8 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
+                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
+                        {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>
                   : null
@@ -218,7 +223,8 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice})
+                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
+                        {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>
                   : null

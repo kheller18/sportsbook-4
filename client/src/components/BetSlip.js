@@ -69,7 +69,7 @@ const BetSlip = (props) => {
               <label>WAGER</label>
             </div>
             <div>
-              <div className='slip-odds'>{slip.payout.odds.american}</div>
+              <div className='slip-odds'>{(slip.payout.odds.american).charAt(0) === '-' ? slip.payout.odds.american : `+${slip.payout.odds.american}`}</div>
               <label>ODDS</label>
             </div>
             <div className='slip-win-money'>
@@ -193,7 +193,7 @@ const BetSlip = (props) => {
               <label>WAGER</label>
             </div>
             <div>
-              <div className='slip-odds'>{slip.payout.odds.american}</div>
+              <div className='slip-odds'>{slip.payout.odds.american >= 0 ? `+${slip.payout.odds.american}` : slip.payout.odds.american}</div>
               <label>ODDS</label>
             </div>
             <div className='slip-win-money'>
