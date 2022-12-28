@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 // import { solid, regular, brands, icon } from '@fortawesome/fontawesome-svg-core/import.macro' // <-- import styles to be used
 import '../styles/Header.css';
 
-function Header() {
+const Header = () => {
   return (
     <div className='header'>
       <div className='header-left header-title'>SportsBook</div>

@@ -18,6 +18,11 @@ button {
   border: 1px black solid;
 }
 
+button:hover {
+  background-color: darkgrey;
+  color: white;
+}
+
 .nav-sports-container {
   /* overflow: scroll;
   overflow-x: hidden; */

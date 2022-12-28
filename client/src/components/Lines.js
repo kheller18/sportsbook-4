@@ -1,15 +1,10 @@
 import React from 'react';
 // import React, { useContext, useEffect, useState } from 'react';
-import '../styles/LinesContainer.css'
 import Button from './Button';
 import moment from 'moment';
+import '../styles/Lines.css';
 
 const Lines = (props) => {
-  // const game = props.game;
-  // const slipType = props.slipType;
-  // const straightArr = props.straightArr;
-  // const parlayArr = props.parlayArr;
-  // const teaserArr = props.teaserArr;
   const [game, slipType, straightArr, parlayArr, teaserArr] = [props.game, props.slipType, props.straightArr, props.parlayArr, props.teaserArr];
 
   return (

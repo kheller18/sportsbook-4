@@ -3,7 +3,7 @@ import API from '../utils/API';
 import Chart from 'react-apexcharts';
 import '../styles/UserDashboard.css'
 
-function UserDashboard() {
+const UserDashboard = () => {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
   const series = [

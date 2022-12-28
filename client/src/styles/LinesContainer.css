@@ -57,42 +57,6 @@ button:hover {
   width: 100%;
 }
 
-.render-games {
-  margin-bottom: 20px;
-  margin-left: 30px;
-  padding: 10px;
-  background-color: var(--primary-light-body-color);
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* flex-wrap: wrap; */
-  border: none
-}
-
-.render-main-body {
-  background-color: var(--primary-light-body-color);
-  margin-bottom: 10px;
-  /* width: 750px; */
-  padding: 10px;
-  height: 100px;
-  border-radius: 5px;
-  font-size: 13px;
-}
-
-.render-game {
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-  flex-wrap: wrap;
-}
-
-.render-team {
-  /* margin-right: 10px; */
-  /* margin-left: 10px; */
-  text-align: left;
-  font-weight: bold;
-  width: 250px;
-}
-
 .game-container-header {
   background-color: var(--primary-dark-header-color);
   font-weight: bold;
@@ -188,27 +152,6 @@ button:hover {
 
 }
 
-.render-gametime {
-  margin-left: 10px;
-  font-weight: bold;
-}
-
-.render-away-row {
-  height: 10px;
-}
-
-.render-sub-body {
-  margin-left: 150px;
-  /* padding: 10px; */
-  height: 10px;
-}
-
-.render-button {
-  /* padding-left: 10px;
-  padding-right: 10px; */
-  width: 120px;
-}
-
 .lineBtn {
   width: 112px;
   border-radius: 5px;
@@ -252,10 +195,6 @@ button:hover {
 
 .table-headers {
   padding: 20px;
-}
-
-.render-gametime-row {
-  padding: none;
 }
 
 .scroll-container {
