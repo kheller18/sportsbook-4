@@ -6,6 +6,21 @@ import '../styles/UserDashboard.css'
 const UserDashboard = () => {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
+  const account_value = {
+      series: [
+        {
+          name: "Account",
+          data: [0, 40, 33, 18, 100, 90]
+        }
+      ],
+      options: {
+        xaxis: {
+          categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"]
+        }
+      }
+  }
+
+
   const series = [
     {
       name: "Account",
@@ -16,14 +31,6 @@ const UserDashboard = () => {
   const options = {
     xaxis: {
       categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"],
-      // labels: {
-      //   show: true
-      // }
-      // title: {
-      //   text: "Account Value Over time",
-      //   offsetY: 0,
-      //   offsetX: 0
-      // }
     }
   };
 
@@ -52,7 +59,8 @@ const UserDashboard = () => {
         <div className='dashboard-title'>Welcome, {user}!</div>
       </div>
       <div className='dashboard-body'>
-        <Chart type='line' series={series} options={options} height='100%'/>
+        {/* <Chart type='line' series={series} options={options} height='100%'/> */}
+        <Chart type='line' series={account_value.series} options={account_value.options} height='100%'/>
       </div>
     </div>
   );

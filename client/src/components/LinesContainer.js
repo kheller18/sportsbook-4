@@ -13,6 +13,7 @@ const LinesContainer = (props) => {
   const [leagueType, setLeagueType] = useState('GAME LINES')
   const [straightArr, setStraightArr] = useState([])
   const [teaserArr, setTeaserArr] = useState([])
+  // const [content, sport, removalData] = [props.state, content.sport, props.removalData];
   const content = props.state;
   const sport = content.sport;
   const removalData = props.removalData
