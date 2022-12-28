@@ -90,8 +90,17 @@
 }
 
 .multi-bet-exit {
-  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
   width: 25px;
+}
+
+.multi-bet-exit:hover {
+  cursor: pointer;
+  color: red;
 }
 
 #add-bet-retroactive:hover {

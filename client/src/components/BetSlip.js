@@ -3,6 +3,10 @@ import Button from './Button';
 import Input from './Input';
 // import SlipMoney from './SlipMoney';
 import DropdownButton from './DropdownButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import '../styles/BetSlip.css';
 
 const BetSlip = (props) => {
@@ -23,7 +27,7 @@ const BetSlip = (props) => {
               type='button'
               className='slip-exit'
             >
-              <i className="fas fa-trash-alt"></i>
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
           <div className='slip-body-main'>
@@ -91,7 +95,7 @@ const BetSlip = (props) => {
               type='button'
               className='slip-exit'
             >
-              <i className="fas fa-trash-alt"></i>
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
           <div className='slip-body-main'>
@@ -110,7 +114,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
@@ -127,7 +131,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
@@ -144,7 +148,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
@@ -161,7 +165,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
@@ -219,7 +223,7 @@ const BetSlip = (props) => {
               type='button'
               className='slip-exit'
             >
-              <i className="fas fa-trash-alt"></i>
+              <FontAwesomeIcon icon={faTrash} />
             </Button>
           </div>
           <div className='slip-body-main'>
@@ -237,13 +241,13 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
                   case 'TotalOver':
                     return (
-                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Over{values.line}&nbsp;&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Over {values.line}&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}
@@ -252,13 +256,13 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );
                   case 'TotalUnder':
                     return (
-                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Under{values.line}&nbsp;&nbsp;
+                      <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.team} Under {values.line}&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}
@@ -267,7 +271,7 @@ const BetSlip = (props) => {
                           id={i}
                           slipid={slipID}
                         >
-                          <i className="fas fa-trash-alt"></i>
+                          <FontAwesomeIcon icon={faTrash} />
                         </Button>
                       </div>
                     );

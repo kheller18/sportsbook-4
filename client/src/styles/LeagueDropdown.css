@@ -20,6 +20,11 @@
   width: 100%;
   height: 35px;
   background-color: var(--primary-light-body-color);
+  text-align: left;
+}
+
+.dropdown-button:hover {
+  background-color: lightblue;
 }
 
 .league-button {

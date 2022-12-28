@@ -1,16 +1,16 @@
 import React from 'react';
 // import React, { useContext, useEffect, useState } from 'react';
 import '../styles/LinesContainer.css'
-// import BetSlip from './BetSlip';
 import Button from './Button';
 import moment from 'moment';
 
 const Lines = (props) => {
-  const game = props.game;
-  const slipType = props.slipType;
-  const straightArr = props.straightArr;
-  const parlayArr = props.parlayArr;
-  const teaserArr = props.teaserArr;
+  // const game = props.game;
+  // const slipType = props.slipType;
+  // const straightArr = props.straightArr;
+  // const parlayArr = props.parlayArr;
+  // const teaserArr = props.teaserArr;
+  const [game, slipType, straightArr, parlayArr, teaserArr] = [props.game, props.slipType, props.straightArr, props.parlayArr, props.teaserArr];
 
   return (
     <table key={game.gameUID} className='render-main-body'>
@@ -99,8 +99,6 @@ const Lines = (props) => {
                         value='over'
                       >
                         O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
-                        {/* O/{(game.game.keys.gameTotalOver.currVal).charAt(0) === '-' ? `${game.game.keys.gameTotalOver.currVal} (${game.game.keys.gameTotalOver.currPrice})` : `+${game.game.keys.gameTotalOver.currVal} (${game.game.keys.gameTotalOver.currPrice})`} */}
-
                       </Button>
                     </td>
                   : null
@@ -195,7 +193,6 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
                         {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>
@@ -209,7 +206,6 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
                         {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>
@@ -223,7 +219,6 @@ const Lines = (props) => {
                         id='home-spread'
                         value='home-spread'
                       >
-                        {/* {game.game.keys.gameSpreadHome.currVal} ({game.game.keys.gameSpreadHome.currPrice}) */}
                         {(game.game.keys.gameSpreadHome.currVal).charAt(0) === '-' ? `${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})` : `+${game.game.keys.gameSpreadHome.currVal} (${game.game.keys.gameSpreadHome.currPrice})`}
                       </Button>
                     </td>

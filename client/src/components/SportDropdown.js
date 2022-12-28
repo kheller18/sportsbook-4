@@ -20,7 +20,9 @@ const SportDropdown = (props) => {
             {Object.keys(sport.leagues).map((league, i) => {
               if (sport.leagues[`${ league }`]['games']['active'] || sport.leagues[`${ league }`]['props']['active']) {
                 return (
-                  <LeagueDropdown key={i} onClick={props.onClick} sport={sport.name} league={league} contents={sport.leagues[`${league}`]} />
+                  // <div key={i}>
+                    <LeagueDropdown lkey={i} onClick={props.onClick} sport={sport.name} league={league} contents={sport.leagues[`${league}`]} activeSport={props.activeSport} />
+                  // </div>
                 )
               }
               return (
