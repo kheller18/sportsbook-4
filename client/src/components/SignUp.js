@@ -64,32 +64,24 @@ const SignUp = () => {
 
   return (
     <form className='signup-form'>
-      <div className='signup-title'>Register</div>
+      <div className='signup-form-header'>
+        <div className='signup-title'>Register</div>
+      </div>
       <div className='signup-body'>
-        <div className='signup-names-fields'>
-          <input type='text' className='signup-field' id='first-name' value={firstName} placeholder='First Name' onChange={(e) => setFirstName(e.target.value)} />
-          <input type='text' className='signup-field' id='last-name' value={lastName} placeholder='Last Name' onChange={(e) => setLastName(e.target.value)} />
-        </div>
-        <br />
+        <input type='text' className='signup-field' id='first-name' value={firstName} placeholder='First Name' onChange={(e) => setFirstName(e.target.value)} />
+        <input type='text' className='signup-field' id='last-name' value={lastName} placeholder='Last Name' onChange={(e) => setLastName(e.target.value)} />
         <input type='text' className='signup-field' id='email' value={email} placeholder='Email' onChange={(e) => setEmail(e.target.value)} />
-        <br />
         <input type='text' className='signup-field' id='address' value={address} placeholder='Address' onChange={(e) => setAddress(e.target.value)} />
-        <br />
         <input type='text' className='signup-field' id='city' value={city} placeholder='City' onChange={(e) => setCity(e.target.value)} />
-        <br />
         <input type='text' className='signup-field' id='state' value={state} placeholder='State' onChange={(e) => setState(e.target.value)} />
-        <br />
         <input type='text' className='signup-field' id='zipcode' value={zipcode} placeholder='Zipcode' onChange={(e) => setZipcode(e.target.value)} />
-        <br />
         <input type='password' className='signup-field' id='password' value={password} placeholder='Password' onChange={(e) => setPassword(e.target.value)} />
-        <br />
         <input type='password' className='signup-field' id='confirm-password' value={confirmPassword} placeholder='Confirm Password' onChange={(e) => setConfirmPassword(e.target.value)} />
-        <br />
+        <div className='signup-submit'>
+          <button type='submit' onClick={handleSubmit} className='signup-button'>SIGN UP</button>
+        </div>
+        <div className='login-portal'>Already a member? <a href='/login'>Login.</a></div>
       </div>
-      <div className='signup-submit'>
-        <button type='submit' onClick={handleSubmit} className='signup-button'>SIGN UP</button>
-      </div>
-      <div className='login-portal'>Already a member? <a href='/login'>Login.</a></div>
     </form>
   );
 };
