@@ -64,7 +64,7 @@ const BetSlipContainer = (props) => {
       if (slipState === 'cart') {
         const userData = JSON.parse(localStorage.getItem('user'));
         setSlipState('active')
-        API.getBets(userData._id)
+        API.getBets(userData.user_id)
           .then(res => {
             console.log(res)
           })
@@ -750,6 +750,7 @@ const BetSlipContainer = (props) => {
         console.log(slip)
         slip['userID'] = userData.user_id
         if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
+            console.log('dont send')
             send = false;
         } else {
           slipSend.push(slip)
@@ -757,19 +758,23 @@ const BetSlipContainer = (props) => {
       })
 
       if (send) {
-        console.log(slipSend)
+        console.log('slipSend')
         return Promise.all(slipSend.map(slip => API.submitBetSlip(slip)))
       }
     }
 
     slipData().then((data) => {
       console.log(data)
-      props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
-      setSubmittedSlips(slips)
-      setTimeout(() => {
-        setSlips([])
-        setSubmittedSlips([])
-      }, 4000);
+      if (data !== undefined) {
+        props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
+        setSubmittedSlips(slips)
+        setTimeout(() => {
+          setSlips([])
+          setSubmittedSlips([])
+        }, 40000);
+      } else {
+        console.log('did not send')
+      }
     })
     .catch(err => {
       console.log(err)
@@ -1773,22 +1778,13 @@ const BetSlipContainer = (props) => {
                 CANCEL
               </Button>
               {
-                slips.length > 1 ?
-                  <Button
-                    onClick={handleSubmit}
-                    className='slip-button'
-                    id='submit-slip'
-                  >
-                    PLACE BETS
-                  </Button>
-                :
-                  <Button
-                    onClick={handleSubmit}
-                    className='slip-button'
-                    id='submit-slip'
-                  >
-                    PLACE BET
-                  </Button>
+                <Button
+                  onClick={handleSubmit}
+                  className='slip-button'
+                  // id='submit-slip'
+                >
+                  {slips.length > 1 ? 'PLACE BETS' : 'PLACE BET'}
+                </Button>
               }
             </div>
           </div>
@@ -1802,7 +1798,6 @@ const BetSlipContainer = (props) => {
               <BetSlipConfirm data={slip} />
             )
           })
-
         ) : null
       }
 

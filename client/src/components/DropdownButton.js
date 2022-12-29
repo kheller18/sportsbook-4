@@ -30,8 +30,7 @@ const DropdownButton = (props) => {
         onClick={handleTargetClick}
         className='target-button'
       >
-        <span>{currentLine.line} ({currentLine.odds})&nbsp;<i className="fas fa-chevron-circle-down"></i></span>
-        {/* <span className='target-button-contents'>{currentLine.line} ({currentLine.odds})&nbsp;<i className="fas fa-chevron-circle-down"></i></span> */}
+        <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ? currentLine.line : `+${currentLine.line}`} ({currentLine.odds})&nbsp;<i className="fas fa-chevron-circle-down"></i></span>
       </Button>
 
       {

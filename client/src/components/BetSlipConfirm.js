@@ -1,21 +1,19 @@
 import React from 'react';
-// import React, { useEffect, useState } from 'react';
 import '../styles/BetSlip.css';
-// import API from '../utils/API';
-// import Button from './Button';
-// import Input from './Input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { } from '@fortawesome/free-regular-svg-icons';
+import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
 const BetSlipConfirm = (props) => {
 
   const slip = props.data;
-//<i class="far fa-check-circle"></i>
-
   switch (slip.type) {
     case 'Straight':
       return (
         <div className='slip-body'>
           <div className='slip-body-top'>
             <div className='slip-type'>Straight</div>
+            <div className='slip-exit'><FontAwesomeIcon className='success' icon={faCircleCheck} /></div>
           </div>
           <div className='slip-body-main'>
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'Moneyline' ?
@@ -30,14 +28,14 @@ const BetSlipConfirm = (props) => {
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalOver' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} O/&nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Over &nbsp;
                 {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
               </div>
             : null
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalUnder' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} U/&nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Under &nbsp;
                 {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
               </div>
             : null
@@ -65,6 +63,7 @@ const BetSlipConfirm = (props) => {
         <div className='slip-body'>
           <div className='slip-body-top'>
             <div className='slip-type'>Parlay ({Object.keys(slip.slips.keys).length})</div>
+            <div className='slip-exit'><FontAwesomeIcon className='success' icon={faCircleCheck} /></div>
           </div>
           <div className='slip-body-main'>
             {
@@ -86,14 +85,14 @@ const BetSlipConfirm = (props) => {
 
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} O/&nbsp;
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
                         {values.line} ({values.odds.num})
                       </div>
                     )
 
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} U/&nbsp;
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
                         {values.line} ({values.odds.num})
                       </div>
                     )
@@ -128,6 +127,7 @@ const BetSlipConfirm = (props) => {
         <div className='slip-body'>
           <div className='slip-body-top'>
             <div className='slip-type'>Teaser ({Object.keys(slip.slips.keys).length})</div>
+            <div className='slip-exit'><FontAwesomeIcon className='success' icon={faCircleCheck} /></div>
           </div>
           <div className='slip-body-main'>
             {
@@ -149,14 +149,14 @@ const BetSlipConfirm = (props) => {
 
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} O/&nbsp;
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
                         {values.line} ({values.odds.num})
                       </div>
                     )
 
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} U/&nbsp;
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
                         {values.line} ({values.odds.num})
                       </div>
                     )

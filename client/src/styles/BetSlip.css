@@ -48,10 +48,10 @@
   /* margin: 10px; */
 }
 
-.slip-button {
+/* .slip-button {
   margin: 10px;
   font-weight: bold;
-}
+} */
 
 #submit-slip {
   background-color: #85bb65;
@@ -106,4 +106,8 @@
 #add-bet-retroactive:hover {
   color: #85bb65;
   cursor: pointer;
+}
+
+.success {
+  color: #85bb65;
 }

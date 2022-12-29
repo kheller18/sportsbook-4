@@ -25,6 +25,9 @@
 
 .target-button {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
   height: 20px;
   width: 110px;
   /* position: relative; */

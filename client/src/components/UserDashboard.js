@@ -57,6 +57,7 @@ const UserDashboard = () => {
     // function to get user data for indiviaulized dashboard
     const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData.user_id;
+    setUser(userData.firstName);
     API.getBets(userId).then(res => {
       console.log(res.data)
       setBets(res.data)
