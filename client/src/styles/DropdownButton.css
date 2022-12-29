@@ -10,8 +10,13 @@
   /* top: 100%; */
   /* flex-direction: column; */
   position: absolute;
+  border-radius: 5px;
   /* z-index:1; */
+  z-index: 1000;
 }
+
+/* .dropdown-buttons-slip: {
+} */
 
 .dropdown-button-slip {
   height: 20px;
@@ -31,6 +36,7 @@
   justify-content: space-between;
   height: 20px;
   width: 110px;
+  border-radius: 5px;
   /* position: relative; */
 }
 
