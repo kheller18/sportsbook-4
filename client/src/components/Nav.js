@@ -3,11 +3,6 @@ import SportDropdown from './SportDropdown';
 import '../styles/Nav.css';
 
 const Nav = (props) => {
-  // const [sports, setSports] = useState([]);
-  // const [sportsBtn, setSportsBtn] = useState('');
-  // const [click, setClick] = useState(true);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const [navContent, setNavContent] = useState(props.content)
 
   const sportClasses = {
     'Baseball': 'fas fa-baseball-ball',
@@ -21,22 +16,6 @@ const Nav = (props) => {
   }
 
   const content = props.state;
-  // console.log(content)
-
-  // const handleClick = (e, sport, league, type) => {
-  //   e.preventDefault();
-  //   e.persist();
-  //   console.log(e)
-  //   console.log(sport)
-  //   console.log(league)
-  //   console.log(type)
-  //   props.passLeagueData({league: league, type: type})
-  //   // setSportsBtn(sport);
-  //   // setClick(false)
-  //   // setIsLoading(false);
-  //   // props.passSportData(sport.key);
-  // }
-
   useEffect(() => {
 
   }, []);

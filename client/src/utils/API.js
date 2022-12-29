@@ -51,6 +51,8 @@ export default {
     })
   },
 
+  // getUserInfo: async ()
+
 
   // post for a new user
   signup: (userData) => {

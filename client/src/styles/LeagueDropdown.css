@@ -33,7 +33,7 @@
   background-color: var(--primary-light-body-color);
   display: flex;
   flex-direction: row;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   align-items: center;
   font-size: 14px;
 }

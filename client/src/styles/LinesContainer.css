@@ -200,5 +200,5 @@ button:hover {
 .scroll-container {
   min-height: 640px;
   max-height: 670px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

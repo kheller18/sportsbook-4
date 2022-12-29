@@ -55,9 +55,12 @@ const userSchema = new Schema({
       type: Array,
       ref: 'BetSlip'
     },
-    accountValue: {
+    account_value: {
       type: Number,
       default: 1000
+    },
+    account_value_history: {
+      type: Array
     }
 });
 

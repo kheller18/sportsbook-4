@@ -26,7 +26,8 @@ const LeagueDropdown = (props) => {
 
   return (
     <div key={props.lkey} className='league-dropdown2'>
-      <Button className='league-button' onClick={handleLeagueClick}>{league}&nbsp;<i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button>
+      <Button className='league-button' onClick={handleLeagueClick}><span>{league}</span><i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button>
+      {/* <Button className='league-button' onClick={handleLeagueClick}>{league}&nbsp;<i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button> */}
       {
         showDropdown ? (
           <div className='dropdown-buttons'>

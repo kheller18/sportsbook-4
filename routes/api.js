@@ -28,28 +28,6 @@ router.post('/api/bet/bulk', (req, res) => {
     });
 });
 
-router.get('/api/games', (req, res) => {
-  // console.log(req.body)
-  Game.find({})
-    .then(dbGame => {
-      res.json(dbGame);
-    })
-    .catch(err => {
-      res.status(404).json(err);
-    });
-});
-
-router.get('/api/sports', (req, res) => {
-  // console.log(req.body)
-  Sport.find({ active: true })
-    .then(dbGame => {
-      res.json(dbGame);
-    })
-    .catch(err => {
-      res.status(404).json(err);
-    });
-});
-
 // router.get('/api/bet', (req, res) => {
 //   BetSlip.find({})
 //     .then(dbBetSlip => {

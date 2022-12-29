@@ -1739,18 +1739,20 @@ const BetSlipContainer = (props) => {
 
       {
         (slipState === 'cart' && submittedSlips.length < 1 && isLoading === false && slips.length > 0) ?
-          slips.map((slip, i) => {
-            if ((slip.type !== 'Straight') && (i < slipLength - 1)) {
-              return (
-                <BetSlip key={i} data={slip} id={i} slips={slips} addBet='true' onAddRetroactive={handleAddRetroactive} passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
-              )
-            } else {
-              return (
-                <BetSlip key={i} data={slip} id={i} slips={slips} addBet='false' passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
-              )
-            }
-          })
-        : ''
+          <div className='slip-container-body'>
+            {slips.map((slip, i) => {
+              if ((slip.type !== 'Straight') && (i < slipLength - 1)) {
+                return (
+                  <BetSlip key={i} data={slip} id={i} slips={slips} addBet='true' onAddRetroactive={handleAddRetroactive} passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
+                )
+              } else {
+                return (
+                  <BetSlip key={i} data={slip} id={i} slips={slips} addBet='false' passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
+                )
+              }
+            })}
+          </div>
+          : ''
       }
 
       {

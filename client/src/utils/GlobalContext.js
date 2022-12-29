@@ -7,7 +7,7 @@ const currentUser = API.getCurrentUser();
 let userId = 0;
 
 if (currentUser) {
-  userId = currentUser._id;
+  userId = currentUser.user_id;
 }
 
 const io = require('socket.io-client');

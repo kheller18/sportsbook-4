@@ -1,5 +1,6 @@
 .nav-button {
   width: 100%;
+  height: 45px;
   background-color: var(--primary-light-body-color);
   display: flex;
   flex-direction: row;

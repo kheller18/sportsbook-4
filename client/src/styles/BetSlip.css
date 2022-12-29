@@ -2,6 +2,7 @@
 .slip-body {
   background-color: var(--primary-light-body-color);
   /* padding: 10px 10px 0px 10px; */
+  min-height: 150px;
   margin-bottom: 5px;
 }
 
