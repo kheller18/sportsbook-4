@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const betSlipSchema = new Schema({
-  userID: { type: String },
+  userID: { type: String, ref: 'User' },
   gameUID: { type: Array },
   betUID: { type: Array },
   type: { type: String },

@@ -62,14 +62,13 @@ router.get('/api/sports', (req, res) => {
 // });
 
 router.get('/api/bet', (req, res) => {
-  // console.log(req.body)
+  // console.log('req.body')
+  console.log(req.query.userId)
   BetSlip.find({
-    // where: {
-    //   betInfo.userId:
-    // }
+    'userID': req.query.userId
   })
     .then(dbBetSlip => {
-      // console.log(dbBetSlip);
+      console.log(dbBetSlip);
       res.json(dbBetSlip);
     })
     .catch(err => {

@@ -29,11 +29,28 @@ export default {
   },
 
   // gets bets per user
-  getBets: (userId) => {
-    return axios.get('/api/bet', {
-      userId
-    });
+  // getBets: (userId) => {
+  //   console.log(userId)
+  //   // const body = {id: userId}
+  //   return axios.get('/api/bet', {
+  //     params: {
+  //       id: userId
+  //     }
+  //   })
+  // },
+
+  getBets: async (userId) => {
+    console.log(userId)
+    // return axios.get('/api/bet', userId);
+    return await axios({
+      method: 'GET',
+      url: '/api/bet',
+      params: {
+        userId
+      }
+    })
   },
+
 
   // post for a new user
   signup: (userData) => {

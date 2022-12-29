@@ -748,7 +748,7 @@ const BetSlipContainer = (props) => {
       const userData = JSON.parse(localStorage.getItem('user'));
       slips.map(slip => {
         console.log(slip)
-        slip['userID'] = userData._id
+        slip['userID'] = userData.user_id
         if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
             send = false;
         } else {

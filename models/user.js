@@ -4,6 +4,10 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      default: mongoose.Types.ObjectId
+    },
     username: {
       type: String,
       trim: true
@@ -49,6 +53,7 @@ const userSchema = new Schema({
     },
     bets: {
       type: Array,
+      ref: 'BetSlip'
     },
     accountValue: {
       type: Number,

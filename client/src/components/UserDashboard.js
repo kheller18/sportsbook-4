@@ -6,6 +6,19 @@ import '../styles/UserDashboard.css'
 const UserDashboard = () => {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
+  const [account, setAccount] = useState({
+    series: [
+      {
+        name: "Account Value",
+        data: []
+      }
+    ],
+    options: {
+      xaxis: {
+        caregories: []
+      }
+    }
+  })
   const account_value = {
       series: [
         {
@@ -20,38 +33,52 @@ const UserDashboard = () => {
       }
   }
 
+  // BREAK down bet type and percentage
+  // useEffect(() => {
+  //   // function to get user data for indiviaulized dashboard
+  //   const userData = async () => {
+  //     const userData = JSON.parse(localStorage.getItem('user'));
+  //     setUser(userData.firstName);
+  //     const userId = userData._id;
+  //     console.log(userId)
+  //     await API.getBets(userId)
+  //       .then(res => {
+  //         console.log(res.data)
+  //         setBets(res.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       })
+  //   }
+  //   userData()
+  // }, []);
 
-  const series = [
-    {
-      name: "Account",
-      data: [0, 40, 33, 18, 100, 90]
-    }
-  ]
-
-  const options = {
-    xaxis: {
-      categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"],
-    }
-  };
-
-// BREAK down bet type and percentage
   useEffect(() => {
     // function to get user data for indiviaulized dashboard
-    const userData = async () => {
-      const userData = JSON.parse(localStorage.getItem('user'));
-      setUser(userData.firstName);
-      const userId = userData._id;
-      await API.getBets(userId)
-        .then(res => {
-          console.log(res.data)
-          setBets(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        })
-    }
-    userData()
+    const userData = JSON.parse(localStorage.getItem('user'));
+    const userId = userData.user_id;
+    API.getBets(userId).then(res => {
+      console.log(res.data)
+      setBets(res.data)
+    })
+      .catch((err) => console.log(err))
+    // const userData = async () => {
+    //   const userData = JSON.parse(localStorage.getItem('user'));
+    //   setUser(userData.firstName);
+    //   const userId = userData._id;
+    //   console.log(userId)
+    //   await API.getBets(userId)
+    //     .then(res => {
+    //       console.log(res.data)
+    //       setBets(res.data);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     })
+    // }
+    // userData();
   }, []);
+
 
   return (
     <div className='dashboard-container'>
