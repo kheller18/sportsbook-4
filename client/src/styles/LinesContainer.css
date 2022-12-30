@@ -35,7 +35,8 @@ button:hover {
 }
 
 .lines-container {
-  min-width: 750px;
+  min-width: 650px;
+  /* width: 100%; */
   /* width: 100%; */
   display: flex;
   border: 4px darkblue solid;

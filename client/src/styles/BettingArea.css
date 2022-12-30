@@ -1,8 +1,7 @@
 .betting-container {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
   /* justify-content: space-evenly; */
   width: 100%;
-  /* width: 1500px; */
-  /* background-color: #D0D3D4; */
+  /* width: 100%; */
 }

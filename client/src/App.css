@@ -1,5 +1,7 @@
 body {
   height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
 :root {
@@ -18,8 +20,10 @@ body {
 .App {
   text-align: center;
   background-color: #D0D3D4;
-  height: 100%;
-  overflow: scroll;
+  /* height: 100%;
+  width: 100%; */
+  width: 100%;
+  /* overflow: auto; */
 }
 
 .App-logo {

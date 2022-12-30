@@ -1,6 +1,10 @@
 .slip-container {
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  min-width: 450px;
+  min-width: 300px;
+  width: 450px;
+
   /* max-height: 750px; */
   margin: 10px;
   /* padding: 5px; */
