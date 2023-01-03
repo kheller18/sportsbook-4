@@ -35,10 +35,16 @@ button:hover {
 }
 
 .lines-container {
-  min-width: 650px;
-  /* width: 100%; */
-  /* width: 100%; */
   display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  min-width: 640px;
+  /* min-width: 640px;
+  max-width: 750px; */
+  /* width: 100%; */
+  width: 750px;
+  /* width: 100%; */
+  /* width: 100%; */
   border: 4px darkblue solid;
   border-radius: 5px;
   /* height: 770px; */
