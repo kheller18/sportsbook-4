@@ -21,6 +21,7 @@
   height: 35px;
   background-color: var(--primary-light-body-color);
   text-align: left;
+  padding-left: 35px;
 }
 
 .dropdown-button:hover {
@@ -36,4 +37,5 @@
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
+  padding-left: 20px;
 }

@@ -1,10 +1,12 @@
 body {
-  height: 100%;
-  width: 100%;
+  /* height: 100%; */
+  height: 100vh;
+  /* width: 100%; */
   overflow: auto;
 }
 
 :root {
+  height: 100vh;
   --primary-dark-header-color: darkblue;
   --primary-light-body-color: #FFFFFF;
   --primary-dark-font-color: darkblue;
@@ -20,11 +22,27 @@ body {
 .App {
   text-align: center;
   background-color: #D0D3D4;
-  height: 100%;
+  height: 100vh;
   /* width: 100%; */
   /* width: 100%; */
-  /* overflow: auto; */
+  overflow: auto;
 }
+
+button:hover {
+  cursor: pointer;
+}
+
+/* .app-header {
+  height: 5vh;
+}
+
+.app-body {
+  height: 90vh;
+}
+
+.app-footer {
+  height: 5vh;
+} */
 
 .App-logo {
   height: 40vmin;

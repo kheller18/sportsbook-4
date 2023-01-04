@@ -3,30 +3,40 @@ import Button from './Button';
 import '../styles/LeagueDropdown.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
-import { faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { faFootballBall, faHockeyPuck, faBasketballBall, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 
 const LeagueDropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const [subContent, sport, league] = [props.contents, props.sport, props.league]
-  const sportClasses = {
-    'Baseball': 'fas fa-baseball-ball',
-    'Football': 'fas fa-football-ball',
-    'Soccer': 'fas fa-futbol',
-    'Hockey': 'fas fa-hockey-puck',
-    'Golf': 'fas fa-golf-ball',
-    'Tennis': 'fas fa-table-tennis',
-    'MMA': 'fas fa-user-ninja',
-    'Basketball': 'fas fa-basketball-ball'
-  }
+  // const sportClasses = {
+  //   'Baseball': 'fas fa-baseball-ball',
+  //   'Football': 'fas fa-football-ball',
+  //   'Soccer': 'fas fa-futbol',
+  //   'Hockey': 'fas fa-hockey-puck',
+  //   'Golf': 'fas fa-golf-ball',
+  //   'Tennis': 'fas fa-table-tennis',
+  //   'MMA': 'fas fa-user-ninja',
+  //   'Basketball': 'fas fa-basketball-ball'
+  // }
 
+  const sportClasses = {
+    'Baseball': 'fa-baseball-ball',
+    'Football': faFootballBall,
+    'Soccer': 'fa-futbol',
+    'Hockey': faHockeyPuck,
+    'Golf': 'fa-golf-ball',
+    'Tennis': 'fa-table-tennis',
+    'MMA': 'fa-user-ninja',
+    'Basketball': faBasketballBall
+  }
   const handleLeagueClick = () => {
     showDropdown ? setShowDropdown(false) : setShowDropdown(true);
   }
 
   return (
     <div key={props.lkey} className='league-dropdown2'>
-      <Button className='league-button' onClick={handleLeagueClick}><span>{league}</span><i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button>
+      <Button className='league-button' onClick={handleLeagueClick}><span><FontAwesomeIcon icon={sportClasses[sport]} /> {league}</span><i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button>
       {/* <Button className='league-button' onClick={handleLeagueClick}>{league}&nbsp;<i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button> */}
       {
         showDropdown ? (

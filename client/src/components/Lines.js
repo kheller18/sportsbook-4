@@ -93,7 +93,8 @@ const Lines = (props) => {
                         id='over'
                         value='over'
                       >
-                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice}) */}
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice[0] === '-' ? game.game.keys.gameTotalOver.currPrice : `+${game.game.keys.gameTotalOver.currPrice}`})
                       </Button>
                     </td>
                   : null
@@ -106,7 +107,8 @@ const Lines = (props) => {
                         id='over'
                         value='over'
                       >
-                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice}) */}
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice[0] === '-' ? game.game.keys.gameTotalOver.currPrice : `+${game.game.keys.gameTotalOver.currPrice}`})
                       </Button>
                     </td>
                   : null
@@ -119,7 +121,8 @@ const Lines = (props) => {
                         id='over'
                         value='over'
                       >
-                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice}) */}
+                        O/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice[0] === '-' ? game.game.keys.gameTotalOver.currPrice : `+${game.game.keys.gameTotalOver.currPrice}`})
                       </Button>
                     </td>
                   : null
@@ -227,7 +230,7 @@ const Lines = (props) => {
                         id='under'
                         value='under'
                       >
-                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        U/{game.game.keys.gameTotalUnder.currVal} ({game.game.keys.gameTotalUnder.currPrice[0] === '-' ? game.game.keys.gameTotalUnder.currPrice : `+${game.game.keys.gameTotalUnder.currPrice}`})
                       </Button>
                     </td>
                   : null
@@ -240,7 +243,8 @@ const Lines = (props) => {
                         id='under'
                         value='under'
                       >
-                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* U/{game.game.keys.gameTotalUnder.currVal} ({game.game.keys.gameTotalUnder.currPrice}) */}
+                        U/{game.game.keys.gameTotalUnder.currVal} ({game.game.keys.gameTotalUnder.currPrice[0] === '-' ? game.game.keys.gameTotalUnder.currPrice : `+${game.game.keys.gameTotalUnder.currPrice}`})
                       </Button>
                     </td>
                   : null
@@ -253,7 +257,8 @@ const Lines = (props) => {
                         id='under'
                         value='under'
                       >
-                        U/{game.game.keys.gameTotalOver.currVal} ({game.game.keys.gameTotalOver.currPrice})
+                        {/* U/{game.game.keys.gameTotalUnder.currVal} ({game.game.keys.gameTotalUnder.currPrice}) */}
+                        U/{game.game.keys.gameTotalUnder.currVal} ({game.game.keys.gameTotalUnder.currPrice[0] === '-' ? game.game.keys.gameTotalUnder.currPrice : `+${game.game.keys.gameTotalUnder.currPrice}`})
                       </Button>
                     </td>
                   : null

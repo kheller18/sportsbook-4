@@ -3,9 +3,9 @@ button {
   font-weight: bold;
 }
 
-button:hover {
+/* button:hover {
   cursor: pointer;
-}
+} */
 
 .render-team {
   text-align: left;
@@ -62,5 +62,5 @@ button:hover {
 }
 
 .render-gametime-row {
-  padding: none;
+  padding: 0px;
 }

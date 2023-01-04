@@ -12,14 +12,20 @@ function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <Header />
-        <Switch>
-          <Route path='/' exact component={Login} />
-          <Route path='/login' exact component={Login} />
-          <Route path='/signup' exact component={SignUp} />
-          <PrivateRoute path='/members' exact component={Main} />
-        </Switch>
-        <Footer />
+        <div className='app-header'>
+          <Header />
+        </div>
+        <div className='app-body'>
+          <Switch>
+            <Route path='/' exact component={Login} />
+            <Route path='/login' exact component={Login} />
+            <Route path='/signup' exact component={SignUp} />
+            <PrivateRoute path='/members' exact component={Main} />
+          </Switch>
+        </div>
+        <div className='app-footer'>
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

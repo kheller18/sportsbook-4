@@ -11,7 +11,7 @@ const Header = () => {
     <div className='header'>
       <div className='header-left header-title'>SportsBook</div>
       <div className='header-right header-links'>
-        <Button>
+        <Button className='user-button'>
           <FontAwesomeIcon icon={faUser} />
         </Button>
       </div>
