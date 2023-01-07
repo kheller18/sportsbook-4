@@ -55,15 +55,16 @@ router.get('/api/bet', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
+  console.log(req.body)
   const Users = new User({
-    username: req.body.user.email,
-    firstName: req.body.user.first_name,
-    lastName: req.body.user.last_name,
-    email: req.body.user.email,
-    address: req.body.user.address,
-    city: req.body.user.city,
-    state: req.body.user.state,
-    zipcode: req.body.user.zipcode
+    username: req.body.email,
+    firstName: req.body.first_name,
+    lastName: req.body.last_name,
+    email: req.body.email,
+    address: req.body.address,
+    city: req.body.city,
+    state: req.body.state,
+    zipcode: req.body.zipcode
   });
 
   User.register(Users, req.body.password, function(err, user) {
@@ -82,6 +83,7 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req, res) => {
   // console.log("inside /login");
   passport.authenticate('local', (err, user, info) => {
+   console.log(req.body)
     if (err) {
       res.json({success: false, message: err})
     } else if (!user) {

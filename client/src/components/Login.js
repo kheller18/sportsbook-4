@@ -1,56 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import API from '../utils/API';
 import '../styles/Login.css';
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({
+    email: '',
+    password: ''
+  })
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { // handles submit button on login
     event.preventDefault();
-
-    // calls to API once user clicks submit
-    API.login(email, password)
-      .then((response) => {
-        if (response.data.success === true) {
-          setIsLoggedIn(true);
-        }
-      })
-      .catch((err) => {
+    API.login(user).then((response) => { // calls to API once user clicks submit
+      if (response.data.success) {
+        setIsLoggedIn(true);
+      }
+      }).catch((err) => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-
-  }, []);
 
   if (isLoggedIn) {
     return <Redirect to='/members' />;
   };
 
   return (
-    <div className='login-container'>
-      <form className='login-form'>
+    <form className='login-container'>
+      <div className='login-form'>
         <div className='login-form-header'>
           <div className='login-form-title'>LOGIN</div>
         </div>
         <div className='login-form-body'>
           <div className='login-row'>
-            <input type='text' className='login-field' id='login-username' placeholder='Email' value={email} onChange={(event) => {setEmail(event.target.value)} } />
+            <input type='text' className='login-field' id='login-username' placeholder='Email' value={user.email} onChange={(e) => {setUser({...user, 'email': e.target.value})}} />
           </div>
           <div className='login-row'>
-            <input type='password' className='login-field' id='login-password' placeholder='Password' value={password} onChange={(event) => {setPassword(event.target.value)} } />
+            <input type='password' className='login-field' id='login-password' placeholder='Password' value={user.password} onChange={(e) => {setUser({...user, 'password': e.target.value})} } />
           </div>
           <div className='login-row'>
             <button type='submit' className='login-button' onClick={handleSubmit}>LOGIN</button>
           </div>
           <div className='login-form-footer'>Not a member? <a href='/signup'>Sign Up</a></div>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 

@@ -60,7 +60,10 @@ export default {
   },
 
   // post for logging in
-  login: (username, password) => {
+  login: (user) => {
+    console.log(user)
+    const username=user.email;
+    const password=user.password
     return axios.post('/login', {
       username,
       password
