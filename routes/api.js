@@ -56,14 +56,14 @@ router.get('/api/bet', (req, res) => {
 
 router.post('/signup', (req, res) => {
   const Users = new User({
-    username: req.body.email,
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    address: req.body.address,
-    city: req.body.city,
-    state: req.body.state,
-    zipcode: req.body.zipcode
+    username: req.body.user.email,
+    firstName: req.body.user.first_name,
+    lastName: req.body.user.last_name,
+    email: req.body.user.email,
+    address: req.body.user.address,
+    city: req.body.user.city,
+    state: req.body.user.state,
+    zipcode: req.body.user.zipcode
   });
 
   User.register(Users, req.body.password, function(err, user) {

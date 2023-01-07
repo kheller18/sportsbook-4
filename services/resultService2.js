@@ -438,19 +438,20 @@ mongoose.connect(
       await Promise.all(promises);
     }
 
-    await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
+    // await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
+    await Promise.all([getNBAResults(), getNFLResults()])
       .then((data) => {
         resultsObj = {
             // MLB: data[0].data.games,
             NBA: data[0].data,
             NFL: data[1].data,
-            NHL: data[2].data
+            // NHL: data[2].data
         }
       })
 
     await Promise.all([updateGamesDB()])
       .then((data) => {
-        console.log(data)
+        // console.log(data)
       })
 
     if (resultsArr.length > 0) {
