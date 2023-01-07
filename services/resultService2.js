@@ -463,5 +463,5 @@ mongoose.connect(
   }
 
 
-  updateResults();
+  // updateResults();
 })
