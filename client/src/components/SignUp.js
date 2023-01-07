@@ -31,7 +31,7 @@ const SignUp = () => {
     })
       .then(response => {
         if (response.status === 200) {
-          console.log(response)
+          // console.log(response)
           localStorage.setItem(
             'user',
             JSON.stringify({
@@ -39,10 +39,10 @@ const SignUp = () => {
               firstName: firstName,
               lastName: lastName,
               email: email,
-              address: address,
-              city: city,
-              state: state,
-              zipcode: zipcode
+              // address: address,
+              // city: city,
+              // state: state,
+              // zipcode: zipcode
             })
           );
           setRedirect(true);

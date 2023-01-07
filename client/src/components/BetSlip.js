@@ -32,7 +32,7 @@ const BetSlip = (props) => {
           <div className='slip-body-main'>
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'Moneyline' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>
-                &nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].team} ML ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num[0] === '-' ? slip.slips.keys[`${ slip.betUID[0] }`].odds.num : `+${slip.slips.keys[`${ slip.betUID[0] }`].odds.num}`})
+                &nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].team}&nbsp;<b>ML ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num[0] === '-' ? slip.slips.keys[`${ slip.betUID[0] }`].odds.num : `+${slip.slips.keys[`${ slip.betUID[0] }`].odds.num}`})</b>
               </div> :
             ''
             }
@@ -106,7 +106,7 @@ const BetSlip = (props) => {
                   case 'Moneyline':
                     return (
                       <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;
-                        {values.team} ML ({values.odds.num[0] === '-' ? values.odds.num : `+${values.odds.num}`})&nbsp;&nbsp;
+                        {values.team}&nbsp;<b>ML ({values.odds.num[0] === '-' ? values.odds.num : `+${values.odds.num}`})</b>&nbsp;&nbsp;
                         <Button
                           key={i}
                           onClick={(e) => props.onRemoveMulti(e, slipID, i, slip)}

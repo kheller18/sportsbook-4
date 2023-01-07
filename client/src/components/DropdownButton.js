@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Button from './Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleDown, faChevronCircleUp } from '@fortawesome/free-solid-svg-icons';
 import '../styles/DropdownButton.css';
 
 const DropdownButton = (props) => {
@@ -31,7 +33,15 @@ const DropdownButton = (props) => {
         className='target-button'
       >
         {/* <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ? currentLine.line : `+${currentLine.line}`} ({currentLine.odds})&nbsp;<i className="fas fa-chevron-circle-down"></i></span> */}
-        <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ? currentLine.line : `+${currentLine.line}`} ({currentLine.odds})</span><i className="fas fa-chevron-circle-down"></i>
+        <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ?
+          currentLine.line : `+${currentLine.line}`} ({currentLine.odds})
+        </span>
+        {!showDropdown ?
+          <FontAwesomeIcon icon={faChevronCircleDown} />
+        : <FontAwesomeIcon icon={faChevronCircleUp} />
+        }
+        {/* <FontAwesomeIcon icon={faChevronCircleDown} /> */}
+        {/* <i className="fas fa-chevron-circle-down"></i> */}
       </Button>
 
       {

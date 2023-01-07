@@ -43,7 +43,7 @@ const BettingArea = (props) => {
   }, [])
 
   return (
-    <div>
+    <div className='betting-area-container'>
       {state.isLoading ? null :
         <div className='betting-container'>
           <Nav onClick={handleClick} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />

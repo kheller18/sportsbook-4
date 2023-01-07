@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import API from '../utils/API';
 import Chart from 'react-apexcharts';
+import Button from './Button';
+import UserDropdown from './UserDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserDashboard.css'
 
 const UserDashboard = () => {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
+  const [dropdown, showDropdown] = useState(false);
   const [account, setAccount] = useState({
     series: [
       {
@@ -85,6 +90,11 @@ const UserDashboard = () => {
     <div className='dashboard-container'>
       <div className='dashboard-header'>
         <div className='dashboard-title'>Welcome, {user}!</div>
+        <div className='dashboard-right'>
+          <Button>
+            <FontAwesomeIcon icon={faBars} />
+          </Button>
+        </div>
       </div>
       <div className='dashboard-body'>
         {/* <Chart type='line' series={series} options={options} height='100%'/> */}

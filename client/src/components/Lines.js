@@ -6,7 +6,7 @@ import '../styles/Lines.css';
 
 const Lines = (props) => {
   const [game, slipType, straightArr, parlayArr, teaserArr] = [props.game, props.slipType, props.straightArr, props.parlayArr, props.teaserArr];
-
+  console.log(game)
   return (
     <table key={game.gameUID} className='render-main-body'>
       <tbody>

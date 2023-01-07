@@ -42,7 +42,8 @@ button:hover {
   /* min-width: 640px;
   max-width: 750px; */
   /* width: 100%; */
-  width: 750px;
+  /* width: 750px; */
+  flex-basis: 750px;
   /* width: 100%; */
   /* width: 100%; */
   border: 4px darkblue solid;
@@ -183,16 +184,19 @@ button:hover {
 
 #header-money {
   text-align: left;
-  padding-left: 220px;
+  padding-left: 140px;
+  /* margin-left: 140px; */
+  /* width: 200px; */
 }
 
 #header-spread {
   text-align: left;
-  padding-left: 15px;
+  padding-left: 5px;
 
 }
 
 #header-total {
+  text-align: left;
   padding-left: 60px;
 }
 
@@ -201,7 +205,7 @@ button:hover {
 }
 
 .table-headers {
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .scroll-container {

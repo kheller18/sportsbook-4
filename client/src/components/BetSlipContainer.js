@@ -1793,15 +1793,29 @@ const BetSlipContainer = (props) => {
         : ''
       }
 
-      {
-        (submittedSlips.length > 0 && slipState === 'cart') ? (
+      {/* {
+        (submittedSlips.length > 0 && slipState === 'cart') ?
           slips.map((slip, i) => {
             return (
-              <BetSlipConfirm data={slip} />
+              <div className='slip-container-body'>
+                <BetSlipConfirm data={slip} />
+              </div>
             )
           })
-        ) : null
+        : null
+      } */}
+      {
+        (submittedSlips.length > 0 && slipState === 'cart') ?
+          <div className='slip-container-body'>
+            {slips.map((slip, i) => {
+              return (
+                <BetSlipConfirm data={slip} />
+              )
+            })}
+          </div>
+        : null
       }
+
 
       {/* {
         slipState === 'active' ?

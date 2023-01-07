@@ -3,14 +3,16 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  /* height: 100%; */
+  /* height: auto; */
+  height: 80vh;
 }
 
 .login-form {
+  /* display: flex; */
   height: 300px;
   width: 300px;
-  /* position: fixed; */
-  /* top: 40%;
+  /* position: fixed;
+  top: 50%;
   left: 50%; */
   /* transform: translate(-50%, -50%); */
   border-radius: 5px;
