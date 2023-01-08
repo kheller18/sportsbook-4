@@ -159,7 +159,10 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -172,11 +175,12 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              // console.log(doc)
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs)
@@ -185,7 +189,6 @@ mongoose.connect(
             // console.log(updateMoneylineHome);
           }
         )
-        // console.log(updateMoneylineHome)
 
         const updateMoneylineAway = await Slip.find(
           {
@@ -203,7 +206,10 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -216,10 +222,12 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs)
@@ -245,7 +253,10 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -259,10 +270,12 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs)
@@ -288,7 +301,10 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -301,10 +317,12 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs)
@@ -330,9 +348,10 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -345,10 +364,12 @@ mongoose.connect(
                     },
                     $inc: { "quantity.completed": 1 }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs);
@@ -376,7 +397,10 @@ mongoose.connect(
                       "quantity.completed": 1
                     }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               } else {
                 await Slip.findOneAndUpdate(
@@ -391,10 +415,12 @@ mongoose.connect(
                       "quantity.completed": 1
                     }
                   },
-                  { new: true }
+                  { new: true },
+                  (err, doc) => {if (doc.status === "Completed") {
+                    update_users.push(doc)
+                  }}
                 )
               }
-              update_users.push(doc)
               return doc;
             })
             await Promise.all(updateDocs);
@@ -452,11 +478,7 @@ mongoose.connect(
     if (update_accounts.length > 0) {
       await updateAccounts(update_accounts)
     }
-
-
-    console.log(update_accounts.length)
   }
-
 
   updateResults();
 })
