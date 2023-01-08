@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Game = require('../models/games');
 const Slip = require('../models/betSlip');
+const User = require('../models/user');
 const axios = require('axios');
 const cron = require('node-cron');
 require('dotenv').config();
@@ -27,6 +28,7 @@ mongoose.connect(
   const updateResults = async () => {
     let resultsArr = [];
     let resultsObj = {};
+    let update_accounts = [];
     console.log('update results')
 
     const getMLBResults = () => {
@@ -138,8 +140,9 @@ mongoose.connect(
     }
 
     const updateSlipsDB = async (gameResults) => {
-      const promises = await gameResults.map(async (results) => {
+      const update_users = [];
 
+      const promises = await gameResults.map(async (results) => {
         const updateMoneylineHome = await Slip.find(
           {
             "betUID": { $in: [ results.results.moneylineHome.id ] },
@@ -148,46 +151,41 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (results.results.moneylineHome.value === true) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              // console.log(doc)
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs)
+            return updateDocs;
+            // console.log(updateDocs);
+            // console.log(updateMoneylineHome);
           }
         )
+        // console.log(updateMoneylineHome)
 
         const updateMoneylineAway = await Slip.find(
           {
@@ -197,44 +195,37 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (results.results.moneylineAway.value === true) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs)
+            return updateDocs;
+            // console.log(updateDocs);
+            // console.log(updateMoneylineAway);
           }
         )
 
@@ -246,27 +237,19 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (parseFloat(doc.slips.keys[`${betUID}`].line) > results.results.awayDifference.value) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
@@ -274,17 +257,18 @@ mongoose.connect(
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs)
+            return updateDocs;
+            // console.log(updateDocs);
+            console.log(updateSpreadAway);
           }
         )
 
@@ -296,44 +280,37 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (parseFloat(doc.slips.keys[`${betUID}`].line) > results.results.homeDifference.value) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs)
+            return updateDocs;
+            // console.log(updateDocs);
+            // console.log(updateSpreadHome);
           }
         )
 
@@ -345,17 +322,13 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (parseFloat(doc.slips.keys[`${betUID}`].line) < results.results.totalOver.value) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
                   {
                     new: true
@@ -363,26 +336,25 @@ mongoose.connect(
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs);
+            return updateDocs;
+            // console.log(updateDocs);
+            // console.log(updateTotalOver);
           }
         )
 
@@ -394,9 +366,7 @@ mongoose.connect(
             const updateDocs = await docs.map(async (doc) => {
               if (parseFloat(doc.slips.keys[`${betUID}`].line) > results.results.totalUnder.value) {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
@@ -406,15 +376,11 @@ mongoose.connect(
                       "quantity.completed": 1
                     }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               } else {
                 await Slip.findOneAndUpdate(
-                  {
-                    "_id": doc._id,
-                  },
+                  { "_id": doc._id },
                   {
                     $set: {
                       "outcome": false,
@@ -425,17 +391,36 @@ mongoose.connect(
                       "quantity.completed": 1
                     }
                   },
-                  {
-                    new: true
-                  }
+                  { new: true }
                 )
               }
+              update_users.push(doc)
+              return doc;
             })
             await Promise.all(updateDocs);
+            return updateDocs;
+            // console.log(updateDocs);
+            console.log(updateTotalUnder);
           }
         )
       })
       await Promise.all(promises);
+      return update_users;
+    }
+
+    const updateAccounts = async (slips) => {
+      const promises = await slips.map(async (slip) => {
+        const updateAccount = await User.findOneAndUpdate(
+          { "user_id": slip.userID },
+          {
+            $push: { account_value_history: { date: Date.now(), outcome: slip.payout.final } },
+            // $sum: { accountValue: [parseFloat(slip.payout.final), "$accountValue"] }
+          },
+          { new: true }
+        )
+        // console.log(account);
+      })
+      await Promise.all(promises)
     }
 
     // await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
@@ -455,14 +440,23 @@ mongoose.connect(
       })
 
     if (resultsArr.length > 0) {
+      // let update_accounts = [];
       await Promise.all([updateSlipsDB(resultsArr)]).then((data) => {
-        console.log(data)
+        // console.log(data)
+        update_accounts = data[0];
       }).catch((err) => {
         console.log(err);
       });
     }
+
+    if (update_accounts.length > 0) {
+      await updateAccounts(update_accounts)
+    }
+
+
+    console.log(update_accounts.length)
   }
 
 
-  // updateResults();
+  updateResults();
 })

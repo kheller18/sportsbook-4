@@ -25,7 +25,7 @@ const betSlipSchema = new Schema({
 betSlipSchema.post('findOneAndUpdate', (slip) => {
   const completed = slip.quantity.completed;
   const totalBets = slip.quantity.total;
-  console.log(`${ completed }/${ totalBets }`)
+  // console.log(`${ completed }/${ totalBets }`)
 
   if (totalBets === completed) {
     slip.status = "Completed"
@@ -37,6 +37,7 @@ betSlipSchema.post('findOneAndUpdate', (slip) => {
       slip.save();
     }
   }
+  // return slip;
 });
 
 const BetSlip = mongoose.model("BetSlip", betSlipSchema);

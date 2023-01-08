@@ -66,6 +66,11 @@ const userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
+userSchema.post('findOneAndUpdate', (user) => {
+  user.account_value += parseFloat(user.account_value_history[user.account_value_history.length-1].outcome);
+  user.save();
+})
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
