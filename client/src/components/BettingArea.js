@@ -13,6 +13,7 @@ const BettingArea = (props) => {
   const { socket } = useContext(GlobalContext);
 
   socket.on('package', (data) => {
+    console.log(data)
     socket.off('package')
     setState((prevState) => ({
       sport: prevState.sport,

@@ -1,8 +1,8 @@
 .betting-area-container {
-  /* display: flex; */
-  /* flex-direction: row; */
-  width: 100%;
-  /* justify-content: space-evenly; */
+  /* display: flex;
+  flex-direction: column; */
+  width: 95%;
+  /* justify-content: center; */
   /* align-items: center; */
 }
 
@@ -15,7 +15,7 @@
   width: 100%;
   /* min-width: 1400px; */
   /* justify-content: space-evenly; */
-  justify-content: center;
+  justify-content: space-between;
   /* width: 100%; */
   /* width: 100%; */
 }

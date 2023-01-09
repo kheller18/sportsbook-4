@@ -640,7 +640,7 @@ const LinesContainer = (props) => {
     }
 
   }, [props.removalData]);
-
+  console.log(content.games)
   return (
     <div className='lines-container'>
       {isLoading ? '' :
@@ -677,7 +677,7 @@ const LinesContainer = (props) => {
             : null
             }
           </table>
-          {leagueType === 'GAME LINES' ?
+          {(leagueType === 'GAME LINES' && content.games !== undefined) ?
             <div className='scroll-container'>
               {content.games.map(game => {
                 return (
@@ -685,7 +685,7 @@ const LinesContainer = (props) => {
                 );
               })}
             </div>
-          : null
+          : <div className='scroll-container'>empty scroll container</div>
           }
         </div>
       }

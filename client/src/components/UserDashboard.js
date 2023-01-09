@@ -3,13 +3,15 @@ import API from '../utils/API';
 import Chart from 'react-apexcharts';
 import Button from './Button';
 import UserDropdown from './UserDropdown';
+import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserDashboard.css'
 
 const UserDashboard = () => {
   const [bets, setBets] = useState([]);
-  const [user, setUser] = useState('');
+  // const [user, setUser] = useState('');
+  const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: []});
   const [account_valu, setAccountValue] = useState('');
   const [dropdown, showDropdown] = useState(false);
   const [account, setAccount] = useState({
@@ -25,7 +27,7 @@ const UserDashboard = () => {
       }
     }
   })
-  const account_value = {
+  const account_valuee = {
       series: [
         {
           name: "Account",
@@ -63,11 +65,59 @@ const UserDashboard = () => {
     // function to get user data for indiviaulized dashboard
     const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData.user_id;
-    setUser(userData.firstName);
-    setAccountValue(userData.account_value)
+    // const graph = userData.account_value_history.map((item) => {
+    //   console.log(item.date)
+    // })
+
+    // const groups = userData.account_value_history.reduce((acc, item) => {
+    //   // console.log(acc)
+    //   console.log(item)
+    //   // create a composed key: 'year-week'
+    //   // const yearWeek = `${moment(item.date).year()}-${moment(item.date).week()}`;
+    //   const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()}-${moment(item.date).day()}`;
+
+    //   // add this key as a property to the result object
+    //   if (!acc[yearWeek]) {
+    //     acc[yearWeek] = [];
+    //   }
+
+    //   // push the current date that belongs to the year-week calculated befor
+    //   // acc[yearWeek].push(item.date);
+    //   // console.log(acc[yearWeek]);
+
+
+    //   return acc;
+
+    // }, {});
+    const groups = userData.account_value_history.reduce((acc, item) => {
+      // console.log(acc)
+      console.log(item)
+      // create a composed key: 'year-week'
+      // const yearWeek = `${moment(item.date).year()}-${moment(item.date).week()}`;
+      const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()}-${moment(item.date).day()}`;
+
+      // add this key as a property to the result object
+      if (!acc[yearWeek]) {
+        acc[yearWeek] = [];
+      }
+
+      // push the current date that belongs to the year-week calculated befor
+      // acc[yearWeek][0]
+      // console.log(acc[yearWeek]);
+
+
+      return acc;
+
+    }, {});
+
+    console.log(groups)
+    // setUser(userData.firstName);
+    // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history});
+    // setAccountValue(userData.account_value)
     API.getBets(userId).then(res => {
-      console.log(res.data)
-      setBets(res.data)
+      // console.log(res.data)
+      setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history, bets: res.data});
+      // setBets(res.data)
     })
       .catch((err) => console.log(err))
     // const userData = async () => {
@@ -91,7 +141,7 @@ const UserDashboard = () => {
   return (
     <div className='dashboard-container'>
       <div className='dashboard-header'>
-        <div className='dashboard-title'>Welcome, {user} {account_valu}!</div>
+        <div className='dashboard-title'>Welcome, {user.name} {user.account_value}!</div>
         <div className='dashboard-right'>
           <Button>
             <FontAwesomeIcon icon={faBars} />
@@ -100,7 +150,7 @@ const UserDashboard = () => {
       </div>
       <div className='dashboard-body'>
         {/* <Chart type='line' series={series} options={options} height='100%'/> */}
-        <Chart type='line' series={account_value.series} options={account_value.options} height='100%'/>
+        <Chart type='line' series={account_valuee.series} options={account_valuee.options} height='100%'/>
       </div>
     </div>
   );
