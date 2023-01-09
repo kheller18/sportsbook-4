@@ -10,6 +10,7 @@ import '../styles/UserDashboard.css'
 const UserDashboard = () => {
   const [bets, setBets] = useState([]);
   const [user, setUser] = useState('');
+  const [account_valu, setAccountValue] = useState('');
   const [dropdown, showDropdown] = useState(false);
   const [account, setAccount] = useState({
     series: [
@@ -63,6 +64,7 @@ const UserDashboard = () => {
     const userData = JSON.parse(localStorage.getItem('user'));
     const userId = userData.user_id;
     setUser(userData.firstName);
+    setAccountValue(userData.account_value)
     API.getBets(userId).then(res => {
       console.log(res.data)
       setBets(res.data)
@@ -89,7 +91,7 @@ const UserDashboard = () => {
   return (
     <div className='dashboard-container'>
       <div className='dashboard-header'>
-        <div className='dashboard-title'>Welcome, {user}!</div>
+        <div className='dashboard-title'>Welcome, {user} {account_valu}!</div>
         <div className='dashboard-right'>
           <Button>
             <FontAwesomeIcon icon={faBars} />

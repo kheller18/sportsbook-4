@@ -466,7 +466,6 @@ mongoose.connect(
       })
 
     if (resultsArr.length > 0) {
-      // let update_accounts = [];
       await Promise.all([updateSlipsDB(resultsArr)]).then((data) => {
         // console.log(data)
         update_accounts = data[0];

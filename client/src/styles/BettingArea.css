@@ -1,3 +1,11 @@
+.betting-area-container {
+  /* display: flex; */
+  /* flex-direction: row; */
+  width: 100%;
+  /* justify-content: space-evenly; */
+  /* align-items: center; */
+}
+
 .betting-container {
   display: flex;
   /* display: flex;
@@ -6,7 +14,9 @@
   width: 100%; */
   width: 100%;
   /* min-width: 1400px; */
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  justify-content: center;
   /* width: 100%; */
   /* width: 100%; */
 }
+

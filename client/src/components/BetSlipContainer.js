@@ -730,6 +730,7 @@ const BetSlipContainer = (props) => {
   const handleClear = () => {
     props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
     setSlips([]);
+    setSlipTotalMoney({wager: 0.00, payout: 0.00});
   }
 
   const handleChange = (e, data) => {
@@ -771,7 +772,8 @@ const BetSlipContainer = (props) => {
         setTimeout(() => {
           setSlips([])
           setSubmittedSlips([])
-        }, 40000);
+          setSlipTotalMoney({wager: 0.00, payout: 0.00});
+        }, 10000);
       } else {
         console.log('did not send')
       }
