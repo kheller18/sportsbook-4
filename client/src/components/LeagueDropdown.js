@@ -3,7 +3,7 @@ import Button from './Button';
 import '../styles/LeagueDropdown.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
-import { faFootballBall, faHockeyPuck, faBasketballBall, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
+import { faFootballBall, faHockeyPuck, faBasketballBall, faFutbol, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
 import { faSquare } from '@fortawesome/free-regular-svg-icons';
 
 const LeagueDropdown = (props) => {
@@ -23,7 +23,7 @@ const LeagueDropdown = (props) => {
   const sportClasses = {
     'Baseball': 'fa-baseball-ball',
     'Football': faFootballBall,
-    'Soccer': 'fa-futbol',
+    'Soccer': faFutbol,
     'Hockey': faHockeyPuck,
     'Golf': 'fa-golf-ball',
     'Tennis': 'fa-table-tennis',
@@ -40,10 +40,10 @@ const LeagueDropdown = (props) => {
       {/* <Button className='league-button' onClick={handleLeagueClick}>{league}&nbsp;<i className={showDropdown ? "fas fa-chevron-circle-up" : "fas fa-chevron-circle-down"}></i></Button> */}
       {
         showDropdown ? (
-          <div className='dropdown-buttons'>
+          <div className='league-dropdown-buttons'>
             {subContent.games.active ?
               <Button key={`${sport}-games`} onClick={(e) => {props.onClick(e, sport, league, 'games')}} className='dropdown-button' id={`${sport}-${league}-games`} value={`${sport}-${league}-games`}>
-                <FontAwesomeIcon icon={props.activeSport === sport ? faSquareCheck : faSquare} /> Games
+                <FontAwesomeIcon icon={props.activeLeague === league ? faSquareCheck : faSquare} /> Games
               </Button>
             : null
             }

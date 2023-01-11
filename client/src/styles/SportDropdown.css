@@ -1,4 +1,4 @@
-.nav-button {
+.sport-button {
   width: 100%;
   height: 45px;
   /* background-color: var(--primary-light-body-color); */
@@ -10,13 +10,13 @@
   font-size: 14px;
 }
 
-.nav-button-active {
+.sport-button-active {
   color: var(--primary-light-font-color);
   font-weight: bold;
   background-color: #85bb65;
 }
 
-.league-dropdown {
+.sport-dropdown {
   width: 100%;
   background-color: var(--primary-light-body-color);
   display: flex;
@@ -26,7 +26,7 @@
   font-size: 14px;
 }
 
-.nav-button-icon {
+.sport-button-icon {
   /* display: flex; */
   /* flex-direction: row; */
   /* justify-self: left; */

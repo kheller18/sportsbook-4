@@ -31,7 +31,7 @@ const Nav = (props) => {
           {content.map((sport, i) => {
             return (
               <div key={sport.name}>
-                <SportDropdown sport={sport} activeSport={props.activeSport} onClick={props.onClick} icon={`${sportClasses[`${sport.name}`]}`} />
+                <SportDropdown sport={sport} activeLeague={props.activeLeague} activeSport={props.activeSport} onClick={props.onClick} icon={`${sportClasses[`${sport.name}`]}`} />
               </div>
             )
           })}

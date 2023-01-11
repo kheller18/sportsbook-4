@@ -25,6 +25,18 @@ const gamesSchema = new Schema(
         // type: Object
       },
       keys: {
+        gameTie: {
+          id: { type: String },
+          initialVal: { type: String },
+          prevVal: { type: String },
+          currVal: { type: String },
+          totalDelta: { type: String },
+          currDelta: { type: String },
+          deltaOperator: { type: String },
+          lineShift: { type: Boolean },
+          dateLineShift: { type: Date },
+          dateReset: { type: Number }
+        },
         gameMoneylineAway: {
           id: { type: String },
           initialVal: { type: String },

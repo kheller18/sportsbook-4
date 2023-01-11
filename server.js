@@ -96,6 +96,7 @@ mongoose.connect(
       gamesPackage = {leagues};
       const promises = sportsPackage.map(async (sport, index) => {
         const promises2 = await Object.keys(sport.leagues).map(async league => {
+          console.log(league)
           const promise = await Games.find({"league": league, "startDate": { $gte: moment()}, "game.keys.gameTotalOver.currVal": { $ne: null }, "game.keys.gameTotalUnder.currVal": { $ne: null } }).then((games, i) => {
             if (games.length > 0) {
               // rearranges games array by ascending start date

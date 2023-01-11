@@ -31,6 +31,7 @@ const BettingArea = (props) => {
     e.preventDefault();
     e.persist();
     // console.log(type)
+    console.log(league)
     setState((prevState) => ({
       ...prevState,
       sport: sport,
@@ -49,7 +50,7 @@ const BettingArea = (props) => {
     <div className='betting-area-container'>
       {state.isLoading ? null :
         <div className='betting-container'>
-          <Nav onClick={handleClick} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
+          <Nav onClick={handleClick} activeLeague={state.league} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
           <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
           <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} />
         </div>
