@@ -9,7 +9,7 @@
 
   An application for users to create accounts for a betting marketplace.
 
-  ![application screenshot](/images/betting_area_12_27_22.png)
+  ![application screenshot](/images/betting_area_1_11_23.png)
 
 
 ## Table of Contents
