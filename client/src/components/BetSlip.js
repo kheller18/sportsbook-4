@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Button from './Button';
 import Input from './Input';
 // import SlipMoney from './SlipMoney';
@@ -6,14 +6,13 @@ import DropdownButton from './DropdownButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faSquare } from '@fortawesome/free-regular-svg-icons';
 import '../styles/BetSlip.css';
 
 const BetSlip = (props) => {
   const [slipID, slip] = [props.id, props.data];
   const defaultIcon = 'fas fa-hockey-puck'
-  // console.log(slip)
-  console.log(slip.slips.keys[`${ slip.betUID[0] }`].alternateLines)
+  console.log(slip)
+
   switch(slip.type) {
     case "Straight":
       return (
@@ -62,10 +61,11 @@ const BetSlip = (props) => {
             }
           </div>
           <div className='slip-money'>
-            <div className='slip-risk-money'><i className="fas fa-dollar-sign"></i>
+            <div className='slip-risk-money'>$
+            {/* <div className='slip-risk-money'><i className="fas fa-dollar-sign"></i> */}
               <Input
                   onChange={(event) => props.onChange(event, slip)}
-                  className='slip-to-lose'
+                  className={!slip.error ? 'slip-to-lose': 'slip-to-lose error'}
                   id={props.id}
                   type='text'
                   value={slip.payout.toLose}
@@ -190,7 +190,7 @@ const BetSlip = (props) => {
             <div className='slip-risk-money'>
               $<Input
                   onChange={(event) => props.onChange(event, slip)}
-                  className='slip-to-lose'
+                  className={!slip.error ? 'slip-to-lose': 'slip-to-lose error'}
                   id={props.id}
                   type='text'
                   value={slip.payout.toLose}
@@ -200,8 +200,8 @@ const BetSlip = (props) => {
               <label>WAGER</label>
             </div>
             <div>
-              <div className='slip-odds'>{slip.payout.odds.american}</div>
-              {/* <div className='slip-odds'>{slip.payout.odds.american >= 0 ? `+${slip.payout.odds.american}` : slip.payout.odds.american}</div> */}
+              {/* <div className='slip-odds'>{slip.payout.odds.american}</div> */}
+              <div className='slip-odds'>{slip.payout.odds.american >= 0 ? `+${slip.payout.odds.american}` : slip.payout.odds.american}</div>
               <label>ODDS</label>
             </div>
             <div className='slip-win-money'>
@@ -296,7 +296,7 @@ const BetSlip = (props) => {
             <div className='slip-risk-money'>
               $<Input
                   onChange={(event) => props.onChange(event, slip)}
-                  className='slip-to-lose'
+                  className={!slip.error ? 'slip-to-lose': 'slip-to-lose error'}
                   id={props.id}
                   type='text'
                   value={slip.payout.toLose}

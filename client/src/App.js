@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route  } from 'react-router-dom';
-import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Main from './components/Main';
+import './App.css';
 
 function App() {
   return (

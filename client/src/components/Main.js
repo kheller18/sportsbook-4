@@ -10,7 +10,7 @@ import '../styles/Main.css';
 
 
 const Main = (props) => {
-  console.log(props)
+  // console.log(props)
   const [state, setState] = useState({});
   // useEffect(() => {
   // }, [])

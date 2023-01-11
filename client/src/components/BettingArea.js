@@ -10,6 +10,7 @@ const BettingArea = (props) => {
   const [removalData, setRemovalData] = useState({target: '', type: '', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
+  const [ex, setEx] = useState('')
   const { socket } = useContext(GlobalContext);
 
   socket.on('package', (data) => {
@@ -42,7 +43,7 @@ const BettingArea = (props) => {
     // get socket data here one time on login and then never run again
     socket.emit('package')
 
-  }, [])
+  }, [ex])
 
   return (
     <div className='betting-area-container'>
@@ -50,7 +51,7 @@ const BettingArea = (props) => {
         <div className='betting-container'>
           <Nav onClick={handleClick} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
           <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
-          <BetSlipContainer data={clickData} passRemovalData={setRemovalData} slips={props.bets} />
+          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} />
         </div>
       }
     </div>

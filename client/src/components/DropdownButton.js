@@ -46,9 +46,11 @@ const DropdownButton = (props) => {
             {
               altLines.map((altLine, i) => {
                 if (parseFloat(altLine.line) !== 0 && props.type !== 'Teaser') {
-                  return (
-                    <Button key={i} className='dropdown-button-slip' onClick={(e) => handleClick(e, props.data, props.index)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>
-                  )
+                  if (altLine.line !== currentLine.line) {
+                    return (
+                      <Button key={i} className='dropdown-button-slip' onClick={(e) => handleClick(e, props.data, props.index)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>
+                    )
+                  }
                 } else {
                   return (
                     <Button key={i} className='dropdown-button-slip' onClick={(e) => handleClick(e, props.data)} line={altLine.line} odds={altLine.odds} data={altLine.line}>{altLine.line} ({altLine.odds})</Button>

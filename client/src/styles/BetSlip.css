@@ -64,6 +64,11 @@
 .slip-to-lose {
   height: 20px;
   width: 50px;
+  border-radius: 5px;
+}
+
+.error {
+  border: 1px solid red;
 }
 
 .slip-away-team {
@@ -78,9 +83,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 5px;
   padding: 10px;
+  /* padding-bottom */
 }
 
 .slip-bet-info {

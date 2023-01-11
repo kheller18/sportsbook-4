@@ -38,12 +38,12 @@ button:hover {
   display: flex;
   flex-direction: column;
   /* flex-wrap: wrap; */
-  min-width: 640px;
+  min-width: 600px;
   /* min-width: 640px;
   max-width: 750px; */
   /* width: 100%; */
   /* width: 750px; */
-  flex-basis: 750px;
+  flex-basis: 775px;
   /* width: 100%; */
   /* width: 100%; */
   border: 4px darkblue solid;

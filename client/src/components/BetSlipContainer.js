@@ -14,7 +14,8 @@ import '../styles/BetSlipContainer.css';
 const BetSlipContainer = (props) => {
   const clickData = props.data
   const [slipState, setSlipState] = useState('cart')
-  // const [slipData, setSlipData] = useState();
+  const [error, setError] = useState(false)
+  // const [slipData, setSlipData] = useState();;
   const [slips, setSlips] = useState([]);
   const [submittedSlips, setSubmittedSlips] = useState([])
   const [toWin, setToWin] = useState();
@@ -732,6 +733,7 @@ const BetSlipContainer = (props) => {
     props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
     setSlips([]);
     setSlipTotalMoney({wager: 0.00, payout: 0.00});
+    setError(false);
   }
 
   const handleChange = (e, data) => {
@@ -742,26 +744,61 @@ const BetSlipContainer = (props) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    event.persist();
+    props.setEx('1')
+    // event.preventDefault();
+    // event.persist();
     const slipData = async () => {
       let slipSend = []
       let send = true;
       const userData = JSON.parse(localStorage.getItem('user'));
-      slips.map(slip => {
+      slips.map((slip, index) => {
         console.log(slip)
         slip['userID'] = userData.user_id
-        if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
-            console.log('dont send')
-            send = false;
+        // if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
+        // if (slip.payout.toLose === '' || slip.payout.toLose < .01 ) {
+        slip.payout.toLose = parseFloat(slip.payout.toLose)
+        // console.log(typeof slip.payout.toLose)
+        if (slip.payout.toLose < .01 || isNaN(slip.payout.toLose)) {
+          slip['error'] = true;
+          // setSlips(slips);
+          console.log('dont send')
+          send = false;
         } else {
+          slip['error'] = false;
           slipSend.push(slip)
         }
+        // return slips;
       })
+      //setSlips(slips);
+      // let newSlips = slips.map((slip, index) => {
+      //   console.log(slip)
+      //   slip['userID'] = userData.user_id
+      //   // if (slip.payout.toLose === '' || slip.payout.toLose < 5) {
+      //   // if (slip.payout.toLose === '' || slip.payout.toLose < .01 ) {
+      //   slip.payout.toLose = parseFloat(slip.payout.toLose)
+      //   // console.log(typeof slip.payout.toLose)
+      //   if (slip.payout.toLose < .01 || isNaN(slip.payout.toLose)) {
+      //     slip['error'] = true;
+      //     // setSlips(slips);
+      //     console.log('dont send')
+      //     send = false;
+      //   } else {
+      //     slip['error'] = false;
+      //     slipSend.push(slip)
+      //   }
+      //   return slips;
+      // })
 
       if (send) {
         console.log('slipSend')
+        // setError(false)
         return Promise.all(slipSend.map(slip => API.submitBetSlip(slip)))
+      } else {
+        console.log('no slipSend')
+        // setSlips(slips);
+        // setSlips(slips);
+        // setError(true);
+        // return null;
       }
     }
 
@@ -774,18 +811,24 @@ const BetSlipContainer = (props) => {
           setSlips([])
           setSubmittedSlips([])
           setSlipTotalMoney({wager: 0.00, payout: 0.00});
+          setError(false)
         }, 10000);
       } else {
+        console.log(slips)
+        props.setEx('1')
+        setSlips(slips);
+        setError(true)
         console.log('did not send')
       }
-    })
-    .catch(err => {
+    }).catch(err => {
       console.log(err)
     })
+    // return slips;
   };
 
   // console.log(slips);
   useEffect(() => {
+    console.log('hello')
     setIsLoading(true)
     const currSlip = async () => {
       const generateTeaserAltLines = (initialTeaserVal, numBets) => {
@@ -1708,8 +1751,18 @@ const BetSlipContainer = (props) => {
     }
 
     currSlip().then(() => {setIsLoading(false)})
+  // }, [props.data])
   }, [props.data])
 
+  // useEffect(() => {
+
+  // }, [setError])
+  console.log('here')
+  console.log(slipState)
+  console.log(submittedSlips.length)
+  console.log(isLoading)
+  console.log(slips.length)
+  console.log(slips)
   return (
     <div className='slip-container'>
       <div className='slip-header'>
@@ -1789,6 +1842,7 @@ const BetSlipContainer = (props) => {
                 <Button
                   onClick={handleSubmit}
                   className='slip-button'
+                  type='button'
                   // id='submit-slip'
                 >
                   {slips.length > 1 ? 'PLACE BETS' : 'PLACE BET'}

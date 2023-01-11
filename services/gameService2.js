@@ -39,13 +39,15 @@ mongoose.connect(
       'ATP': 'Tennis',
       'WTA': 'Tennis',
       'England - Premier League': 'Soccer',
+      // 'EPL': 'Soccer',
       'EPL': 'Soccer',
-      'Germany - Bundesliga': 'Soccer',
+      'Bundesliga - Germany': 'Soccer',
       'Bundesliga': 'Soccer',
       'La Liga': 'Soccer',
       'Liga': 'Soccer',
-      'France': 'Soccer',
+      'Ligue 1 - France': 'Soccer',
       'Ligue 1': 'Soccer',
+      'Ligue': 'Soccer',
     }
 
     /* Functions for API calls for different sports  */
@@ -99,25 +101,25 @@ mongoose.connect(
 
     const getEPL = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_epl/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=betus`
       )
     }
 
     const getLigue = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_france_ligue_one/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=betus`
       )
     }
 
     const getBundesliga = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_germany_bundesliga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=betus`
       )
     }
 
     const getLaLiga = async () => {
       return axios.get(
-        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=fanduel`
+        `https://odds.p.rapidapi.com/v4/sports/soccer_spain_la_liga/odds?rapidapi-key=${process.env.REACT_APP_API_KEY}&markets=h2h,spreads,totals&regions=us&oddsFormat=american&bookmakers=betus`
       )
     }
 
@@ -133,23 +135,24 @@ mongoose.connect(
       )
     }
 
-    await Promise.all([getNBA(), getNFL(), getNHL()])
+    await Promise.all([getLaLiga()])
+    // await Promise.all([getNBA(), getNFL(), getNHL(), getEPL()])
       .then(data => {
         const gamesObj = {
-          // MLB: data[0].data.games,
-          NBA: data[0].data,
-          // NCAABasketball: data[3].data,
-          // NCAAFootball: data[4].data,
-          NFL: data[1].data,
-          NHL: data[2].data,
-          // // PGA: data[5].data.games,
-          // // MMA: data[7].data.games,
-          // // EPL: data[4].data.games,
-          // // Ligue: data[9].data.games,
-          // // Bundesliga: data[10].data.games,
-          // // Liga: data[11].data.games,
-          // ATP: data[5].data.games,
-          // WTA: data[6].data.games
+          // MLB: data[0].data,
+          // NBA: data[0].data,
+          // NCAABasketball: data[3],
+          // NCAAFootball: data[4],
+          // NFL: data[1].data,
+          // NHL: data[2].data,
+          // // PGA: data[5].data,
+          // // MMA: data[7].data,
+          // EPL: data[0].data,
+          // Ligue: data[0].data,
+          // Bundesliga: data[0].data,
+          Liga: data[0].data,
+          // ATP: data[5].data,
+          // WTA: data[6].data
         }
 
         const entries = Object.entries(gamesObj).map(async (sport, index) => {
@@ -171,9 +174,7 @@ mongoose.connect(
                         "date": Date.now()
                       }
                     },
-                    {
-                      new: true
-                    }
+                    { new: true }
                   )
                 }
               } else {
@@ -192,14 +193,16 @@ mongoose.connect(
                         "date": Date.now()
                       }
                     },
-                    {
-                      new: true
-                    }
+                    { new: true }
                   )
                 }
 
+                // if (leagueRelations[`${ sport[0] }`] === 'Soccer') {
+
+                // }
                 const promise = await Object.values(sport[1]).map(async (game, index) => {
                   // console.log(game.bookmakers[0].markets[2])
+                  console.log(game)
                   if (game.bookmakers.length !== 0) {
                     if (game.away_team !== game.bookmakers[0].markets[0].outcomes[0].name) {
                       const updateGame = await Game.find(
@@ -264,10 +267,8 @@ mongoose.connect(
                                   "game.keys.gameTotalUnder.prevPrice": doc[0].game.keys.gameTotalUnder.currPrice,
                                 },
                               },
-                              {
-                                new: true
-                              }
-                            )
+                              { new: true }
+                              )
                           } else {
                             console.log(game.bookmakers[0].markets[0].outcomes[0].point)
                             await Game.findOneAndUpdate(
@@ -469,10 +470,8 @@ mongoose.connect(
                                   "game.keys.gameTotalUnder.prevPrice": doc[0].game.keys.gameTotalUnder.currPrice,
                                 },
                               },
-                              {
-                                new: true
-                              }
-                            )
+                              { new: true }
+                              )
                           } else {
                             await Game.findOneAndUpdate(
                               { gameUID: game.id },
