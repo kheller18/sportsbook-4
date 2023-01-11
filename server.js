@@ -42,7 +42,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-require('./services/gameService');
+require('./services/gameService2');
 require('./services/resultService2');
 
 mongoose.connect(

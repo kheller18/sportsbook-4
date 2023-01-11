@@ -40,7 +40,7 @@ export default {
   // },
 
   getBets: async (userId) => {
-    console.log(userId)
+    // console.log(userId)
     // return axios.get('/api/bet', userId);
     return await axios({
       method: 'GET',
@@ -68,6 +68,13 @@ export default {
       username,
       password
     })
+      // .then((response) => {
+      //   if (response.data.token) {
+      //     console.log(response)
+      //     localStorage.setItem('user', JSON.stringify(response.data.user)); // define what is passed back
+      //   }
+      //   return response;
+      // })
       .then((response) => {
         if (response.data.token) {
           console.log(response)

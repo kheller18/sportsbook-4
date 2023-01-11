@@ -5,15 +5,20 @@ import '../styles/Login.css';
 
 const Login = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUser, setLoggedInUser]=useState({})
+  const [bets, setBets]=useState([])
   const [user, setUser] = useState({
     email: '',
     password: ''
   })
 
-  const handleSubmit = (event) => { // handles submit button on login
+  const handleSubmit = async (event) => { // handles submit button on login
     event.preventDefault();
-    API.login(user).then((response) => { // calls to API once user clicks submit
+    await API.login(user).then((response) => { // calls to API once user clicks submit
       if (response.data.success) {
+        console.log(response.data)
+        setLoggedInUser(response.data.user)
+        setBets(response.data.dbBetSlip)
         setIsLoggedIn(true);
       }
       }).catch((err) => {
@@ -22,7 +27,12 @@ const Login = () => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to='/members' />;
+    // return <Redirect {{to='/members', state=loggedInUser }}  />;
+    return <Redirect to={{
+      pathname: '/members',
+      state: {user: loggedInUser, bets:bets}
+      }}
+      />;
   };
 
   return (

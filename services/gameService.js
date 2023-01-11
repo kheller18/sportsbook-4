@@ -603,7 +603,7 @@ mongoose.connect(
     // const scheduleTask = cron.schedule('30 * * * *', async () => {
     //   console.log(new Date());
     //   await getGames();
-    //   console.log('games');
+      // console.log('games');
     // })
 
   }

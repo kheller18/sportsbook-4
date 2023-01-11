@@ -3,6 +3,7 @@ import BetSlipConfirm from './BetSlipConfirm';
 import Button from './Button';
 import API from '../utils/API';
 import BetSlip from './BetSlip';
+import BetSlipActive from './BetSlipActive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -962,11 +963,13 @@ const BetSlipContainer = (props) => {
       }
 
 
-      const generateAltLines = (line, type) => {
+      const generateAltLines = (line, type, total) => {
         let altLinesArr = [{}, {}, {}, {}, {}]
         let newLinesArr = [];
+        console.log(type)
 
-        const calculateNewLine = (initialLine, index, operator) => {
+        const calculateNewLine = (initialLine, index, operator, total) => {
+          console.log('newlin')
           let tempLine = 0;
           let newLine;
           if (operator === 'plus') {
@@ -975,7 +978,8 @@ const BetSlipContainer = (props) => {
             tempLine = (parseFloat(initialLine) - (index / 2))
           }
 
-          if (tempLine > 0) {
+          if (tempLine > 0 && total !== 'total') {
+            console.log('inside')
             tempLine.toString();
             newLine = `+${ tempLine }`
           } else {
@@ -1004,7 +1008,7 @@ const BetSlipContainer = (props) => {
           case 'Spread':
             newLinesArr = altLinesArr.map((altLine, i) => (
               altLine = {
-                line: calculateNewLine(line.line, i, 'plus'),
+                line: calculateNewLine(line.line, i, 'plus', 'spread'),
                 odds: calculateNewOdds(line.odds, i)
               }
             ))
@@ -1013,7 +1017,7 @@ const BetSlipContainer = (props) => {
           case 'TotalOver':
             newLinesArr = altLinesArr.map((altLine, i) => (
               altLine = {
-                line: calculateNewLine(line.line, i, 'minus'),
+                line: calculateNewLine(line.line, i, 'minus', 'total'),
                 odds: calculateNewOdds(line.odds, i)
               }
             ))
@@ -1022,7 +1026,7 @@ const BetSlipContainer = (props) => {
           case 'TotalUnder':
             newLinesArr = altLinesArr.map((altLine, i) => (
               altLine = {
-                line: calculateNewLine(line.line, i, 'plus'),
+                line: calculateNewLine(line.line, i, 'plus', 'total'),
                 odds: calculateNewOdds(line.odds, i)
               }
             ))
@@ -1073,8 +1077,8 @@ const BetSlipContainer = (props) => {
 
           case 'Teaser':
             const numBets = oddsArr.length;
-            console.log(numBets)
-            console.log(teaserVal)
+            // console.log(numBets)
+            // console.log(teaserVal)
             switch (numBets) {
               case 2:
                 switch(teaserVal) {
@@ -1819,11 +1823,22 @@ const BetSlipContainer = (props) => {
       }
 
 
-      {/* {
+      {
         slipState === 'active' ?
-          <BetSlipConfirm data={slipData} passSlipState={setSlipState} passSlipData={setSlipData} />
+          <div className='slip-container-body'>
+          {props.slips.map((slip, i) => {
+            if (slip.status === 'Active') {
+              return (
+                // <BetSlip key={i} data={slip} id={i} slips={slips} addBet='true' onAddRetroactive={handleAddRetroactive} passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
+                <BetSlipActive data={slip} />
+              )
+            }
+            return ''
+          })}
+        </div>
+          // <BetSlipActive data={slipData} passSlipState={setSlipState} passSlipData={setSlipData} />
         : ''
-      } */}
+      }
     </div>
   );
 };

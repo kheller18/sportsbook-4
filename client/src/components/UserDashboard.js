@@ -8,10 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserDashboard.css'
 
-const UserDashboard = () => {
-  const [bets, setBets] = useState([]);
+const UserDashboard = (user1) => {
+  const [bets, setBets] = useState([]);//
   // const [user, setUser] = useState('');
-  const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: []});
+  // console.log(user1)
+  const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: user1.bets});
   const [account_valu, setAccountValue] = useState('');
   const [dropdown, showDropdown] = useState(false);
   const [account, setAccount] = useState({
@@ -31,12 +32,13 @@ const UserDashboard = () => {
       series: [
         {
           name: "Account",
-          data: [0, 40, 33, 18, 100, 90]
+          data: [0, 1000, 90]
         }
       ],
       options: {
         xaxis: {
-          categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"]
+          // categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"]
+          categories: ["2022-12-16", "2022-12-17", "2022-12-21"]
         }
       }
   }
@@ -91,7 +93,7 @@ const UserDashboard = () => {
     // }, {});
     const groups = userData.account_value_history.reduce((acc, item) => {
       // console.log(acc)
-      console.log(item)
+      // console.log(item)
       // create a composed key: 'year-week'
       // const yearWeek = `${moment(item.date).year()}-${moment(item.date).week()}`;
       const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()}-${moment(item.date).day()}`;

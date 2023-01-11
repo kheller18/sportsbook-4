@@ -16,7 +16,7 @@ const Nav = (props) => {
   }
 
   const content = props.state;
-  console.log(content)
+  // console.log(content)
   useEffect(() => {
 
   }, []);

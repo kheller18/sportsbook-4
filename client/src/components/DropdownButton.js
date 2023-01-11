@@ -9,6 +9,7 @@ const DropdownButton = (props) => {
   // const [currentLine, setCurrentLine] = useState({line: props.activeLine.line, odds: props.activeLine.odds})
   const altLines = props.altLines;
   let currentLine = props.activeLine
+  console.log(altLines)
 
   const handleClick = (e, slip, id) => {
     props.passLine(e, slip, id)
@@ -32,16 +33,11 @@ const DropdownButton = (props) => {
         onClick={handleTargetClick}
         className='target-button'
       >
-        {/* <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ? currentLine.line : `+${currentLine.line}`} ({currentLine.odds})&nbsp;<i className="fas fa-chevron-circle-down"></i></span> */}
-        <span>{(currentLine.line[0] === '-' || currentLine.line[0] === '+') ?
-          currentLine.line : `+${currentLine.line}`} ({currentLine.odds})
-        </span>
+        <span>{`${currentLine.line} (${currentLine.odds})`}</span>
         {!showDropdown ?
-          <FontAwesomeIcon icon={faChevronCircleDown} />
-        : <FontAwesomeIcon icon={faChevronCircleUp} />
-        }
-        {/* <FontAwesomeIcon icon={faChevronCircleDown} /> */}
-        {/* <i className="fas fa-chevron-circle-down"></i> */}
+        <FontAwesomeIcon icon={faChevronCircleDown} />
+      : <FontAwesomeIcon icon={faChevronCircleUp} />
+      }
       </Button>
 
       {

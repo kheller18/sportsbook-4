@@ -640,7 +640,7 @@ const LinesContainer = (props) => {
     }
 
   }, [props.removalData]);
-  console.log(content.games)
+  // console.log(content.games)
   return (
     <div className='lines-container'>
       {isLoading ? '' :

@@ -450,13 +450,13 @@ mongoose.connect(
     }
 
     // await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
-    await Promise.all([getNBAResults(), getNFLResults()])
+    await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
       .then((data) => {
         resultsObj = {
             // MLB: data[0].data.games,
             NBA: data[0].data,
             NFL: data[1].data,
-            // NHL: data[2].data
+            NHL: data[2].data
         }
       })
 
@@ -479,5 +479,5 @@ mongoose.connect(
     }
   }
 
-  updateResults();
+  // updateResults();
 })

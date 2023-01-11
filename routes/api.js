@@ -82,7 +82,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', (req, res) => {
   // console.log("inside /login");
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', async (err, user, info) => {
    console.log(req.body)
     if (err) {
       res.json({success: false, message: err})
@@ -90,7 +90,22 @@ router.post('/login', (req, res) => {
       res.json({success: false, message: 'username or pass incorrect'})
     } else {
       const token = jwt.sign({username: user.username}, 'shhhh', {expiresIn: '1h'});
-      res.json({success: true, message: "authentication successful", token, user});
+      await BetSlip.find({
+        'userID': user.user_id
+      }).then(dbBetSlip => {
+          // console.log(dbBetSlip);
+          user['slips'] = dbBetSlip;
+          console.log(user.slips)
+          // `user.slips` = dbBetSlip;
+          // console.log('inside user');
+          // console.log(user);
+          res.json({success: true, message: "authentication successful", token, user, dbBetSlip});
+          // res.json(dbBetSlip);
+        })
+        .catch(err => {
+          res.status(400).json(err);
+        });
+      // res.json({success: true, message: "authentication successful", token, user});
     }
   }) (req, res);
 });
