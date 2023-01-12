@@ -97,40 +97,80 @@ mongoose.connect(
       );
     }
 
+    const getSerieResults = () => {
+      return axios.get(
+        `https://odds.p.rapidapi.com/v4/sports/soccer_italy_serie_a/scores?daysFrom=1&rapidapi-key=${process.env.REACT_APP_API_KEY}`
+      );
+    }
+
     const updateGamesDB = async () => {
       const promises = Object.entries(resultsObj).map(async (sport, index) => {
+        console.log(sport[0])
         const promises2 = await Object.values(sport[1]).map(async (game, index) => {
           if (game.scores === null) {
           } else {
-            const updated = await Game.findOneAndUpdate(
-              {
-                $and: [ { gameUID: { $eq: game.id } }, { status: { $in: ['Unplayed', 'Upcoming', 'Live', null] } } ]
-              },
-              {
-                $set: {
-                  "game.results.full": game,
-                  "game.results.final": {
-                    "moneylineHome": {"id": `${ game.id }-4`, "value": parseInt(game.scores[0].score) > parseInt(game.scores[1].score)},
-                    "moneylineAway": {"id": `${ game.id }-1`, "value": parseInt(game.scores[1].score) > parseInt(game.scores[0].score)},
-                    "homeDifference": {"id": `${ game.id }-5`, "value": 0 - (parseInt(game.scores[0].score) - parseInt(game.scores[1].score))},
-                    "awayDifference": {"id": `${ game.id }-2`, "value": 0 - (parseInt(game.scores[1].score) - parseInt(game.scores[0].score))},
-                    "totalOver": {"id": `${ game.id }-3`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
-                    "totalUnder": {"id": `${ game.id }-6`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
-                  },
-                  status: (game.completed === false) ? 'Live' : 'Completed',
-                  date: new Date().setDate(new Date().getDate()),
-                }
-              },
-              {
-                new: true,
-              }, (err, doc) => {
-                if (doc != null) {
-                  if (doc.status === 'Completed') {
-                    resultsArr.push({"gameUID": doc.gameUID,  "results": doc.game.results.final})
+            if (sport[0] !== 'Soccer') {
+              const updated = await Game.findOneAndUpdate(
+                {
+                  $and: [ { gameUID: { $eq: game.id } }, { status: { $in: ['Unplayed', 'Upcoming', 'Live', null] } } ]
+                },
+                {
+                  $set: {
+                    "game.results.full": game,
+                    "game.results.final": {
+                      "moneylineHome": {"id": `${ game.id }-4`, "value": parseInt(game.scores[0].score) > parseInt(game.scores[1].score)},
+                      "moneylineAway": {"id": `${ game.id }-1`, "value": parseInt(game.scores[1].score) > parseInt(game.scores[0].score)},
+                      "homeDifference": {"id": `${ game.id }-5`, "value": 0 - (parseInt(game.scores[0].score) - parseInt(game.scores[1].score))},
+                      "awayDifference": {"id": `${ game.id }-2`, "value": 0 - (parseInt(game.scores[1].score) - parseInt(game.scores[0].score))},
+                      "totalOver": {"id": `${ game.id }-3`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                      "totalUnder": {"id": `${ game.id }-6`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                    },
+                    status: (game.completed === false) ? 'Live' : 'Completed',
+                    date: new Date().setDate(new Date().getDate()),
+                  }
+                },
+                {
+                  new: true,
+                }, (err, doc) => {
+                  if (doc != null) {
+                    if (doc.status === 'Completed') {
+                      resultsArr.push({"gameUID": doc.gameUID,  "results": doc.game.results.final})
+                    }
                   }
                 }
-              }
-            )
+              )
+            } else {
+              const updated = await Game.findOneAndUpdate(
+                {
+                  $and: [ { gameUID: { $eq: game.id } }, { status: { $in: ['Unplayed', 'Upcoming', 'Live', null] } } ]
+                },
+                {
+                  $set: {
+                    "game.results.full": game,
+                    "game.results.final": {
+                      "tie": {"id": `${ game.id }-0`, "value": parseInt(game.scores[0].score) = parseInt(game.scores[1].score)},
+                      "moneylineHome": {"id": `${ game.id }-4`, "value": parseInt(game.scores[0].score) > parseInt(game.scores[1].score)},
+                      "moneylineAway": {"id": `${ game.id }-1`, "value": parseInt(game.scores[1].score) > parseInt(game.scores[0].score)},
+                      "homeDifference": {"id": `${ game.id }-5`, "value": 0 - (parseInt(game.scores[0].score) - parseInt(game.scores[1].score))},
+                      "awayDifference": {"id": `${ game.id }-2`, "value": 0 - (parseInt(game.scores[1].score) - parseInt(game.scores[0].score))},
+                      "totalOver": {"id": `${ game.id }-3`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                      "totalUnder": {"id": `${ game.id }-6`, "value": parseInt(game.scores[1].score) + parseInt(game.scores[0].score)},
+                    },
+                    status: (game.completed === false) ? 'Live' : 'Completed',
+                    date: new Date().setDate(new Date().getDate()),
+                  }
+                },
+                {
+                  new: true,
+                }, (err, doc) => {
+                  if (doc != null) {
+                    if (doc.status === 'Completed') {
+                      resultsArr.push({"gameUID": doc.gameUID,  "results": doc.game.results.final})
+                    }
+                  }
+                }
+              )
+            }
           }
         })
         await Promise.all(promises2)
@@ -143,6 +183,7 @@ mongoose.connect(
       const update_users = [];
 
       const promises = await gameResults.map(async (results) => {
+        // console.log(results)
         const updateMoneylineHome = await Slip.find(
           {
             "betUID": { $in: [ results.results.moneylineHome.id ] },
@@ -281,7 +322,7 @@ mongoose.connect(
             await Promise.all(updateDocs)
             return updateDocs;
             // console.log(updateDocs);
-            console.log(updateSpreadAway);
+            // console.log(updateSpreadAway);
           }
         )
 
@@ -393,9 +434,7 @@ mongoose.connect(
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
                   { new: true },
                   (err, doc) => {if (doc.status === "Completed") {
@@ -411,9 +450,7 @@ mongoose.connect(
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
                     },
-                    $inc: {
-                      "quantity.completed": 1
-                    }
+                    $inc: { "quantity.completed": 1 }
                   },
                   { new: true },
                   (err, doc) => {if (doc.status === "Completed") {
@@ -426,9 +463,59 @@ mongoose.connect(
             await Promise.all(updateDocs);
             return updateDocs;
             // console.log(updateDocs);
-            console.log(updateTotalUnder);
+            // console.log(updateTotalUnder);
           }
         )
+
+        if (results.sport === 'Soccer') {
+          const updateTie = await Slip.find(
+            {
+              "betUID": { $in: [ results.results.tie.id ] },
+            }, async (err, docs) => {
+              const betUID = results.results.tie.id;
+              const updateDocs = await docs.map(async (doc) => {
+                if (results.results.tie.value === true) {
+                  await Slip.findOneAndUpdate(
+                    { "_id": doc._id },
+                    {
+                      $set: {
+                        [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
+                        [`slips.keys.${ betUID }.status`]: "Completed",
+                      },
+                      $inc: { "quantity.completed": 1 }
+                    },
+                    { new: true },
+                    (err, doc) => {if (doc.status === "Completed") {
+                      update_users.push(doc)
+                    }}
+                  )
+                } else {
+                  await Slip.findOneAndUpdate(
+                    { "_id": doc._id },
+                    {
+                      $set: {
+                        "outcome": false,
+                        [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
+                        [`slips.keys.${ betUID }.status`]: "Completed",
+                      },
+                      $inc: { "quantity.completed": 1 }
+                    },
+                    { new: true },
+                    (err, doc) => {if (doc.status === "Completed") {
+                      update_users.push(doc)
+                    }}
+                  )
+                }
+                return doc;
+              })
+              await Promise.all(updateDocs);
+              return updateDocs;
+              // console.log(updateDocs);
+              // console.log(updateTotalUnder);
+            }
+          )
+        }
+
       })
       await Promise.all(promises);
       return update_users;
@@ -449,14 +536,30 @@ mongoose.connect(
       await Promise.all(promises)
     }
 
-    // await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
-    await Promise.all([getNBAResults(), getNFLResults(), getNHLResults()])
+    await new Promise(r => setTimeout(r, 4000));
+    let resultsObj2 = {}
+    await Promise.all([getEPLResults(), getLigueResults(), getBundesligaResults(), getLaLigaResults()])
+    .then((data) => {
+      resultsObj2 = {
+          'EPL': data[0].data,
+          'Ligue 1 - France': data[1].data,
+          'Bundesliga - Germany': data[2].data,
+          'La Liga - Spain': data[3].data,
+      }
+    })
+
+    await new Promise(r => setTimeout(r, 1500));
+    await Promise.all([getNBAResults(), getNFLResults(), getNHLResults(), getSerieResults()])
       .then((data) => {
         resultsObj = {
-            // MLB: data[0].data.games,
-            NBA: data[0].data,
-            NFL: data[1].data,
-            NHL: data[2].data
+            'NBA': data[0].data,
+            'NFL': data[1].data,
+            'NHL': data[2].data,
+            'Serie A - Italy': data[3].data,
+            'EPL': resultsObj2['EPL'],
+            'Ligue 1 - France': resultsObj2['Ligue 1 - France'],
+            'Bundesliga - Germany': resultsObj2['Bundesliga - Germany'],
+            'La Liga - Spain': resultsObj2['La Liga - Spain']
         }
       })
 
@@ -479,5 +582,5 @@ mongoose.connect(
     }
   }
 
-  // updateResults();
+  updateResults();
 })

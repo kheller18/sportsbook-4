@@ -142,35 +142,51 @@ mongoose.connect(
         `https://betonline-legacy.datafeeds.net/api/json/odds/betonline/v2/60/tennis/wta?api-key=`
       )
     }
+    let gamesObj2 = {}
 
-    await Promise.all([getEPL(), getLigue(), getBundesliga(), getLaLiga(), getSerie()])
+    await Promise.all([getNBA(), getNFL(), getNHL(), getSerie()]).then(data => {
+      gamesObj2 = {
+        NBA: data[0].data,
+        NFL: data[1].data,
+        NHL: data[2].data,
+        'Serie A - Italy': data[3].data
+      }
+    })
+    console.log('hello before timeout')
+    await new Promise(r => setTimeout(r, 1000));
+    console.log('hello after timeout')
+    await Promise.all([getEPL(), getLigue(), getBundesliga(), getLaLiga()])
+    // await Promise.all([getEPL(), getLigue(), getBundesliga(), getLaLiga(), getSerie(), getNBA(), getNFL(), getNHL()])
     // await Promise.all([getNBA(), getNFL(), getNHL(), getEPL()])
       .then(data => {
         const gamesObj = {
           // MLB: data[0].data,
-          // NBA: data[0].data,
-          // NCAABasketball: data[3],
-          // NCAAFootball: data[4],
-          // NFL: data[1].data,
-          // NHL: data[2].data,
+          // 'NBA': data[5].data,
+          // NCAABasketball: data[3].data,
+          // NCAAFootball: data[4].data,
+          // 'NFL': data[6].data,
+          // 'NHL': data[7].data,
           // // PGA: data[5].data,
           // // MMA: data[7].data,
-          EPL: data[0].data,
+          'EPL': data[0].data,
           'Ligue 1 - France': data[1].data,
           'Bundesliga - Germany': data[2].data,
           'La Liga - Spain': data[3].data,
-          'Serie A - Italy': data[4].data
+          'Serie A - Italy': gamesObj2['Serie A - Italy'],
+          'NBA': gamesObj2.NBA,
+          'NFL': gamesObj2.NFL,
+          'NHL': gamesObj2.NHL,
           // ATP: data[5].data,
           // WTA: data[6].data
         }
 
         const entries = Object.entries(gamesObj).map(async (sport, index) => {
-          console.log(sport[0])
+          // console.log(sport[0])
           const findSport = await Sport.findOne(
             {
               sportTitle: leagueRelations[`${ sport[0] }`],
             }, async (err, doc) => {
-              console.log(sport[0])
+              // console.log(sport[0])
               // console.log(Object.values(sport[1]).length < 1)
               if (Object.values(sport[1]).length < 1) {
                 if (doc.leagues[`${ sport[0] }`].games.active === true) {
@@ -188,7 +204,7 @@ mongoose.connect(
                   )
                 }
               } else {
-                console.log(doc)
+                // console.log(doc)
                 if (doc.leagues[`${ sport[0] }`].games.active === false) {
                   await Sport.findOneAndUpdate(
                     { sportTitle: leagueRelations[`${ sport[0] }`] },
@@ -218,7 +234,7 @@ mongoose.connect(
                             gameUID: game.id
                           }, async (err, doc) => {
                             if (game.bookmakers.length === 0) {
-                              console.log('fail safe')
+                              // console.log('fail safe')
                             } else if (doc.length > 0) {
                               await Game.findOneAndUpdate(
                                 { gameUID: game.id },
@@ -269,7 +285,7 @@ mongoose.connect(
                                 { new: true }
                                 )
                             } else {
-                              console.log(game.bookmakers[0].markets[0].outcomes[0].point)
+                              // console.log(game.bookmakers[0].markets[0].outcomes[0].point)
                               await Game.findOneAndUpdate(
                                 { gameUID: game.id },
                                 {
@@ -411,7 +427,7 @@ mongoose.connect(
                             gameUID: game.id
                           }, async (err, doc) => {
                             if (game.bookmakers.length === 0) {
-                              console.log('fail safe')
+                              // console.log('fail safe')
                             } else if (doc.length > 0) {
                               await Game.findOneAndUpdate(
                                 { gameUID: game.id },
@@ -604,7 +620,7 @@ mongoose.connect(
                 } else {
                   const promise = await Object.values(sport[1]).map(async (game, index) => {
                     // console.log(game.bookmakers[0].markets[2])
-                    console.log(game)
+                    // console.log(game)
                     if (game.bookmakers.length !== 0) {
                       if (game.away_team !== game.bookmakers[0].markets[0].outcomes[0].name) {
                         const updateGame = await Game.find(
@@ -612,7 +628,7 @@ mongoose.connect(
                             gameUID: game.id
                           }, async (err, doc) => {
                             if (game.bookmakers.length === 0) {
-                              console.log('fail safe')
+                              // console.log('fail safe')
                             } else if (doc.length > 0) {
                               await Game.findOneAndUpdate(
                                 { gameUID: game.id },
@@ -822,7 +838,7 @@ mongoose.connect(
                             gameUID: game.id
                           }, async (err, doc) => {
                             if (game.bookmakers.length === 0) {
-                              console.log('fail safe')
+                              // console.log('fail safe')
                             } else if (doc.length > 0) {
                               await Game.findOneAndUpdate(
                                 { gameUID: game.id },

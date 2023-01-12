@@ -1,8 +1,6 @@
 # SportsBook App
 
-![license badge](
-      https://shields.io/badge/license-mit-blue
-      )
+![license badge](https://shields.io/badge/license-mit-blue)
 
 
 ## Description
