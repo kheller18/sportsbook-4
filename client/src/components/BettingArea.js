@@ -3,6 +3,7 @@ import BetSlipContainer from './BetSlipContainer';
 import Nav from './Nav';
 import GlobalContext from '../utils/GlobalContext';
 import LinesContainer from './LinesContainer';
+import UserDashboard from './UserDashboard';
 import '../styles/BettingArea.css';
 
 const BettingArea = (props) => {
@@ -11,6 +12,7 @@ const BettingArea = (props) => {
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
   const [ex, setEx] = useState('')
+  const [user, setUser] = useState(props.user);
   const { socket } = useContext(GlobalContext);
 
   socket.on('package', (data) => {
@@ -44,18 +46,33 @@ const BettingArea = (props) => {
     // get socket data here one time on login and then never run again
     socket.emit('package')
 
-  }, [ex])
-
+  }, [])
+  console.log(user)
   return (
-    <div className='betting-area-container'>
+    // <div className='betting-area-container'>
+    //   {state.isLoading ? null :
+    //     <div className='betting-container'>
+    //       <Nav onClick={handleClick} activeLeague={state.league} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
+    //       <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
+    //       <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} />
+    //     </div>
+    //   }
+    // </div>
+    <div className='complete-container'>
+      <div className='complete-container-top'>
+        <UserDashboard user={user} bets={props.bets} />
+      </div>
+      <div className='betting-area-container'>
       {state.isLoading ? null :
         <div className='betting-container'>
           <Nav onClick={handleClick} activeLeague={state.league} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
           <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
-          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} />
+          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} setUser={setUser} />
         </div>
       }
-    </div>
+      </div>
+  </div>
+
   );
 };
 

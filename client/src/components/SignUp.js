@@ -17,18 +17,20 @@ const SignUp = () => {
       'confirm_password': ''
     },
   );
+  const [loggedInUser, setLoggedInUser] = useState({})
   const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = (event) => { // function to handle sign up button
     event.preventDefault();
 
-    API.signup(user).then(response => {  // calls function to register a new user
-      if (response.status === 200) {
+    API.signup(user).then(resp => {  // calls function to register a new user
+      if (resp.status === 200) {
         // console.log(response)
         localStorage.setItem(
           'user',
           JSON.stringify({
-            id: response.data.user_id,
+            id: resp.data.user.user_id,
+            user_id: resp.data.user.user_id,
             firstName: user.first_name,
             lastName: user.last_name,
             email: user.email,
@@ -38,6 +40,7 @@ const SignUp = () => {
             // zipcode: zipcode
           })
         );
+        setLoggedInUser(resp.data.user)
         setRedirect(true);
       };
 
@@ -52,7 +55,11 @@ const SignUp = () => {
   // }, [])
 
   if (redirect) {
-    return <Redirect to='/members' />;
+    // return <Redirect to='/members' />;
+    return <Redirect to={{
+      pathname: '/members',
+      state: {user: loggedInUser, bets: []}
+    }} />
   }
 
 return (

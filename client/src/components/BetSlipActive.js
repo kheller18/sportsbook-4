@@ -29,14 +29,14 @@ const BetSlipActive = (props) => {
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalOver' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Over &nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Over&nbsp;
                 {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
               </div>
             : null
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalUnder' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Under &nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Under&nbsp;
                 {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
               </div>
             : null

@@ -8,11 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserDashboard.css'
 
-const UserDashboard = (user1) => {
+const UserDashboard = (props) => {
   const [bets, setBets] = useState([]);//
   // const [user, setUser] = useState('');
   // console.log(user1)
-  const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: user1.bets});
+  const [user, setUser] = useState(props.user);
+  // const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: user1.bets});
   const [account_valu, setAccountValue] = useState('');
   const [dropdown, showDropdown] = useState(false);
   const [account, setAccount] = useState({
@@ -42,7 +43,7 @@ const UserDashboard = (user1) => {
         }
       }
   }
-
+  console.log(user)
   // BREAK down bet type and percentage
   // useEffect(() => {
   //   // function to get user data for indiviaulized dashboard
@@ -91,37 +92,32 @@ const UserDashboard = (user1) => {
     //   return acc;
 
     // }, {});
-    const groups = userData.account_value_history.reduce((acc, item) => {
-      // console.log(acc)
-      // console.log(item)
-      // create a composed key: 'year-week'
-      // const yearWeek = `${moment(item.date).year()}-${moment(item.date).week()}`;
-      const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()}-${moment(item.date).day()}`;
+    console.log(user)
+    if (user.account_value_history.length > 0) {
+      const groups = user.account_value_history.reduce((acc, item) => {
+        const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()+1}-${moment(item.date).day()+1}`;
 
-      // add this key as a property to the result object
-      if (!acc[yearWeek]) {
-        acc[yearWeek] = [];
-      }
+        // add this key as a property to the result object
+        if (!acc[yearWeek]) {
+          acc[yearWeek] = 0;
+        }
 
-      // push the current date that belongs to the year-week calculated befor
-      // acc[yearWeek][0]
-      // console.log(acc[yearWeek]);
+        acc[yearWeek] = acc[yearWeek] + parseFloat(item.outcome);
+        return acc;
 
+      }, {});
+      console.log(groups)
 
-      return acc;
+    }
 
-    }, {});
-
-    console.log(groups)
     // setUser(userData.firstName);
     // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history});
     // setAccountValue(userData.account_value)
     API.getBets(userId).then(res => {
       // console.log(res.data)
-      setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history, bets: res.data});
+      // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history, bets: res.data});
       // setBets(res.data)
-    })
-      .catch((err) => console.log(err))
+    }).catch((err) => console.log(err))
     // const userData = async () => {
     //   const userData = JSON.parse(localStorage.getItem('user'));
     //   setUser(userData.firstName);
@@ -143,7 +139,9 @@ const UserDashboard = (user1) => {
   return (
     <div className='dashboard-container'>
       <div className='dashboard-header'>
-        <div className='dashboard-title'>Welcome, {user.name} {user.account_value}!</div>
+        {/* <div className='dashboard-title'>Welcome, {user.first_name} {user.account_value.current} {user.account_value.pending}!</div> */}
+        <div className='dashboard-title'>Welcome, {props.user.first_name} {props.user.account_value.current} {props.user.account_value.pending}!</div>
+
         <div className='dashboard-right'>
           <Button>
             <FontAwesomeIcon icon={faBars} />

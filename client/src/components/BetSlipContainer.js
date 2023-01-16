@@ -791,8 +791,15 @@ const BetSlipContainer = (props) => {
 
       if (send) {
         console.log('slipSend')
+        // if (slipSend.length > 1) {
+        //   return await Promise.all(slipSend.map(async slip => await API.submitBetSlip(slip)))
+        // } else {
+        //   return await Promise.all(slipSend.map(async slip => await API.submitBetSlip(slip)))
+        // }
+        // return await Promise.all(slipSend.map(async slip => await API.submitBetSlip(slip)))
+        return await API.submitBetSlip(slipSend)
+
         // setError(false)
-        return Promise.all(slipSend.map(slip => API.submitBetSlip(slip)))
       } else {
         console.log('no slipSend')
         // setSlips(slips);
@@ -804,15 +811,18 @@ const BetSlipContainer = (props) => {
 
     slipData().then((data) => {
       console.log(data)
-      if (data !== undefined) {
+      if (data.status === 200) {
+        // if (data !== undefined) {
         props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
+        // props.setUser(data[data.length - 1].data.user)
+        props.setUser(data.data.user)
         setSubmittedSlips(slips)
         setTimeout(() => {
           setSlips([])
           setSubmittedSlips([])
           setSlipTotalMoney({wager: 0.00, payout: 0.00});
           setError(false)
-        }, 10000);
+        }, 5000);
       } else {
         console.log(slips)
         props.setEx('1')

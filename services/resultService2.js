@@ -521,32 +521,55 @@ mongoose.connect(
       return update_users;
     }
 
+    // const updateAccounts = async (slips) => {
+    //   const promises = await slips.map(async (slip) => {
+    //     const updateAccount = await User.findOneAndUpdate(
+    //       { "user_id": slip.userID },
+    //       {
+    //         $push: { betting_outcome_history: { date: Date.now(), outcome: slip.payout.final } },
+    //         // $sum: { accountValue: [parseFloat(slip.payout.final), "$accountValue"] }
+    //       },
+    //       { new: true }
+    //     )
+    //     // console.log(account);
+    //   })
+    //   await Promise.all(promises);
+    // }
     const updateAccounts = async (slips) => {
       const promises = await slips.map(async (slip) => {
-        const updateAccount = await User.findOneAndUpdate(
+        const updateAccount = await User.updateOne(
           { "user_id": slip.userID },
           {
-            $push: { account_value_history: { date: Date.now(), outcome: slip.payout.final } },
+            $push: { betting_outcome_history: { date: Date.now(), outcome: slip.payout.final } },
             // $sum: { accountValue: [parseFloat(slip.payout.final), "$accountValue"] }
           },
           { new: true }
         )
         // console.log(account);
       })
-      await Promise.all(promises)
+      await Promise.all(promises);
     }
 
-    await new Promise(r => setTimeout(r, 4000));
-    let resultsObj2 = {}
-    await Promise.all([getEPLResults(), getLigueResults(), getBundesligaResults(), getLaLigaResults()])
-    .then((data) => {
+
+    await new Promise(r => setTimeout(r, 10000));
+    let resultsObj2 = {};
+    await Promise.all([getEPLResults(), getLigueResults(), getBundesligaResults(), getLaLigaResults()]).then((data) => {
       resultsObj2 = {
-          'EPL': data[0].data,
-          'Ligue 1 - France': data[1].data,
-          'Bundesliga - Germany': data[2].data,
-          'La Liga - Spain': data[3].data,
+        'EPL': data[0].data,
+        'Ligue 1 - France': data[1].data,
+        'Bundesliga - Germany': data[2].data,
+        'La Liga - Spain': data[3].data,
       }
     })
+
+    await new Promise(r => setTimeout(r, 1500));
+    let resultsObj3 = {};
+    await Promise.all([getNCAABasketballResults()]).then((data) => {
+      resultsObj3 = {
+        'NCAAB': data[0].data
+      }
+    })
+
 
     await new Promise(r => setTimeout(r, 1500));
     await Promise.all([getNBAResults(), getNFLResults(), getNHLResults(), getSerieResults()])
@@ -559,7 +582,8 @@ mongoose.connect(
             'EPL': resultsObj2['EPL'],
             'Ligue 1 - France': resultsObj2['Ligue 1 - France'],
             'Bundesliga - Germany': resultsObj2['Bundesliga - Germany'],
-            'La Liga - Spain': resultsObj2['La Liga - Spain']
+            'La Liga - Spain': resultsObj2['La Liga - Spain'],
+            'NCAAB': resultsObj3['NCAAB']
         }
       })
 
@@ -582,5 +606,5 @@ mongoose.connect(
     }
   }
 
-  updateResults();
+  // updateResults();
 })

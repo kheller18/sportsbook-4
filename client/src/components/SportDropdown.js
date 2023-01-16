@@ -6,7 +6,7 @@ import '../styles/SportDropdown.css';
 const SportDropdown = (props) => {
   const [showDropdown, setShowDropdown] = useState(true);
   const sport = props.sport;
-  console.log(props)
+  // console.log(props)
 
   const handleSportClick = () => {
     showDropdown ? setShowDropdown(false) : setShowDropdown(true);

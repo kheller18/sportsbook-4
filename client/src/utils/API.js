@@ -16,17 +16,37 @@ export default {
   },
 
   // submits a bet
+  // submitBetSlip: async (betInfo) => {
+  //   // const mongoose = require('mongoose')
+  //   console.log(betInfo)
+  //   await Object.keys(betInfo.slips.keys).map((key) => {
+  //     betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
+  //     return betInfo;
+  //   })
+  //   return axios.post('/api/bet', {
+  //     betInfo,
+  //   });
+  // },
+
   submitBetSlip: async (betInfo) => {
     // const mongoose = require('mongoose')
-    console.log(betInfo.slips.keys)
-    await Object.keys(betInfo.slips.keys).map((key) => {
-      betInfo.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
+    // console.log(betInfo)
+    let sum = 0;
+    await betInfo.map(async (bet) => {
+      await Object.keys(bet.slips.keys).map((key) => {
+        bet.slips.keys[`${ key }`]['id'] = mongoose.Types.ObjectId()
+        return bet;
+      })
+      sum += parseFloat(bet.payout.toLose)
       return betInfo;
     })
+    console.log('hi')
     return axios.post('/api/bet', {
       betInfo,
+      sum
     });
   },
+
 
   // gets bets per user
   // getBets: (userId) => {
