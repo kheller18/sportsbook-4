@@ -17,27 +17,27 @@ const BetSlipActive = (props) => {
           </div>
           <div className='slip-body-main'>
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'Moneyline' ?
-              <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].team} ML ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})</div>
+              <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].team}&nbsp;<b>ML ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})</b></div>
             : null
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'Spread' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
                 {/* {slip.slips.keys[`${ slip.betUID[0] }`].team}&nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].line[0] === '-' ? slip.slips.keys[`${ slip.betUID[0] }`].line : `+${slip.slips.keys[`${ slip.betUID[0] }`].line}`} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num}) */}
-                {slip.slips.keys[`${ slip.betUID[0] }`].team}&nbsp;{slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
+                {slip.slips.keys[`${ slip.betUID[0] }`].team}&nbsp;<b>{slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})</b>
               </div>
               : null
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalOver' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Over&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home}&nbsp;<b>Over&nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})</b>
               </div>
             : null
             }
             {slip.slips.keys[`${ slip.betUID[0] }`].betType === 'TotalUnder' ?
               <div className='slip-bet-info'><i className={slip.slips.keys[`${ slip.betUID[0] }`].icon}></i>&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home} Under&nbsp;
-                {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})
+                {slip.slips.keys[`${ slip.betUID[0] }`].teams.away} / {slip.slips.keys[`${ slip.betUID[0] }`].teams.home}&nbsp;<b>Under&nbsp;
+                {slip.slips.keys[`${ slip.betUID[0] }`].line} ({slip.slips.keys[`${ slip.betUID[0] }`].odds.num})</b>
               </div>
             : null
             }
@@ -74,29 +74,29 @@ const BetSlipActive = (props) => {
                     return (
                       <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;
                         {/* {values.team} ML ({values.odds.num})&nbsp;&nbsp; */}
-                        {values.team} ML ({values.odds.num})
+                        {values.team}&nbsp;<b>ML ({values.odds.num})</b>
                       </div>
                     )
 
                   case 'Spread':
                     return (
                       <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;
-                        {values.team}&nbsp;{values.line} ({values.odds.num})
+                        {values.team}&nbsp;<b>{values.line} ({values.odds.num})</b>
                         {/* {values.team}&nbsp; {values.line} ({values.odds.num}) */}
                       </div>
                     )
 
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
-                        {values.line} ({values.odds.num})
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home}&nbsp;<b>Over&nbsp;
+                        {values.line} ({values.odds.num})</b>
                       </div>
                     )
 
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
-                        {values.line} ({values.odds.num})
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home}&nbsp;<b>Under&nbsp;
+                        {values.line} ({values.odds.num})</b>
                       </div>
                     )
 
@@ -139,28 +139,28 @@ const BetSlipActive = (props) => {
                   case 'Moneyline':
                     return (
                       <div key={i} className='slip-bet-info'><i className={values.icon}></i>&nbsp;
-                        {values.team} ML ({values.odds.num})&nbsp;&nbsp;
+                        {values.team}&nbsp;<b>ML ({values.odds.num})</b>&nbsp;&nbsp;
                       </div>
                     )
 
                   case 'Spread':
                     return (
                       <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;
-                        {values.team}&nbsp; {values.line} ({values.odds.num})
+                        {values.team}&nbsp;<b>{values.line} ({values.odds.num})</b>
                       </div>
                     )
 
                   case 'TotalOver':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Over&nbsp;
-                        {values.line} ({values.odds.num})
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home}&nbsp;<b>Over&nbsp;
+                        {values.line} ({values.odds.num})</b>
                       </div>
                     )
 
                   case 'TotalUnder':
                     return (
-                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home} Under&nbsp;
-                        {values.line} ({values.odds.num})
+                      <div className='slip-bet-info'><i className={values.icon}></i>&nbsp;{values.teams.away} / {values.teams.home}&nbsp;<b>Under&nbsp;
+                        {values.line} ({values.odds.num})</b>
                       </div>
                     )
 

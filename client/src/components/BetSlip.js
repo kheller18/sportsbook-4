@@ -80,7 +80,8 @@ const BetSlip = (props) => {
               <label>ODDS</label>
             </div>
             <div className='slip-win-money'>
-              <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div>
+              {/* <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div> */}
+              <div className='slip-to-win'>{!isNaN(slip.payout.toWin) ? `$${slip.payout.toWin}` : `$0`}</div>
               <label>PAYOUT</label>
             </div>
           </div>
@@ -205,7 +206,8 @@ const BetSlip = (props) => {
               <label>ODDS</label>
             </div>
             <div className='slip-win-money'>
-              <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div>
+              {/* <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div> */}
+              <div className='slip-to-win'>{!isNaN(slip.payout.toWin) ? `$${slip.payout.toWin}` : `$0`}</div>
               <label>PAYOUT</label>
             </div>
           </div>
@@ -311,7 +313,8 @@ const BetSlip = (props) => {
               <label className='slip-money-label'>ODDS</label>
             </div>
             <div className='slip-win-money'>
-              <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div>
+              {/* <div className='slip-to-win'>{`$${slip.payout.toWin}`}</div> */}
+              <div className='slip-to-win'>{!isNaN(slip.payout.toWin) ? `$${slip.payout.toWin}` : `$0`}</div>
               <label className='slip-money-label'>PAYOUT</label>
             </div>
           </div>

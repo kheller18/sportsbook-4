@@ -123,7 +123,6 @@ router.post('/api/bet', async (req, res) => {
           },
           { new: true }, (err, user) => {
             return res.json({slip: slips, user: user});
-            console.log(doc);
           }
         )
       })
@@ -145,7 +144,6 @@ router.post('/api/bet', async (req, res) => {
           },
           { new: true }, (err, user) => {
             return res.json({slip: slips, user: user});
-            console.log(doc);
           }
         )
       })

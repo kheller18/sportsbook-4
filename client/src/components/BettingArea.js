@@ -12,9 +12,9 @@ const BettingArea = (props) => {
   const [league, setLeague] = useState('NHL')
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
   const [ex, setEx] = useState('')
-  const [user, setUser] = useState(props.user);
+  const [user, setUser] = useState({user: props.user, bets: props.bets});
   const { socket } = useContext(GlobalContext);
-
+  console.log(props.bets)
   socket.on('package', (data) => {
     // console.log(data)
     socket.off('package')
@@ -60,14 +60,15 @@ const BettingArea = (props) => {
     // </div>
     <div className='complete-container'>
       <div className='complete-container-top'>
-        <UserDashboard user={user} bets={props.bets} />
+        {/* <UserDashboard user={user} bets={props.bets} /> */}
+        <UserDashboard user={user} />
       </div>
       <div className='betting-area-container'>
       {state.isLoading ? null :
         <div className='betting-container'>
           <Nav onClick={handleClick} activeLeague={state.league} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
           <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
-          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={props.bets} setUser={setUser} />
+          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={user.bets} setUser={setUser} />
         </div>
       }
       </div>

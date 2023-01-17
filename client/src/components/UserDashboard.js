@@ -11,6 +11,7 @@ import '../styles/UserDashboard.css'
 const UserDashboard = (props) => {
   const [bets, setBets] = useState([]);//
   // const [user, setUser] = useState('');
+  const [dashboard, setDashboard] = useState({active: 'graph', options: ['graph', 'finalBets', 'activeBets']});
   // console.log(user1)
   const [user, setUser] = useState(props.user);
   // const [user, setUser] = useState({name: '', account_value: '', account_value_history: [], bets: user1.bets});
@@ -44,25 +45,6 @@ const UserDashboard = (props) => {
       }
   }
   console.log(user)
-  // BREAK down bet type and percentage
-  // useEffect(() => {
-  //   // function to get user data for indiviaulized dashboard
-  //   const userData = async () => {
-  //     const userData = JSON.parse(localStorage.getItem('user'));
-  //     setUser(userData.firstName);
-  //     const userId = userData._id;
-  //     console.log(userId)
-  //     await API.getBets(userId)
-  //       .then(res => {
-  //         console.log(res.data)
-  //         setBets(res.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       })
-  //   }
-  //   userData()
-  // }, []);
 
   useEffect(() => {
     // function to get user data for indiviaulized dashboard
@@ -93,8 +75,8 @@ const UserDashboard = (props) => {
 
     // }, {});
     console.log(user)
-    if (user.account_value_history.length > 0) {
-      const groups = user.account_value_history.reduce((acc, item) => {
+    if (user.user.account_value_history.length > 0) {
+      const groups = user.user.account_value_history.reduce((acc, item) => {
         const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()+1}-${moment(item.date).day()+1}`;
 
         // add this key as a property to the result object
@@ -113,26 +95,11 @@ const UserDashboard = (props) => {
     // setUser(userData.firstName);
     // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history});
     // setAccountValue(userData.account_value)
-    API.getBets(userId).then(res => {
-      // console.log(res.data)
-      // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history, bets: res.data});
-      // setBets(res.data)
-    }).catch((err) => console.log(err))
-    // const userData = async () => {
-    //   const userData = JSON.parse(localStorage.getItem('user'));
-    //   setUser(userData.firstName);
-    //   const userId = userData._id;
-    //   console.log(userId)
-    //   await API.getBets(userId)
-    //     .then(res => {
-    //       console.log(res.data)
-    //       setBets(res.data);
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     })
-    // }
-    // userData();
+    // API.getBets(userId).then(res => {
+    //   // console.log(res.data)
+    //   // setUser({name: userData.firstName, account_value: userData.account_value, account_value_history: userData.account_value_history, bets: res.data});
+    //   // setBets(res.data)
+    // }).catch((err) => console.log(err))
   }, []);
 
 
@@ -140,8 +107,7 @@ const UserDashboard = (props) => {
     <div className='dashboard-container'>
       <div className='dashboard-header'>
         {/* <div className='dashboard-title'>Welcome, {user.first_name} {user.account_value.current} {user.account_value.pending}!</div> */}
-        <div className='dashboard-title'>Welcome, {props.user.first_name} {props.user.account_value.current} {props.user.account_value.pending}!</div>
-
+        <div className='dashboard-title'>Welcome, {props.user.user.first_name}! Account Balance: ${props.user.user.account_value.current} Pending: ${props.user.user.account_value.pending}</div>
         <div className='dashboard-right'>
           <Button>
             <FontAwesomeIcon icon={faBars} />

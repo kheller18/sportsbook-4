@@ -815,7 +815,13 @@ const BetSlipContainer = (props) => {
         // if (data !== undefined) {
         props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
         // props.setUser(data[data.length - 1].data.user)
-        props.setUser(data.data.user)
+        let tempSlips = props.slips;
+        const join = data.data.slip.forEach((slip) => {
+          tempSlips.push(slip)
+        })
+        console.log(join)
+        props.setUser({user: data.data.user, bets: tempSlips})
+        // props.setUser(data.data.user)
         setSubmittedSlips(slips)
         setTimeout(() => {
           setSlips([])
@@ -1767,12 +1773,13 @@ const BetSlipContainer = (props) => {
   // useEffect(() => {
 
   // }, [setError])
-  console.log('here')
-  console.log(slipState)
-  console.log(submittedSlips.length)
-  console.log(isLoading)
-  console.log(slips.length)
-  console.log(slips)
+  // console.log('here')
+  // console.log(slipState)
+  // console.log(submittedSlips.length)
+  // console.log(isLoading)
+  // console.log(slips.length)
+  // console.log(slips)
+  console.log(props.slips)
   return (
     <div className='slip-container'>
       <div className='slip-header'>
@@ -1829,12 +1836,12 @@ const BetSlipContainer = (props) => {
           <div className='slip-summary-section'>
             <div className='slip-total-money'>
               <div className='slip-total-money-wager'>
-                ${slipTotalMoney.wager}
+              ${!isNaN(slipTotalMoney.wager) ? slipTotalMoney.wager : '0'}
                 <br />
                 <label><b>Total Wager</b></label>
               </div>
               <div className='slip-total-money-payout'>
-                ${slipTotalMoney.payout}
+                ${!isNaN(slipTotalMoney.payout) ? slipTotalMoney.payout : '0'}
                 <br />
                 <label><b>Total Payout</b></label>
               </div>
@@ -1889,7 +1896,7 @@ const BetSlipContainer = (props) => {
 
       {
         slipState === 'active' ?
-          <div className='slip-container-body'>
+          <div className='slip-container-body-active'>
           {props.slips.map((slip, i) => {
             if (slip.status === 'Active') {
               return (

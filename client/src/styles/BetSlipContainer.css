@@ -23,6 +23,11 @@
   overflow-y: auto;
 }
 
+.slip-container-body-active {
+  max-height: 665px;
+  overflow-y: auto;
+}
+
 .slip-tabs {
   display: flex;
   flex-direction: row;
