@@ -537,7 +537,7 @@ mongoose.connect(
     // }
     const updateAccounts = async (slips) => {
       const promises = await slips.map(async (slip) => {
-        const updateAccount = await User.updateOne(
+        const updateAccount = await User.findOneAndUpdate(
           { "user_id": slip.userID },
           {
             $push: { betting_outcome_history: { date: Date.now(), outcome: slip.payout.final } },
@@ -606,5 +606,5 @@ mongoose.connect(
     }
   }
 
-  // updateResults();
+  updateResults();
 })

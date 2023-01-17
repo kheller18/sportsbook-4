@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/BetSlip.css';
+import '../styles/BetSlipActive.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';

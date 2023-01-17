@@ -102,29 +102,81 @@ const mongoose = require('mongoose');
 //       // res.json(dbBetSlip);
 // });
 
+// this is the one
+// router.post('/api/bet', async (req, res) => {
+//   // console.log(req.body.betInfo)
+//   console.log(req.body.sum)
+//   console.log('after after')
+//   if (req.body.betInfo.length > 1) {
+//     let slips = {}
+//     BetSlip.insertMany(req.body.betInfo).then((data) => {
+//       console.log(data)
+//       slips = data;
+//       User.findOne({'user_id': data[0].userID}).then((data2) => {
+//         console.log(data2)
+//         User.findOneAndUpdate(
+//           {'user_id': data2.user_id},
+//           {
+//             $set: {
+//               'account_value.pending': data2.account_value.pending + parseFloat(req.body.sum),
+//               'account_value.current': data2.account_value.current - parseFloat(req.body.sum)
+//             }
+//           },
+//           { new: true }, (err, user) => {
+//             return res.json({slip: slips, user: user});
+//           }
+//         )
+//       })
+//     })
+//   } else {
+//     let slips = {}
+//     BetSlip.create(req.body.betInfo).then((slip) => {
+//       console.log(slip)
+//       slips = slip;
+//       User.findOne({'user_id': slip[0].userID}).then((initial_user) => {
+//         console.log(initial_user)
+//         User.findOneAndUpdate(
+//           {'user_id': initial_user.user_id},
+//           {
+//             $set: {
+//               'account_value.pending': initial_user.account_value.pending + parseFloat(req.body.sum),
+//               'account_value.current': initial_user.account_value.current - parseFloat(req.body.sum)
+//             }
+//           },
+//           { new: true }, (err, user) => {
+//             return res.json({slip: slips, user: user});
+//           }
+//         )
+//       })
+//     })
+//   }
+// });
+
 router.post('/api/bet', async (req, res) => {
   // console.log(req.body.betInfo)
   console.log(req.body.sum)
   console.log('after after')
   if (req.body.betInfo.length > 1) {
     let slips = {}
-    BetSlip.insertMany(req.body.betInfo).then((data) => {
-      console.log(data)
-      slips = data;
-      User.findOne({'user_id': data[0].userID}).then((data2) => {
-        console.log(data2)
-        User.findOneAndUpdate(
-          {'user_id': data2.user_id},
+    BetSlip.insertMany(req.body.betInfo).then((slip) => {
+      console.log(slip)
+      slips = slip;
+      User.findOne({'user_id': slip[0].userID}).then((initial_user) => {
+        console.log(initial_user)
+        User.updateOne(
+          {'user_id': initial_user.user_id},
           {
             $set: {
-              'account_value.pending': data2.account_value.pending + parseFloat(req.body.sum),
-              'account_value.current': data2.account_value.current - parseFloat(req.body.sum)
+              'account_value.pending': initial_user.account_value.pending + parseFloat(req.body.sum),
+              'account_value.current': initial_user.account_value.current - parseFloat(req.body.sum)
             }
           },
-          { new: true }, (err, user) => {
-            return res.json({slip: slips, user: user});
-          }
-        )
+          { new: true }
+        ).then((hi) => {
+          User.findOne({'user_id': initial_user.user_id}).then((finalUser) => {
+            return res.json({slip: slips, user: finalUser});
+          })
+        })
       })
     })
   } else {
@@ -134,7 +186,7 @@ router.post('/api/bet', async (req, res) => {
       slips = slip;
       User.findOne({'user_id': slip[0].userID}).then((initial_user) => {
         console.log(initial_user)
-        User.findOneAndUpdate(
+        User.updateOne(
           {'user_id': initial_user.user_id},
           {
             $set: {
@@ -142,10 +194,12 @@ router.post('/api/bet', async (req, res) => {
               'account_value.current': initial_user.account_value.current - parseFloat(req.body.sum)
             }
           },
-          { new: true }, (err, user) => {
-            return res.json({slip: slips, user: user});
-          }
-        )
+          { new: true }
+        ).then((hi) => {
+          User.findOne({'user_id': initial_user.user_id}).then((finalUser) => {
+            return res.json({slip: slips, user: finalUser});
+          })
+        })
       })
     })
   }
@@ -248,17 +302,25 @@ router.post('/api/bet/bulk', (req, res) => {
 //     });
 // });
 
+router.get('/api/user', (req, res) => {
+  User.findOne(
+    { 'user_id': req.query.user_id }
+  ).then((user) => {
+    res.json(user)
+  }).catch((err) => {
+    res.status(400).json(err);
+  })
+})
+
 router.get('/api/bet', (req, res) => {
   // console.log('req.body')
   // console.log(req.query.userId)
   BetSlip.find({
     'userID': req.query.userId
-  })
-    .then(dbBetSlip => {
+  }).then(dbBetSlip => {
       // console.log(dbBetSlip);
       res.json(dbBetSlip);
-    })
-    .catch(err => {
+    }).catch(err => {
       res.status(400).json(err);
     });
 });

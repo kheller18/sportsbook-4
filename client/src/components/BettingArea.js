@@ -4,6 +4,7 @@ import Nav from './Nav';
 import GlobalContext from '../utils/GlobalContext';
 import LinesContainer from './LinesContainer';
 import UserDashboard from './UserDashboard';
+import API from '../utils/API';
 import '../styles/BettingArea.css';
 
 const BettingArea = (props) => {
@@ -42,6 +43,19 @@ const BettingArea = (props) => {
     }))
   }
 
+  // const getUser = () => {
+  //   API.getUser(user.user.user_id).then((newUser) => {
+  //     console.log(newUser);
+  //     setUser((oldUser) => ({
+  //       ...oldUser,
+  //       'user.account_value.current': newUser.data.account_value.current,
+  //       'user.account_value.pending': newUser.data.account_value.pending,
+  //     }))
+  //   }).catch(err => {console.log(err)})
+  //   setTimeout(getUser, 10000)
+  // }
+
+  // getUser()
   useEffect(() => {
     // get socket data here one time on login and then never run again
     socket.emit('package')

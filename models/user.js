@@ -80,7 +80,8 @@ const userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose);
 
-userSchema.post('updateOne', (user) => {
+userSchema.post('findOneAndUpdate', (user) => {
+  // userSchema.post('updateOne', (user) => {
   // user.account_value.current += parseFloat(user.account_value_history[user.account_value_history.length-1].outcome);
   // user.account_value.pending -= Math.abs(parseFloat(user.account_value_history[user.account_value_history.length-1].outcome));
   console.log(user)

@@ -118,6 +118,18 @@ export default {
   // function to get the data of the current user
   getCurrentUser: () => JSON.parse(localStorage.getItem('user')),
 
+  getUser: async (user_id) => {
+    // console.log(userId)
+    // return axios.get('/api/bet', userId);
+    return await axios({
+      method: 'GET',
+      url: '/api/user',
+      params: {
+        user_id
+      }
+    })
+  },
+
   // logs user out
   logout: () => {
     localStorage.removeItem('user');
