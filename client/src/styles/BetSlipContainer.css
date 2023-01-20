@@ -91,6 +91,7 @@
 
 .slip-button {
   width: 110px;
+  border-radius: 5px;
 }
 
 .slip-button:hover {
