@@ -257,7 +257,7 @@ const gamesSchema = new Schema(
 );
 
 gamesSchema.post('findOneAndUpdate', async (game) => {
-  console.log(game)
+  // console.log(game)
   if (game !== null) {
     const promise = await Object.keys(game.game.keys).map(async (type, i) => {
       const currDate = parseFloat(Date.now())

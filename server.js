@@ -73,10 +73,12 @@ mongoose.connect(
     }
   })
 
-  const fetchData = async (socket) => {
+  const fetchData = async (socket, user_id) => {
     let sportsPackage = '';
     let leagues = {};
+    let sendUser = {}
     let gamesPackage = {leagues};
+    // console.log(socket.handshake.headers['x-current-user'])
 
     // finds active sports in season and their attributes for nav bar
     const fetchActiveSports = async () => {
@@ -113,20 +115,66 @@ mongoose.connect(
       await Promise.all(promises);
     }
 
+    const fetchUser = async (user_id) => {
+      console.log(user_id)
+      sendUser = {};
+      const promise = await User.findOne({ 'user_id': user_id }).then((user) => {
+        sendUser = user;
+        // return user;
+      })
+      // await Promise.all(promise)
+        // .catch((err) => {
+        //   console.log(err);
+        // })
+        // return sendUser;
+    }
+
+
     await fetchActiveSports();
     await fetchActiveGames();
+    // console.log(socket.handshake.headers['x-current-user'])
     const returnData = {navData: sportsPackage, gameData: gamesPackage}
 
     // function to emit site data to users every minute using sockets
     const scheduleTask = cron.schedule('* * * * *', async () => {
+      console.log('hello')
       await fetchActiveSports();
       await fetchActiveGames();
-      console.log('package after');
-      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage});
+      await fetchUser(user_id)
+      // console.log('package after');
+      // console.log(socket.handshake.headers['x-current-user'])
+      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage, userData: sendUser});
     });
 
     return returnData;
   };
+
+  // const fetchUser = async (user_id, socket) => {
+  //   console.log(user_id)
+  //   let sendUser = {}
+  //   const fetchActiveUser = async () => {
+  //     const promise = await User.findOne({ 'user_id': user_id }).then((user) => {
+  //       sendUser = user;
+  //     })
+  //     return user;
+  //     // .catch((err) => {
+  //     //   console.log(err);
+  //     // })
+  //     // return sendUser;
+  //   }
+  //   // await fetchActiveUser();
+
+  //   const scheduleTask = cron.schedule('*/1.5 * * * *', async () => {
+  //     await fetchActiveUser();
+  //     console.log(sendUser)
+  //     // console.log('package after');
+  //     // console.log(socket.handshake.headers['x-current-user'])
+  //     socket.emit('user', sendUser);
+  //     // socket.emit('user', user);
+  //   });
+
+  //   // return sendUser;
+  // }
 
   let loggedOnUsers = [];
   let sendData;
@@ -135,15 +183,35 @@ mongoose.connect(
   io.on('connection', async (socket) => {
     if (socket.handshake.headers['x-current-user']) {
       loggedOnUsers[socket.handshake.headers['x-current-user']] = socket.id;
-      sendData = await fetchData(socket);
+      // logsocket.handshake.headers['x-current-user']] = socket.id;
+      // sendData = await fetchData(socket);
     }
+
+    // socket.on('connect', () => {
+    //   console.log('hello')
+    // })
 
     console.log('connection granted' , {
       socket: socket.id,
       userId: socket.handshake.headers['x-current-user']
     });
 
-    socket.on('package', () => {
+    // socket.on('package', (data) => {
+    //   // console.log(data)
+    //   socket.emit('package', sendData)
+    // })
+    // socket.on('user', (data) => {
+    //   console.log('inside user')
+    //   fetchUser(data.user_id, socket)
+    // })
+
+    socket.on('package', async (data) => {
+      // console.log(data)
+      // const user = await fetchUser(data.user_id, socket)
+      // fetchUser(data.user_id, socket)
+      // sendData['user'] = user;
+      // console.log(socket)
+      sendData = await fetchData(socket, data.user_id);
       socket.emit('package', sendData)
     })
 

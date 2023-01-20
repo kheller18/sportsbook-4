@@ -44,7 +44,7 @@ const UserDashboard = (props) => {
         }
       }
   }
-  console.log(user)
+  // console.log(user)
 
   useEffect(() => {
     // function to get user data for indiviaulized dashboard
@@ -74,7 +74,7 @@ const UserDashboard = (props) => {
     //   return acc;
 
     // }, {});
-    console.log(user)
+    // console.log(user)
     if (user.user.account_value_history.length > 0) {
       const groups = user.user.account_value_history.reduce((acc, item) => {
         const yearWeek = `${moment(item.date).year()}-${moment(item.date).month()+1}-${moment(item.date).day()+1}`;

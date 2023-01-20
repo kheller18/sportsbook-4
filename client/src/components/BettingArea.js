@@ -15,9 +15,10 @@ const BettingArea = (props) => {
   const [ex, setEx] = useState('')
   const [user, setUser] = useState({user: props.user, bets: props.bets});
   const { socket } = useContext(GlobalContext);
-  console.log(props.bets)
+  // console.log(props.bets)
+  // console.log(socket)
   socket.on('package', (data) => {
-    // console.log(data)
+    console.log(data)
     socket.off('package')
     setState((prevState) => ({
       sport: prevState.sport,
@@ -27,6 +28,33 @@ const BettingArea = (props) => {
       navData: data.navData,
       siteData: data.gameData,
       isLoading: false
+    }))
+    if (data.userData !== undefined) {
+      console.log(user)
+      setUser((prevUser) => ({
+        bets: [
+        ...prevUser.bets,
+        ],
+        user: {
+          ...prevUser.user,
+          account_value: {
+            current: data.userData.account_value.current,
+            pending: data.userData.account_value.pending
+          }
+          // 'account_value.current': data.userData.account_value.current,
+          // user.account_value.pending: data.userData.account_value.pending
+        }
+      }))
+    }
+  })
+
+  socket.on('user', (data) => {
+    console.log(data)
+    socket.off('user')
+    setUser((prevUser) => ({
+      ...prevUser,
+      'user.account_value.current': data.userData.account_value.current,
+      'user.account_value.pending': data.account_value.pending
     }))
   })
 
@@ -58,9 +86,26 @@ const BettingArea = (props) => {
   // getUser()
   useEffect(() => {
     // get socket data here one time on login and then never run again
-    socket.emit('package')
+    // console.log(socket)
+    // socket.emit('package')
+    socket.emit('package', (user.user))
+    // socket.emit('user', (user.user))
+    // socket.on('package', (data) => {
+    //   console.log(data)
+    //   socket.off('package')
+    //   setState((prevState) => ({
+    //     sport: prevState.sport,
+    //     league: prevState.league,
+    //     type: prevState.type,
+    //     games: data.gameData.leagues[`${ prevState.league }`],
+    //     navData: data.navData,
+    //     siteData: data.gameData,
+    //     isLoading: false
+    //   }))
+    // })
+  }, [socket])
+// }, [socket])
 
-  }, [])
   console.log(user)
   return (
     // <div className='betting-area-container'>

@@ -606,5 +606,5 @@ mongoose.connect(
     }
   }
 
-  updateResults();
+  // updateResults();
 })

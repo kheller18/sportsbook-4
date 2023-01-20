@@ -159,10 +159,10 @@ router.post('/api/bet', async (req, res) => {
   if (req.body.betInfo.length > 1) {
     let slips = {}
     BetSlip.insertMany(req.body.betInfo).then((slip) => {
-      console.log(slip)
+      // console.log(slip)
       slips = slip;
       User.findOne({'user_id': slip[0].userID}).then((initial_user) => {
-        console.log(initial_user)
+        // console.log(initial_user)
         User.updateOne(
           {'user_id': initial_user.user_id},
           {
@@ -182,10 +182,10 @@ router.post('/api/bet', async (req, res) => {
   } else {
     let slips = {}
     BetSlip.create(req.body.betInfo).then((slip) => {
-      console.log(slip)
+      // console.log(slip)
       slips = slip;
       User.findOne({'user_id': slip[0].userID}).then((initial_user) => {
-        console.log(initial_user)
+        // console.log(initial_user)
         User.updateOne(
           {'user_id': initial_user.user_id},
           {
@@ -326,7 +326,7 @@ router.get('/api/bet', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   const Users = new User({
     username: req.body.email,
     first_name: req.body.first_name,
@@ -361,12 +361,13 @@ router.post('/login', (req, res) => {
       res.json({success: false, message: 'username or pass incorrect'})
     } else {
       const token = jwt.sign({username: user.username}, 'shhhh', {expiresIn: '1h'});
+      // localStorage.setItem('user', JSON.stringify(user)); // define what is passed back
       await BetSlip.find({
         'userID': user.user_id
       }).then(dbBetSlip => {
           // console.log(dbBetSlip);
           user['slips'] = dbBetSlip;
-          console.log(user.slips)
+          // console.log(user.slips)
           // `user.slips` = dbBetSlip;
           // console.log('inside user');
           // console.log(user);

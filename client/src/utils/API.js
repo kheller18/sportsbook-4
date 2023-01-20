@@ -81,7 +81,7 @@ export default {
 
   // post for logging in
   login: (user) => {
-    console.log(user)
+    // console.log(user)
     const username=user.email;
     const password=user.password
     return axios.post('/login', {
@@ -97,7 +97,7 @@ export default {
       // })
       .then((response) => {
         if (response.data.token) {
-          console.log(response)
+          // console.log(response)
           localStorage.setItem('user', JSON.stringify(response.data.user)); // define what is passed back
         }
         return response;
