@@ -107,7 +107,7 @@ const UserDashboard = (props) => {
         : ''
         }
         {dashboard.active === 'betting' ?
-          <DashboardBetting />
+          <DashboardBetting bets={props.user.bets} />
         : ''
         }
         {/* <Chart type='line' series={series} options={options} height='100%'/> */}

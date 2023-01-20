@@ -197,6 +197,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -213,6 +214,7 @@ mongoose.connect(
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -244,6 +246,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -260,6 +263,7 @@ mongoose.connect(
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -291,6 +295,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -308,6 +313,7 @@ mongoose.connect(
                       // [`slips.keys.${ betUID }.payout`]: `-${doc.slips.keys[`${betUID}`].toLose}`,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -339,6 +345,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -355,6 +362,7 @@ mongoose.connect(
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -386,6 +394,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -402,6 +411,7 @@ mongoose.connect(
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -433,6 +443,7 @@ mongoose.connect(
                     $set: {
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -449,6 +460,7 @@ mongoose.connect(
                       "outcome": false,
                       [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                       [`slips.keys.${ betUID }.status`]: "Completed",
+                      [`slips.keys.${ betUID }.game`]: results
                     },
                     $inc: { "quantity.completed": 1 }
                   },
@@ -481,6 +493,7 @@ mongoose.connect(
                       $set: {
                         [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": true},
                         [`slips.keys.${ betUID }.status`]: "Completed",
+                        [`slips.keys.${ betUID }.game`]: results
                       },
                       $inc: { "quantity.completed": 1 }
                     },
@@ -497,6 +510,7 @@ mongoose.connect(
                         "outcome": false,
                         [`slips.keys.${ betUID }.outcome`]: {"value": "" , "logic": false},
                         [`slips.keys.${ betUID }.status`]: "Completed",
+                        [`slips.keys.${ betUID }.game`]: results
                       },
                       $inc: { "quantity.completed": 1 }
                     },

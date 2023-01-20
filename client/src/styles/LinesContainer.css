@@ -106,9 +106,9 @@ button:hover {
   width: 100%;
   max-height: 35px;
   /* border: 2px solid darkblue; */
-  /* border-right: 2px solid;
-  border-left: 2px solid; */
-  border-left-color: darkblue;
+  /* /* border-right: 2px solid; */
+  /* border-bottom: 2px solid darkblue; */
+  /* border-left-color: darkblue; */
 }
 
 .betTypeBtn {

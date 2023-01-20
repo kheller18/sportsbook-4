@@ -10,13 +10,20 @@ import '../styles/BettingArea.css';
 const BettingArea = (props) => {
   const [clickData, setClickData] = useState("")
   const [removalData, setRemovalData] = useState({target: '', type: '', operation: '', emptyAll: false, retroactive: {targets: [], type: '', slipID: ''}})
-  const [league, setLeague] = useState('NHL')
+  const [league, setLeague] = useState('NHL');
   const [state, setState] = useState({sport: 'Football', league: 'NFL', type: 'games', games: [], navData: [], siteData: [], isLoading: true})
-  const [ex, setEx] = useState('')
-  const [user, setUser] = useState({user: props.user, bets: props.bets});
+  // const [ex, setEx] = useState('')
+  // const [user, setUser] = useState({user: props.user, bets: props.bets});
+  const [user, setUser] = useState(
+    {
+      user: props.user,
+      bets: {active: props.bets.filter(bet => bet.status === "Active"), completed: props.bets.filter(bet => bet.status === "Completed")}
+    }
+  );
   const { socket } = useContext(GlobalContext);
   // console.log(props.bets)
   // console.log(socket)
+  console.log(user.bets)
   socket.on('package', (data) => {
     console.log(data)
     socket.off('package')
@@ -32,9 +39,9 @@ const BettingArea = (props) => {
     if (data.userData !== undefined) {
       console.log(user)
       setUser((prevUser) => ({
-        bets: [
+        bets: {
         ...prevUser.bets,
-        ],
+        },
         user: {
           ...prevUser.user,
           account_value: {
@@ -48,15 +55,15 @@ const BettingArea = (props) => {
     }
   })
 
-  socket.on('user', (data) => {
-    console.log(data)
-    socket.off('user')
-    setUser((prevUser) => ({
-      ...prevUser,
-      'user.account_value.current': data.userData.account_value.current,
-      'user.account_value.pending': data.account_value.pending
-    }))
-  })
+  // socket.on('user', (data) => {
+  //   console.log(data)
+  //   socket.off('user')
+  //   setUser((prevUser) => ({
+  //     ...prevUser,
+  //     'user.account_value.current': data.userData.account_value.current,
+  //     'user.account_value.pending': data.account_value.pending
+  //   }))
+  // })
 
   const handleClick = (e, sport, league, type) => {
     e.preventDefault();
@@ -88,6 +95,7 @@ const BettingArea = (props) => {
     // get socket data here one time on login and then never run again
     // console.log(socket)
     // socket.emit('package')
+    // const activeBets = props.
     socket.emit('package', (user.user))
     // socket.emit('user', (user.user))
     // socket.on('package', (data) => {
@@ -127,7 +135,7 @@ const BettingArea = (props) => {
         <div className='betting-container'>
           <Nav onClick={handleClick} activeLeague={state.league} activeSport={state.sport} state={state.navData} passLeagueData={setLeague} />
           <LinesContainer state={state} removalData={removalData} passClickData={setClickData} />
-          <BetSlipContainer data={clickData} setEx={setEx} passRemovalData={setRemovalData} slips={user.bets} setUser={setUser} />
+          <BetSlipContainer data={clickData} passRemovalData={setRemovalData} slips={user.bets} setUser={setUser} />
         </div>
       }
       </div>

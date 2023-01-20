@@ -76,7 +76,8 @@ mongoose.connect(
   const fetchData = async (socket, user_id) => {
     let sportsPackage = '';
     let leagues = {};
-    let sendUser = {}
+    let sendUser = {};
+    let liveGames = [];
     let gamesPackage = {leagues};
     // console.log(socket.handshake.headers['x-current-user'])
 
@@ -93,7 +94,7 @@ mongoose.connect(
     }
 
     // finds games based on active sports
-    const fetchActiveGames = async () => {
+    const fetchUpcomingGames = async () => {
       leagues = {};
       gamesPackage = {leagues};
       const promises = sportsPackage.map(async (sport, index) => {
@@ -115,6 +116,13 @@ mongoose.connect(
       await Promise.all(promises);
     }
 
+    const fetchLiveGames = async () => {
+      liveGames = [];
+      const promise = await Games.find({"status": 'Live'}).then((games) => {
+        liveGames = games;
+      })
+    }
+
     const fetchUser = async (user_id) => {
       console.log(user_id)
       sendUser = {};
@@ -131,19 +139,21 @@ mongoose.connect(
 
 
     await fetchActiveSports();
-    await fetchActiveGames();
+    await fetchUpcomingGames();
+    await fetchLiveGames();
     // console.log(socket.handshake.headers['x-current-user'])
-    const returnData = {navData: sportsPackage, gameData: gamesPackage}
+    const returnData = {navData: sportsPackage, gameData: gamesPackage, liveGames: liveGames}
 
     // function to emit site data to users every minute using sockets
     const scheduleTask = cron.schedule('* * * * *', async () => {
       console.log('hello')
       await fetchActiveSports();
-      await fetchActiveGames();
+      await fetchUpcomingGames();
+      await fetchLiveGames();
       await fetchUser(user_id)
       // console.log('package after');
       // console.log(socket.handshake.headers['x-current-user'])
-      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage, userData: sendUser});
+      socket.emit('package', {navData: sportsPackage, gameData: gamesPackage, liveGames: liveGames, userData: sendUser});
     });
 
     return returnData;

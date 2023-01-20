@@ -6,7 +6,7 @@ const DashboardCharts = (props) => {
 
   return (
     <div className='dashboard-charts-container'>
-      hello betting board
+      hello charts board
     </div>
   );
 };

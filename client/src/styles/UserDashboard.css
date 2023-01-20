@@ -39,5 +39,6 @@
 .dashboard-body {
   height: 300px;
   background-color: var(--primary-light-body-color);
+  overflow-y: auto;
   /* border-radius: 5px; */
 }

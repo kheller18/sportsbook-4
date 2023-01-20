@@ -744,7 +744,6 @@ const BetSlipContainer = (props) => {
   };
 
   const handleSubmit = (event) => {
-    props.setEx('1')
     // event.preventDefault();
     // event.persist();
     const slipData = async () => {
@@ -815,12 +814,13 @@ const BetSlipContainer = (props) => {
         // if (data !== undefined) {
         props.passRemovalData({target: '', type: '', emptyAll: true, retroactive: {targets: [], type: '', slipID: ''}})
         // props.setUser(data[data.length - 1].data.user)
-        let tempSlips = props.slips;
+        let tempSlips = props.slips.active;
         const join = data.data.slip.forEach((slip) => {
           tempSlips.push(slip)
         })
         console.log(join)
-        props.setUser({user: data.data.user, bets: tempSlips})
+        // props.setUser({user: data.data.user, bets: tempSlips})
+        props.setUser({user: data.data.user, bets: {active: tempSlips, completed: props.slips.completed}})
         // props.setUser(data.data.user)
         setSubmittedSlips(slips)
         setTimeout(() => {
@@ -831,7 +831,6 @@ const BetSlipContainer = (props) => {
         }, 5000);
       } else {
         console.log(slips)
-        props.setEx('1')
         setSlips(slips);
         setError(true)
         console.log('did not send')
@@ -1800,7 +1799,7 @@ const BetSlipContainer = (props) => {
           type='button'
           className={slipState === 'active' ? 'slip-tab slip-tab-focus' : 'slip-tab slip-tab-unfocus'}
         >
-        ACTIVE
+        ACTIVE ({props.slips.active.length})
         </Button>
       </div>
 
@@ -1897,7 +1896,7 @@ const BetSlipContainer = (props) => {
       {
         slipState === 'active' ?
           <div className='slip-container-body-active'>
-          {props.slips.map((slip, i) => {
+          {props.slips.active.map((slip, i) => {
             if (slip.status === 'Active') {
               return (
                 // <BetSlip key={i} data={slip} id={i} slips={slips} addBet='true' onAddRetroactive={handleAddRetroactive} passSetLoading={setIsLoading} passSetSlips={setSlips} passLine={handleLineAdjustment} passTeaserLine={handleTeaserAdjustment} onRemoveMulti={handleDeleteMulti} onRemove={handleDelete} onSubmit={handleSubmit} onChange={handleChange} toWin={toWin} />
