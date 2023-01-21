@@ -10,6 +10,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import '../styles/UserDashboard.css';
 
 const UserDashboard = (props) => {
+  console.log(props)
   const [bets, setBets] = useState([]);//
   // const [user, setUser] = useState('');
   const [dashboard, setDashboard] = useState({active: 'graph', options: ['graph', 'betting']});
@@ -107,7 +108,7 @@ const UserDashboard = (props) => {
         : ''
         }
         {dashboard.active === 'betting' ?
-          <DashboardBetting bets={props.user.bets} />
+          <DashboardBetting bets={props.user.bets} games={props.scores} />
         : ''
         }
         {/* <Chart type='line' series={series} options={options} height='100%'/> */}

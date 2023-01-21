@@ -13,8 +13,8 @@
 
 .members-section-top {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  /* flex-direction: row; */
+  /* justify-content: space-evenly; */
   /* border: 4px darkblue solid; */
   /* width: 100%; */
   /* padding: 20px; */
@@ -37,6 +37,6 @@
 
 .members-section-mid {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* flex-direction: column; */
+  /* justify-content: center; */
 }

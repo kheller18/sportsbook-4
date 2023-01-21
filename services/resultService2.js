@@ -620,5 +620,5 @@ mongoose.connect(
     }
   }
 
-  // updateResults();
+  updateResults();
 })

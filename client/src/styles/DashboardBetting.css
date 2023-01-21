@@ -1,3 +1,5 @@
 .dashboard-betting-body {
   overflow-y: auto;
+  /* display: flex; */
+  /* flex-direction: row; */
 }

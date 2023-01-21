@@ -34,6 +34,7 @@ const BettingArea = (props) => {
       games: data.gameData.leagues[`${ prevState.league }`],
       navData: data.navData,
       siteData: data.gameData,
+      scores: data.liveGames,
       isLoading: false
     }))
     if (data.userData !== undefined) {
@@ -128,7 +129,7 @@ const BettingArea = (props) => {
     <div className='complete-container'>
       <div className='complete-container-top'>
         {/* <UserDashboard user={user} bets={props.bets} /> */}
-        <UserDashboard user={user} />
+        <UserDashboard user={user} games={state.scores} />
       </div>
       <div className='betting-area-container'>
       {state.isLoading ? null :

@@ -819,9 +819,7 @@ const BetSlipContainer = (props) => {
           tempSlips.push(slip)
         })
         console.log(join)
-        // props.setUser({user: data.data.user, bets: tempSlips})
         props.setUser({user: data.data.user, bets: {active: tempSlips, completed: props.slips.completed}})
-        // props.setUser(data.data.user)
         setSubmittedSlips(slips)
         setTimeout(() => {
           setSlips([])
