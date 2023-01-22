@@ -1,0 +1,20 @@
+.scores-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.scores-status {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.scores-team {
+  padding-right: 10px;
+}
+
+.scores-status {
+  padding-left: 10px;
+  border-left: 1px solid black;
+}

@@ -27,7 +27,7 @@ betSlipSchema.post('findOneAndUpdate', (slip) => {
   const totalBets = slip.quantity.total;
   // console.log(`${ completed }/${ totalBets }`)
 
-  if (totalBets === completed) {
+  if (totalBets === completed || slip.outcome === false) {
     slip.status = "Completed"
     if (slip.outcome === true) {
       slip.payout.final = slip.payout.toWin;

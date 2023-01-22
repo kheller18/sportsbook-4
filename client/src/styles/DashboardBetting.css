@@ -3,3 +3,9 @@
   /* display: flex; */
   /* flex-direction: row; */
 }
+
+.dashboard-betting-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
