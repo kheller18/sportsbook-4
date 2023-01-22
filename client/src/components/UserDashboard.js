@@ -89,7 +89,7 @@ const UserDashboard = (props) => {
 //     </div>
 //   );
 // };
-
+  console.log(props)
   return (
     <div className='dashboard-container'>
       <div className='dashboard-header'>
@@ -108,7 +108,7 @@ const UserDashboard = (props) => {
         : ''
         }
         {dashboard.active === 'betting' ?
-          <DashboardBetting bets={props.user.bets} games={props.scores} />
+          <DashboardBetting bets={props.user.bets} games={props.games} />
         : ''
         }
         {/* <Chart type='line' series={series} options={options} height='100%'/> */}

@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Scores = (props) => {
-  const [dropdown, showDropdown] = useState(false);
-  const [state, setState] = useState({});
 
-  return (
-    <div className='scores-container'>
-      hello scores
-    </div>
-  );
+  console.log(props)
+  if (props.score.game.results !== undefined) {
+    return (
+      <div>
+        {props.score.game.results.full.scores[0].name}
+        {props.score.game.results.full.scores[0].score}
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {props.score.awayTeam}
+        {props.score.homeTeam}
+      </div>
+    );
+  }
 };
 
 export default Scores;

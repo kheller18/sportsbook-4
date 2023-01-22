@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BetSlipDashboardItem from './BetSlipDashboardItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { } from '@fortawesome/free-regular-svg-icons';
 import { faFootballBall, faHockeyPuck, faBasketballBall, faFutbol, faSquareCheck } from '@fortawesome/free-solid-svg-icons';
@@ -27,26 +28,40 @@ const BetSlipDashboard = (props) => {
         </div>
         <div className='slip-dashboard-body'>
           {Object.values(state.slip.slips.keys).map((key) => {
-            switch (key.betType) {
-              case 'Moneyline':
+            // switch (key.betType) {
+            //   case 'Moneyline':
                 return (
-                  <div><FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} ML ({key.odds.num})</div>
+                  <div>
+                    {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} ML ({key.odds.num}) */}
+                    <BetSlipDashboardItem bet={key} game={state.games[`${key.gameUID}`]}/>
+                  </div>
                 )
-              case 'Spread':
-                return (
-                  <div><FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} {key.line} ({key.odds.num})</div>
-                )
-              case 'TotalOver':
-                return (
-                  <div><FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Over {key.line} ({key.odds.num})</div>
-                )
-              case 'TotalUnder':
-                return (
-                  <div><FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Under {key.line} ({key.odds.num})</div>
-                )
-              default:
-                return null
-            }
+              // case 'Spread':
+              //   return (
+              //     <div>
+              //       <div className='slip-dashboard-body-item'>
+              //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} {key.line} ({key.odds.num}) */}
+              //       </div>
+              //       <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
+              //     </div>
+              //   )
+            //   case 'TotalOver':
+            //     return (
+            //       <div>
+            //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Over {key.line} ({key.odds.num}) */}
+            //         <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
+            //       </div>
+            //     )
+            //   case 'TotalUnder':
+            //     return (
+            //       <div>
+            //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Under {key.line} ({key.odds.num}) */}
+            //         <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
+            //       </div>
+            //     )
+            //   default:
+            //     return null
+            // }
           })}
         </div>
         <div className='slip-dashboard-footer'>

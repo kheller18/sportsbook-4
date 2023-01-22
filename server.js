@@ -77,7 +77,7 @@ mongoose.connect(
     let sportsPackage = '';
     let leagues = {};
     let sendUser = {};
-    let liveGames = [];
+    let liveGames = {};
     let gamesPackage = {leagues};
     // console.log(socket.handshake.headers['x-current-user'])
 
@@ -116,12 +116,25 @@ mongoose.connect(
       await Promise.all(promises);
     }
 
+    // const fetchLiveGames = async () => {
+    //   liveGames = [];
+    //   const promise = await Games.find({"status": 'Live'}).then((games) => {
+    //     liveGames = games;
+    //   })
+    // }
+
     const fetchLiveGames = async () => {
-      liveGames = [];
-      const promise = await Games.find({"status": 'Live'}).then((games) => {
-        liveGames = games;
+      liveGames = {};
+      const promise = await Games.find({ $or: [{"status": 'Live'}, {'status': 'Upcoming'}]}).then((games) => {
+        // const promise = await Games.find({"status": 'Live'}).then((games) => {
+        const promises = games.map((game) => {
+          liveGames[`${game.gameUID}`] = game;
+        })
+        // await Promise.all(promises)
       })
     }
+
+
 
     const fetchUser = async (user_id) => {
       console.log(user_id)
