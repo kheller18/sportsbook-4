@@ -71,7 +71,8 @@ const userSchema = new Schema({
     // type: Object,
   },
   account_value_history: {
-    type: Array
+    type: Array,
+    default: [{date: Date.now(), value: 1000}]
   },
   betting_outcome_history: {
     type: Array

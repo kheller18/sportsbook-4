@@ -7,7 +7,7 @@ import '../styles/BetSlipDashboard.css';
 
 const BetSlipDashboard = (props) => {
   console.log(props)
-  const [dropdown, showDropdown] = useState(false);
+  // const [dropdown, showDropdown] = useState(false);
   const [state, setState] = useState(props);
   const iconClasses = {
     'Baseball': 'fa-baseball-ball',
@@ -28,40 +28,12 @@ const BetSlipDashboard = (props) => {
         </div>
         <div className='slip-dashboard-body'>
           {Object.values(state.slip.slips.keys).map((key) => {
-            // switch (key.betType) {
-            //   case 'Moneyline':
-                return (
-                  <div>
-                    {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} ML ({key.odds.num}) */}
-                    <BetSlipDashboardItem bet={key} game={state.games[`${key.gameUID}`]}/>
-                  </div>
-                )
-              // case 'Spread':
-              //   return (
-              //     <div>
-              //       <div className='slip-dashboard-body-item'>
-              //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} {key.line} ({key.odds.num}) */}
-              //       </div>
-              //       <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
-              //     </div>
-              //   )
-            //   case 'TotalOver':
-            //     return (
-            //       <div>
-            //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Over {key.line} ({key.odds.num}) */}
-            //         <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
-            //       </div>
-            //     )
-            //   case 'TotalUnder':
-            //     return (
-            //       <div>
-            //         {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.teams.away} vs. {key.teams.home} Under {key.line} ({key.odds.num}) */}
-            //         <Scores bet={key} game={state.games[`${key.gameUID}`]}/>
-            //       </div>
-            //     )
-            //   default:
-            //     return null
-            // }
+            return (
+              <div>
+                {/* <FontAwesomeIcon icon={iconClasses[key.icon]}/> {key.team} ML ({key.odds.num}) */}
+                <BetSlipDashboardItem bet={key} game={state.games[`${key.gameUID}`]}/>
+              </div>
+            )
           })}
         </div>
         <div className='slip-dashboard-footer'>

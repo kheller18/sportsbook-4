@@ -4,6 +4,7 @@ import Chart from 'react-apexcharts';
 import Button from './Button';
 import UserDropdown from './UserDropdown';
 import DashboardBetting from './DashboardBetting';
+import DashboardChartsContainer from './DashboardChartsContainer';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -42,7 +43,7 @@ const UserDashboard = (props) => {
       options: {
         xaxis: {
           // categories: ["2022-12-16", "2022-12-17", "2022-12-18", "2022-12-19", "2022-12-20", "2022-12-21"]
-          categories: ["2022-12-16", "2022-12-21", "2022-12-17"]
+          categories: ["2022/12/16", "2022/12/21", "2022/12/17"]
         }
       }
   }
@@ -104,7 +105,8 @@ const UserDashboard = (props) => {
       </div>
       <div className='dashboard-body'>
         {dashboard.active === 'graph' ?
-          <Chart type='line' series={account_valuee.series} options={account_valuee.options} height='100%' />
+          <DashboardChartsContainer user={props.user.user} />
+          // <Chart type='line' series={account_valuee.series} options={account_valuee.options} height='100%' />
         : ''
         }
         {dashboard.active === 'betting' ?
