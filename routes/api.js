@@ -169,7 +169,11 @@ router.post('/api/bet', async (req, res) => {
             $set: {
               'account_value.pending': initial_user.account_value.pending + parseFloat(req.body.sum),
               'account_value.current': initial_user.account_value.current - parseFloat(req.body.sum)
-            }
+            },
+            $push: {
+              'account_value_history.pending': { date: Date.now(), value: initial_user.account_value.pending + parseFloat(req.body.sum) },
+              'account_value_history.balance': { date: Date.now(), value: initial_user.account_value.current - parseFloat(req.body.sum) }
+            },
           },
           { new: true }
         ).then((hi) => {
@@ -192,7 +196,15 @@ router.post('/api/bet', async (req, res) => {
             $set: {
               'account_value.pending': initial_user.account_value.pending + parseFloat(req.body.sum),
               'account_value.current': initial_user.account_value.current - parseFloat(req.body.sum)
-            }
+            },
+            $push: {
+              'account_value_history.pending': { date: Date.now(), value: initial_user.account_value.pending + parseFloat(req.body.sum) },
+              'account_value_history.balance': { date: Date.now(), value: initial_user.account_value.current - parseFloat(req.body.sum) }
+            },
+            // $push: {
+            //   account_pending_history: { date: Date.now(), value: initial_user.account_value.pending + parseFloat(req.body.sum) },
+            //   account_value_history: { date: Date.now(), value: initial_user.account_value.current - parseFloat(req.body.sum) }
+            // },
           },
           { new: true }
         ).then((hi) => {

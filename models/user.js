@@ -70,9 +70,25 @@ const userSchema = new Schema({
     },
     // type: Object,
   },
+  // account_value_history: {
+  //   type: Array,
+  //   default: [{date: Date.now(), value: 1000}]
+  // },
   account_value_history: {
+    // type: Object,
+    balance: {
+      type: Array,
+      default: [{date: Date.now(), value: 1000}]
+    },
+    pending: {
+      type: Array,
+      default: [{date: Date.now(), value: 0}]
+    }
+  },
+
+  account_pending_history: {
     type: Array,
-    default: [{date: Date.now(), value: 1000}]
+    default: [{date: Date.now(), value: 0}]
   },
   betting_outcome_history: {
     type: Array
@@ -85,8 +101,14 @@ userSchema.post('findOneAndUpdate', (user) => {
   // console.log(user)
   user.account_value.current += parseFloat(user.betting_outcome_history[user.betting_outcome_history.length-1].outcome);
   user.account_value.pending -= Math.abs(parseFloat(user.betting_outcome_history[user.betting_outcome_history.length-1].outcome));
-  user.account_value_history.push({date: Date.now(), value: user.account_value.current})
+  // console.log(user.account_value.pending)
+  // user.account_value_history.push({date: Date.now(), value: user.account_value.current})
+  // user.account_pending_history.push({date: Date.now(), value: user.account_value.pending})
+  user.account_value_history.balance.push({date: Date.now(), value: user.account_value.current})
+  user.account_value_history.pending.push({date: Date.now(), value: user.account_value.pending})
+
   user.save();
+  console.log(user.account_value.pending)
 })
 
 const User = mongoose.model('User', userSchema);
